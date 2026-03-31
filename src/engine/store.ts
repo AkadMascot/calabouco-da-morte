@@ -4,7 +4,7 @@ import type { Character, GamePhase, GameState, PotionType } from './types';
 import { rollCharacterSkill, rollCharacterStamina, rollCharacterLuck } from './dice';
 
 interface GameActions {
-  createCharacter: (potion: PotionType) => void;
+  createCharacter: (potion: PotionType, stats?: { skill: number; stamina: number; luck: number }) => void;
   goToSection: (sectionId: number) => void;
   addItem: (item: string) => void;
   removeItem: (item: string) => void;
@@ -28,10 +28,10 @@ export const useGameStore = create<GameStore>()(
     (set, get) => ({
       ...initialState,
 
-      createCharacter: (potion: PotionType) => {
-        const skill = rollCharacterSkill();
-        const stamina = rollCharacterStamina();
-        const luck = rollCharacterLuck();
+      createCharacter: (potion: PotionType, stats?: { skill: number; stamina: number; luck: number }) => {
+        const skill = stats?.skill ?? rollCharacterSkill();
+        const stamina = stats?.stamina ?? rollCharacterStamina();
+        const luck = stats?.luck ?? rollCharacterLuck();
 
         const character: Character = {
           skillInitial: skill,
