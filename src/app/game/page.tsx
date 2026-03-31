@@ -9,6 +9,7 @@ import { useGameStore } from '@/engine/store';
 import { getSection } from '@/engine/sections';
 import { StoryPanel } from '@/components/game/StoryPanel';
 import { ChoicePanel } from '@/components/game/ChoicePanel';
+import { CharacterSheetSidebar, CharacterSheetMobile } from '@/components/game/CharacterSheet';
 import type { Section } from '@/engine/types';
 
 function applySectionEffects(section: Section) {
@@ -152,31 +153,37 @@ export default function GamePage() {
   // Normal gameplay
   return (
     <main className="flex min-h-screen flex-col px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto w-full max-w-2xl flex flex-col gap-8">
-        <header className="flex items-center justify-between">
-          <h1 className="text-lg font-bold text-amber-500 sm:text-xl">
-            O Calabouço da Morte
-          </h1>
-          <span className="text-xs text-muted-foreground">
-            Seção {section.id}
-          </span>
-        </header>
+      <div className="mx-auto w-full max-w-5xl flex gap-8">
+        <div className="flex-1 max-w-2xl flex flex-col gap-8">
+          <header className="flex items-center justify-between">
+            <h1 className="text-lg font-bold text-amber-500 sm:text-xl">
+              O Calabouço da Morte
+            </h1>
+            <span className="text-xs text-muted-foreground">
+              Seção {section.id}
+            </span>
+          </header>
 
-        <div className="h-px w-full bg-amber-900/30" />
+          <div className="h-px w-full bg-amber-900/30" />
 
-        <StoryPanel section={section} />
+          <StoryPanel section={section} />
 
-        {section.choices.length > 0 && (
-          <>
-            <div className="h-px w-full bg-amber-900/30" />
-            <ChoicePanel
-              choices={section.choices}
-              character={character}
-              onChoose={handleChoice}
-            />
-          </>
-        )}
+          {section.choices.length > 0 && (
+            <>
+              <div className="h-px w-full bg-amber-900/30" />
+              <ChoicePanel
+                choices={section.choices}
+                character={character}
+                onChoose={handleChoice}
+              />
+            </>
+          )}
+        </div>
+
+        <CharacterSheetSidebar />
       </div>
+
+      <CharacterSheetMobile />
     </main>
   );
 }
