@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Character } from '@/engine/types';
+import { fetchLeaderboard, submitScore, type LeaderboardEntry } from '@/lib/leaderboard';
 
 interface EndScreenProps {
   type: 'death' | 'victory';
@@ -13,13 +14,6 @@ interface EndScreenProps {
   onMenu: () => void;
 }
 
-interface LeaderboardEntry {
-  name: string;
-  steps: number;
-  section: number;
-  outcome: string;
-  timestamp: number;
-}
 
 export default function EndScreen({ type, sectionsVisited, itemsCollected, character, onRetry, onMenu }: EndScreenProps) {
   const [playerName, setPlayerName] = useState('');
@@ -31,40 +25,30 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
   const isDeath = type === 'death';
   const accentColor = isDeath ? 'red' : 'amber';
 
-  // Leaderboard disabled for static export (no API routes)
+  // Fetch leaderboard from Gist (public) or local API
   useEffect(() => {
-    // Load from localStorage as fallback
-    try {
-      const stored = localStorage.getItem('leaderboard');
-      if (stored) setLeaderboard(JSON.parse(stored));
-    } catch {}
+    fetchLeaderboard()
+      .then(data => setLeaderboard(data.entries || []))
+      .catch(() => {});
   }, []);
 
   const handleSubmit = async () => {
     if (!playerName.trim()) return;
 
-    const payload = {
+    const result = await submitScore({
       name: playerName.trim(),
       steps: sectionsVisited,
       section: character.currentSection,
       outcome: type,
-      skill: character.skillCurrent,
-      stamina: character.staminaCurrent,
-      luck: character.luckCurrent,
-      inventory: character.inventory,
-    };
+    });
 
-    try {
-      // Save to localStorage (static export — no server API)
-      const stored = JSON.parse(localStorage.getItem('leaderboard') || '[]');
-      stored.push({ ...payload, timestamp: Date.now() });
-      stored.sort((a: any, b: any) => (b.outcome === 'victory' ? 1 : 0) - (a.outcome === 'victory' ? 1 : 0) || a.steps - b.steps);
-      localStorage.setItem('leaderboard', JSON.stringify(stored.slice(0, 50)));
-      setRank(stored.findIndex((e: any) => e.name === payload.name && e.timestamp) + 1);
+    if (result) {
+      setRank(result.rank);
       setSubmitted(true);
-      setLeaderboard(stored.slice(0, 10));
+      const lb = await fetchLeaderboard();
+      setLeaderboard(lb.entries || []);
       setShowLeaderboard(true);
-    } catch {}
+    }
   };
 
   return (

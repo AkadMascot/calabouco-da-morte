@@ -1,26 +1,59 @@
-# ⚔️ O Calabouço da Morte
+# 🏰 O Calabouço da Morte
 
-Jogo interativo web baseado no livro-jogo **Aventuras Fantásticas 05 — O Calabouço da Morte** (*Deathtrap Dungeon*) de Ian Livingstone.
+**Adaptação interativa do livro-jogo "Aventuras Fantásticas 05" de Ian Livingstone.**
 
-> *O clamor dos espectadores excitados some gradualmente atrás de você à medida que se embrenha na escuridão do calabouço...*
+> Você foi selecionado para entrar no Calabouço da Morte — o labirinto mortal do Barão Sukumvit. Poucos entram. Menos ainda saem com vida.
 
-## 🎮 Como Jogar
+🎮 **[Jogar agora](https://akadmascot.github.io/calabouco-da-morte/)**
 
-1. Crie seu personagem (Habilidade, Energia, Sorte)
-2. Escolha sua poção
-3. Entre no Calabouço da Morte do Barão Sukumvit
-4. Sobreviva.
+---
 
-## 🛠️ Stack
+## Como Jogar
 
-- Next.js 14+ / TypeScript / Tailwind CSS
-- shadcn/ui / Zustand / Framer Motion
-- 100% client-side (sem backend)
+### Criação do Personagem
+Ao iniciar uma nova aventura, seus atributos são gerados aleatoriamente:
+- **Habilidade** — Sua perícia em combate e testes físicos
+- **Energia** — Sua vida. Chega a zero = morte
+- **Sorte** — Usada em testes de sorte ao longo da aventura
 
-## 📖 Sobre o Livro
+### Gameplay
+- Leia o texto narrativo de cada seção
+- Escolha entre as opções disponíveis (A, B, C...)
+- Enfrente combates contra criaturas (automático, baseado em dados)
+- Colete itens que podem salvar sua vida mais à frente
+- Teste sua sorte quando a aventura exigir
 
-*O Calabouço da Morte* (1984) é o 5º livro da série *Aventuras Fantásticas* (Fighting Fantasy), criada por Steve Jackson e Ian Livingstone. O jogador é um aventureiro que entra no labirinto mortal do Barão Sukumvit em Fang, competindo contra 5 outros campeões pelo prêmio de 10.000 Peças de Ouro.
+### Combate
+O combate é por turnos:
+1. Seus dados vs dados do inimigo + Habilidade de cada um
+2. Quem tiver maior Força de Ataque causa dano
+3. Luta até um dos dois cair
 
-## 📄 Licença
+### Dicas
+- 🎒 Colete tudo que encontrar — itens são cruciais
+- 🍖 Use Provisões para recuperar Energia
+- 🎲 Sorte alta no início ajuda, mas diminui a cada uso
+- 📖 Há apenas UM caminho correto até a vitória
+- 💀 Morrer faz parte — aprenda com cada tentativa
 
-Código: MIT. O conteúdo narrativo pertence aos detentores dos direitos autorais originais.
+---
+
+## Sobre o Projeto
+
+Adaptação digital completa com:
+- 🎬 **400 seções jogáveis** com cinematics geradas por IA
+- 🎥 **Vídeos Seedance 2.0** animados nas cenas principais
+- 🎙️ **Narração por voz** (ElevenLabs)
+- ⚔️ **Sistema de combate** com dados animados
+- 🏆 **Ranking online** entre jogadores
+- 📱 **Responsivo** para mobile e desktop
+
+### Stack
+- Next.js 14, TypeScript, Tailwind CSS
+- Zustand (state management), Framer Motion (animações)
+- Flux 2 Pro (concept art), Seedance 2.0 (vídeo IA)
+- ElevenLabs (narração)
+
+---
+
+*Baseado no livro-jogo de Ian Livingstone. Projeto fan-made sem fins lucrativos.*
