@@ -1,0 +1,231 @@
+'use client';
+
+import { useState, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import type { DiceRoll } from '@/engine/types';
+import { useGameStore } from '@/engine/store';
+
+interface DiceRollUIProps {
+  diceRoll: DiceRoll;
+  onNavigate: (sectionId: number) => void;
+}
+
+function roll1d6(): number {
+  return Math.floor(Math.random() * 6) + 1;
+}
+
+function roll2d6(): [number, number] {
+  return [roll1d6(), roll1d6()];
+}
+
+export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
+  const { character } = useGameStore();
+  const [rolling, setRolling] = useState(false);
+  const [rolled, setRolled] = useState(false);
+  const [displayDice, setDisplayDice] = useState<number[]>([]);
+  const [result, setResult] = useState<{ total: number; success: boolean; message: string; targetSection: number } | null>(null);
+
+  const resolveDiceRoll = useCallback(() => {
+    if (!character || rolling || rolled) return;
+    setRolling(true);
+
+    // Animate dice for 1 second
+    const animInterval = setInterval(() => {
+      if (diceRoll.type === 'd6Range') {
+        setDisplayDice([roll1d6()]);
+      } else {
+        const [a, b] = roll2d6();
+        setDisplayDice([a, b]);
+      }
+    }, 80);
+
+    setTimeout(() => {
+      clearInterval(animInterval);
+
+      let total: number;
+      let diceValues: number[];
+      let success: boolean;
+      let message: string;
+      let targetSection: number;
+
+      if (diceRoll.type === 'd6Range') {
+        const d = roll1d6();
+        diceValues = [d];
+        total = d;
+        // Find matching range
+        const range = diceRoll.ranges?.find(r => d >= r.min && d <= r.max);
+        targetSection = range?.targetSection ?? 1;
+        success = true;
+        message = `Resultado: ${d}`;
+      } else {
+        const [a, b] = roll2d6();
+        diceValues = [a, b];
+        total = a + b;
+
+        switch (diceRoll.type) {
+          case 'skillCheck': {
+            const skill = character.skillCurrent;
+            success = total <= skill;
+            message = success
+              ? `${total} ≤ ${skill} (Habilidade) — Sucesso!`
+              : `${total} > ${skill} (Habilidade) — Falhou!`;
+            targetSection = success ? diceRoll.successSection! : diceRoll.failSection!;
+            break;
+          }
+          case 'skillAndStaminaCheck': {
+            const skillOk = total <= character.skillCurrent;
+            const staminaOk = total <= character.staminaCurrent;
+            success = skillOk && staminaOk;
+            message = success
+              ? `${total} ≤ HAB ${character.skillCurrent} e ENE ${character.staminaCurrent} — Sucesso!`
+              : `${total} > HAB ${character.skillCurrent} ou ENE ${character.staminaCurrent} — Falhou!`;
+            targetSection = success ? diceRoll.successSection! : diceRoll.failSection!;
+            break;
+          }
+          case 'fixedThreshold': {
+            const threshold = diceRoll.threshold!;
+            if (diceRoll.exactSection !== undefined) {
+              // Exact match type (section 290: == 8)
+              success = total === threshold;
+              message = success
+                ? `${total} = ${threshold} — Exato!`
+                : `${total} ≠ ${threshold}`;
+              targetSection = success ? diceRoll.exactSection! : diceRoll.otherSection!;
+            } else if (diceRoll.aboveSection !== undefined) {
+              // Above threshold (section 84: > 8)
+              success = total > threshold;
+              message = success
+                ? `${total} > ${threshold} — Acima!`
+                : `${total} ≤ ${threshold} — Abaixo!`;
+              targetSection = success ? diceRoll.aboveSection! : diceRoll.belowOrEqualSection!;
+            } else {
+              // Below threshold (section 191: < 8)
+              success = total < threshold;
+              message = success
+                ? `${total} < ${threshold} — Abaixo!`
+                : `${total} ≥ ${threshold} — Acima!`;
+              targetSection = success ? diceRoll.belowSection! : diceRoll.equalOrAboveSection!;
+            }
+            break;
+          }
+          default:
+            success = false;
+            message = 'Erro';
+            targetSection = 1;
+        }
+      }
+
+      setDisplayDice(diceValues);
+      setResult({ total, success, message, targetSection });
+      setRolling(false);
+      setRolled(true);
+    }, 1000);
+  }, [character, rolling, rolled, diceRoll]);
+
+  // Auto-navigate after showing result for 2.5 seconds
+  useEffect(() => {
+    if (result) {
+      const timer = setTimeout(() => {
+        onNavigate(result.targetSection);
+      }, 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [result, onNavigate]);
+
+  if (!character) return null;
+
+  // Description of what's being tested
+  const testDescription = (() => {
+    switch (diceRoll.type) {
+      case 'skillCheck': return 'Teste de Habilidade — Jogue 2 dados';
+      case 'skillAndStaminaCheck': return 'Teste de Habilidade e Energia — Jogue 2 dados';
+      case 'fixedThreshold': return `Teste de Sorte — Jogue 2 dados (alvo: ${diceRoll.threshold})`;
+      case 'd6Range': return 'Jogue 1 dado';
+      default: return 'Jogue os dados';
+    }
+  })();
+
+  return (
+    <div className="w-full max-w-sm sm:max-w-md flex flex-col items-center gap-4">
+      {/* Test description */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-amber-400 text-sm sm:text-base font-bold text-center tracking-wide game-text-shadow"
+      >
+        🎲 {testDescription}
+      </motion.div>
+
+      {/* Dice display */}
+      <div className="flex gap-4 justify-center">
+        {displayDice.map((d, i) => (
+          <motion.div
+            key={i}
+            animate={rolling ? { rotate: [0, 360], scale: [1, 1.2, 1] } : { rotate: 0, scale: 1 }}
+            transition={rolling ? { duration: 0.3, repeat: Infinity } : { duration: 0.3 }}
+            className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl border-2 flex items-center justify-center text-3xl sm:text-4xl font-bold font-mono ${
+              rolling
+                ? 'border-gray-600 bg-gray-900/60 text-gray-400'
+                : result?.success
+                  ? 'border-green-500/60 bg-green-950/40 text-green-400'
+                  : 'border-red-500/60 bg-red-950/40 text-red-400'
+            } backdrop-blur-md`}
+          >
+            {d}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Total */}
+      {displayDice.length > 0 && !rolling && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-gray-400 text-sm"
+        >
+          Total: <span className="text-white font-bold font-mono">{displayDice.reduce((a, b) => a + b, 0)}</span>
+        </motion.div>
+      )}
+
+      {/* Result message */}
+      <AnimatePresence>
+        {result && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className={`text-center px-6 py-3 rounded-xl font-bold text-sm sm:text-base backdrop-blur-md ${
+              result.success
+                ? 'bg-green-950/50 text-green-400 border border-green-600/40'
+                : 'bg-red-950/50 text-red-400 border border-red-600/40'
+            }`}
+          >
+            {result.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Roll button */}
+      {!rolled && (
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={resolveDiceRoll}
+          disabled={rolling}
+          className="px-8 py-3 sm:px-10 sm:py-4 rounded-xl border border-amber-700/60 bg-amber-950/40 backdrop-blur-md text-amber-400 hover:bg-amber-900/40 hover:border-amber-500/60 transition-all font-bold disabled:opacity-40 disabled:cursor-not-allowed text-base sm:text-lg game-text-shadow"
+        >
+          {rolling ? '🎲 Rolando...' : '🎲 Rolar Dados'}
+        </motion.button>
+      )}
+
+      {/* Auto-navigate indicator */}
+      {rolled && result && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          className="text-gray-500 text-xs"
+        >
+          Continuando...
+        </motion.div>
+      )}
+    </div>
+  );
+}

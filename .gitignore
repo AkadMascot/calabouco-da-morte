@@ -1,0 +1,55 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env
+.env*.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# dev artifacts
+assets/
+CLAUDE.md
+PLAN.md
+IMPROVEMENT-PLAN.md
+ITEM_AUDIT_REPORT.md
+AUDIT_REPORT.json
+character-sheet.md
+docs/plans/
+gamelog-sessions.json
+leaderboard.json
+scripts/
+fix-choices.js
+fix_all_data.py
+generate-all-texts.js
+generate_display_texts.py
+test-*.mjs
+review_game.js
+fix-*.js
+
+# concept images (source art, not served)
+public/cinematics/*-concept.png

@@ -1,0 +1,126 @@
+{
+  "beats": [
+    {
+      "id": "01",
+      "title": "A Cidade de Fang",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Fang era apenas uma cidade comum às margens do rio Kok. Até o Barão Sukumvit construir o labirinto.",
+      "typewriterSpeed": 57
+    },
+    {
+      "id": "02",
+      "title": "O Barão Sukumvit",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Com a ajuda dos habitantes, Sukumvit construiu um labirinto nas profundezas da montanha. Do qual só havia um modo de sair.",
+      "typewriterSpeed": 46
+    },
+    {
+      "id": "03",
+      "title": "O Labirinto",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "O labirinto foi povoado com monstros pavorosos, armadilhas e ardis mortais.",
+      "typewriterSpeed": 76
+    },
+    {
+      "id": "04",
+      "title": "Os Dez Guardas",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Sukumvit enviou seus dez melhores guardas para testar o labirinto. Nunca mais foram vistos.",
+      "typewriterSpeed": 62
+    },
+    {
+      "id": "05",
+      "title": "A Prova dos Campeões",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Dez mil Peças de Ouro para quem sobrevivesse. Ano após ano, ninguém retornou.",
+      "typewriterSpeed": 74
+    },
+    {
+      "id": "06",
+      "title": "O Desafio",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Não pelas recompensas. Pelo simples fato de que ninguém jamais conseguiu. Você pretende ser o primeiro.",
+      "typewriterSpeed": 55
+    },
+    {
+      "id": "07",
+      "title": "Chegada a Fang",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Dois dias de caminhada e quatro de rio levam você a Fang.",
+      "typewriterSpeed": 80
+    },
+    {
+      "id": "08",
+      "title": "A Última Noite",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Na noite anterior à Prova, a magnitude da tarefa começa a dominar seus pensamentos.",
+      "typewriterSpeed": 68
+    },
+    {
+      "id": "09",
+      "title": "O Clarim",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Um toque de clarim desperta você de sonhos povoados por poços flamejantes e aranhas gigantescas.",
+      "typewriterSpeed": 59
+    },
+    {
+      "id": "10",
+      "title": "Os Cinco Rivais",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Um cavaleiro. Uma elfa. Dois bárbaros. Um assassino nas sombras. E você.",
+      "typewriterSpeed": 79
+    },
+    {
+      "id": "11",
+      "title": "A Caminhada",
+      "variants": [
+        "a",
+        "b"
+      ],
+      "subtitle": "Você enche os pulmões de ar fresco uma última vez. É hora de enfrentar o Calabouço da Morte.",
+      "typewriterSpeed": 61
+    },
+    {
+      "id": "12",
+      "title": "O Calabouço da Morte",
+      "variants": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "subtitle": "",
+      "typewriterSpeed": 40
+    }
+  ]
+}

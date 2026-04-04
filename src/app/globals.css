@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ─── Combat shake animation ─── */
+@keyframes combat-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-4px) rotate(-0.5deg); }
+  20% { transform: translateX(4px) rotate(0.5deg); }
+  30% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
+
+.animate-combat-shake {
+  animation: combat-shake 0.5s ease-out;
+}
+
+/* ─── Scrollbar for combat log ─── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(120, 53, 15, 0.4);
+  border-radius: 2px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 53, 15, 0.6);
+}
+
+/* ─── Vignette overlay ─── */
+.vignette-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.3) 75%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* ─── Scanline overlay (togglable via .scanlines-active) ─── */
+.scanline-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+.scanlines-active .scanline-overlay {
+  opacity: 1;
+}
+
+/* ─── Video progress bar ─── */
+@keyframes videoProgressPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.video-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(245,158,11,0.8), rgba(245,158,11,0.4));
+  z-index: 15;
+  transition: width 0.3s linear;
+  box-shadow: 0 0 8px rgba(245,158,11,0.4), 0 0 16px rgba(245,158,11,0.2);
+  animation: videoProgressPulse 2s ease-in-out infinite;
+}
+
+/* ─── Typewriter cursor ─── */
+@keyframes typewriterBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: rgba(245,158,11,0.7);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: typewriterBlink 0.8s ease-in-out infinite;
+}
+
+/* ─── Choice button amber glow on hover ─── */
+.choice-btn {
+  transition: all 0.3s ease;
+}
+.choice-btn:hover {
+  box-shadow: 0 0 15px rgba(245,158,11,0.25), 0 0 30px rgba(245,158,11,0.1), inset 0 0 15px rgba(245,158,11,0.05);
+}
+
+/* ─── Universal text shadow for readability ─── */
+.game-text-shadow {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.9);
+}
+
+/* ─── Fog / particle effect for home page ─── */
+@keyframes fogDrift1 {
+  0% { transform: translateX(-10%) translateY(0); opacity: 0.3; }
+  50% { transform: translateX(5%) translateY(-10px); opacity: 0.5; }
+  100% { transform: translateX(-10%) translateY(0); opacity: 0.3; }
+}
+@keyframes fogDrift2 {
+  0% { transform: translateX(10%) translateY(0); opacity: 0.2; }
+  50% { transform: translateX(-5%) translateY(-8px); opacity: 0.4; }
+  100% { transform: translateX(10%) translateY(0); opacity: 0.2; }
+}
+@keyframes fogDrift3 {
+  0% { transform: translateX(0) translateY(0); opacity: 0.15; }
+  50% { transform: translateX(8%) translateY(-15px); opacity: 0.35; }
+  100% { transform: translateX(0) translateY(0); opacity: 0.15; }
+}
+/* Ken Burns animation for home background */
+@keyframes ken-burns-home {
+  0% { transform: scale(1.0) translate(0, 0); }
+  50% { transform: scale(1.15) translate(-2%, -1%); }
+  100% { transform: scale(1.0) translate(0, 0); }
+}
+.ken-burns-home {
+  animation: ken-burns-home 25s ease-in-out infinite;
+}
+
+.fog-layer {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  right: -10%;
+  pointer-events: none;
+}
+.fog-layer-1 {
+  height: 120px;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+  filter: blur(20px);
+  animation: fogDrift1 12s ease-in-out infinite;
+}
+.fog-layer-2 {
+  height: 80px;
+  background: linear-gradient(to top, rgba(30,20,10,0.4) 0%, transparent 100%);
+  filter: blur(15px);
+  animation: fogDrift2 8s ease-in-out infinite;
+}
+.fog-layer-3 {
+  height: 60px;
+  background: linear-gradient(to top, rgba(120,53,15,0.15) 0%, transparent 100%);
+  filter: blur(25px);
+  animation: fogDrift3 15s ease-in-out infinite;
+}
+
+/* ─── Title glow/pulse animation ─── */
+@keyframes titleGlowPulse {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(245,158,11,0.3), 0 0 40px rgba(245,158,11,0.15);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(245,158,11,0.6), 0 0 60px rgba(245,158,11,0.3), 0 0 100px rgba(245,158,11,0.1);
+    filter: brightness(1.1);
+  }
+}
+.title-glow-pulse {
+  animation: titleGlowPulse 4s ease-in-out infinite;
+}
+
+/* ─── Dramatic text fade-in ─── */
+@keyframes dramaticFadeIn {
+  0% { opacity: 0; transform: translateY(10px); letter-spacing: 0.3em; }
+  100% { opacity: 1; transform: translateY(0); letter-spacing: 0.15em; }
+}
+.dramatic-text-enter {
+  animation: dramaticFadeIn 2s ease-out forwards;
+}
