@@ -769,7 +769,7 @@
     "text": "Embora você já tenha examinado a arca cuidadosamente, em busca de quaisquer mecanismos ocultos, não consegue ver a armadilha dentro dela. Ao levantar a tampa, uma bola de ferro pendente de uma corda é lançada para trás, partindo a cápsula de vidro fixada no lado de dentro da tampa. Uma nuvem de gás venenoso é instantaneamente liberado no ar, e você cambaleia, recuando, enquanto tosse e se engasga. Você perde 4 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 198
       }
     ],
@@ -1382,7 +1382,7 @@
     "text": "Você respira o gás venenoso e começa a se engasgar. Você perde 3 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 77
       }
     ],
@@ -2188,7 +2188,7 @@
     "text": "Você leva a moringa aos lábios e toma um gole. O líquido queima tanto que você larga a moringa e segura a garganta em agonia. Você engoliu ácido! Perde 1 ponto de HABILIDADE e 4 de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 275
       }
     ],
@@ -2331,7 +2331,7 @@
     "text": "Você gira o gancho de ferro em torno da cabeça e o atira na fera lá embaixo. As enormes mandíbulas do Diabo do Poços e fecham firmemente sobre o gancho, e, em seguida, ele joga a cabeça para trás. Ainda segurando a corda, você é puxado do alto da muralha e despenca no fundo do poço. Você perde 4 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 203
       }
     ],
@@ -2678,7 +2678,7 @@
     "text": "Seu corpo vibra desenfreadamente, e você não consegue evitar o desmaio. Você perde 3 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 50
       }
     ],
@@ -3298,7 +3298,7 @@
     "text": "Você não tem tempo para reagir antes que o dardo se crave na sua coxa. Você perde 2 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 73
       }
     ],
@@ -4242,7 +4242,7 @@
     "text": "Há uma única Peça de Ouro no fundo da mochila. Quando você tenta pegá-la, sente um leve movimento que faz cócegas nas costas, da sua mão. Você retira a mão lentamente, tentando controlar o pânico crescente, e fica horrorizado ao ver uma ARANHA VIÚVA NEGRA. Antes que possa afastá-la, ela crava as presas venenosas profundamente no seu pulso. Você perde 6 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 20
       }
     ],
@@ -4952,7 +4952,7 @@
     "text": "Antes que você possa sair do caminho, o rochedo se choca contra seu ombro. Você perde 1 ponto de HABILIDADE e 4 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 325
       }
     ],
@@ -5544,7 +5544,7 @@
     "text": "Ao ouvir o roído da sua bainha, um dos Trogloditas dá o alarme. Você se levanta e corre o mais rápido que pode pela caverna. Um dos arqueiros dispara uma flecha que lhe rasga o ombro com precisão mortal. Você perde 3 pontos de ENERGIA. Se ainda estiver vivo,",
     "choices": [
       {
-        "text": "Se ainda estiver vivo",
+        "text": "Continuar",
         "targetSection": 259
       }
     ],

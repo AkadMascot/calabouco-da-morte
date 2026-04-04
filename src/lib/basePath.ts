@@ -1,11 +1,13 @@
 /**
  * Returns the basePath configured in next.config.mjs.
- * Use this for all public asset references (images, videos, audio).
+ * In GitHub Pages: '/calabouco-da-morte'
+ * In local/ngrok: '' (empty)
  */
-export const basePath = process.env.__NEXT_ROUTER_BASEPATH || '/calabouco-da-morte';
+export const basePath = process.env.__NEXT_ROUTER_BASEPATH || '';
 
 /** Prefix a public asset path with basePath */
 export function asset(path: string): string {
+  if (!basePath) return path;
   if (path.startsWith(basePath)) return path;
   return `${basePath}${path}`;
 }

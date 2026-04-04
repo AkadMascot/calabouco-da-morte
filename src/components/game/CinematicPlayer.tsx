@@ -236,8 +236,14 @@ export default function CinematicPlayer({
 
   return (
     <>
-      {/* BLACK background until video loads — no poster flash */}
-      <div className="absolute inset-0 z-[1] bg-black" />
+      {/* POSTER behind video — visible while loading and as backdrop */}
+      <img
+        key={`poster-${sectionId}`}
+        src={posterSrc}
+        alt=""
+        className="absolute inset-0 z-[1] w-full h-full object-cover"
+        loading="eager"
+      />
 
      {/* VIDEO LAYER (plays over black bg) */}
      <video
@@ -311,7 +317,7 @@ export default function CinematicPlayer({
           animate={{ opacity: 0.6 }}
           transition={{ delay: isRevisit ? 0 : 2 }}
           onClick={handleSkip}
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-40 text-white/60 hover:text-white text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-sm transition-all game-text-shadow"
+          className="absolute top-12 right-3 sm:top-14 sm:right-4 z-40 text-white/60 hover:text-white text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-sm transition-all game-text-shadow"
         >
           Pular ▸▸
         </motion.button>

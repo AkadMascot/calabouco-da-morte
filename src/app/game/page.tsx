@@ -253,6 +253,8 @@ export default function GamePage() {
 
   return (
     <div className={`relative w-screen h-screen overflow-hidden bg-black ${scanlinesOn ? 'scanlines-active' : ''}`}>
+      {/* MAX WIDTH WRAPPER for ultra-wide screens */}
+      <div className="absolute inset-0 max-w-[1920px] mx-auto">
 
       {/* ─── SECTION TRANSITION OVERLAY ─── */}
       <div
@@ -289,7 +291,7 @@ export default function GamePage() {
         <img
           src={asset(`/cinematics/section-${String(currentSection).padStart(3, '0')}-poster.webp`)}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm"
+          className="absolute inset-0 w-full h-full object-cover opacity-80"
           loading="eager"
           onError={(e) => { (e.target as HTMLImageElement).src = asset('/cinematics/section-001-poster.webp'); }}
         />
@@ -596,6 +598,7 @@ export default function GamePage() {
           animation: kenBurns 30s ease-in-out infinite;
         }
       `}</style>
+      </div>{/* close max-width wrapper */}
     </div>
   );
 }
