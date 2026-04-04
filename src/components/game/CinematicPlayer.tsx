@@ -249,7 +249,7 @@ export default function CinematicPlayer({
      <video
        key={`section-${sectionId}`}
        ref={videoRef}
-        className={`absolute inset-0 z-[2] w-full h-full object-cover transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 z-[2] w-full h-full object-cover transition-opacity duration-300 ${videoReady && !videoEnded ? 'opacity-100' : 'opacity-0'}`}
         src={videoSrc}
         playsInline
         muted
