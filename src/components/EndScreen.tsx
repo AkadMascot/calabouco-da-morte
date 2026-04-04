@@ -185,22 +185,6 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
         </button>
       )}
 
-      {/* Share score via WhatsApp */}
-      {submitted && (
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          onClick={() => {
-            const msg = `⚔️ *Calabouço da Morte* — Novo Score!\n\n🏷️ ${playerName}\n👣 ${sectionsVisited} passos\n📍 §${character.currentSection}\n${type === 'victory' ? '🏆 VITÓRIA!' : '💀 Morte'}\n⏰ ${new Date().toLocaleString('pt-BR')}`;
-            window.open(`https://wa.me/351935970374?text=${encodeURIComponent(msg)}`, '_blank');
-          }}
-          className="text-xs px-4 py-2 rounded-lg bg-green-900/50 hover:bg-green-800/70 text-green-300 border border-green-700/30 transition-colors mb-3"
-        >
-          📲 Registrar no Ranking Global
-        </motion.button>
-      )}
-
       {/* Action buttons */}
       <div className="flex gap-3">
         <button
