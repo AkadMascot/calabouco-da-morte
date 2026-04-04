@@ -1,10 +1,16 @@
 /**
- * Leaderboard — reads/writes via API (local or ngrok)
- * Falls back to Gist (read-only) then localStorage
+ * Leaderboard — 100% client-side, no server needed.
+ * 
+ * READ:  GitHub Gist (public, no auth) + localStorage
+ * WRITE: localStorage only (per-browser)
+ * 
+ * Gist contains "seed" entries (curated/historic scores).
+ * localStorage contains the current player's scores.
+ * Display merges both, sorted by steps descending.
  */
 
 const GIST_RAW_URL = 'https://gist.githubusercontent.com/AkadMascot/963ee96e5f73fa14179f701cfe693951/raw/leaderboard.json';
-const NGROK_API = 'https://calabouco.ngrok.io/api/leaderboard';
+const LS_KEY = 'calabouco-leaderboard';
 
 export interface LeaderboardEntry {
   name: string;
@@ -20,73 +26,85 @@ export interface LeaderboardData {
   lastUpdated?: string;
 }
 
-/** Detect if we're on the same origin as the API server */
-function isLocalServer(): boolean {
-  if (typeof window === 'undefined') return false;
-  const host = window.location.hostname;
-  return host === 'localhost' || host === '127.0.0.1' || host.endsWith('.ngrok.io') || host.endsWith('.ngrok-free.app');
+/** Load local scores from localStorage */
+function loadLocal(): LeaderboardEntry[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const stored = localStorage.getItem(LS_KEY);
+    if (!stored) return [];
+    const data = JSON.parse(stored);
+    return Array.isArray(data.entries) ? data.entries : [];
+  } catch {
+    return [];
+  }
 }
 
-/** Get API URL — local path if same origin, ngrok if on GitHub Pages */
-function apiUrl(): string {
-  if (isLocalServer()) return '/api/leaderboard';
-  return NGROK_API;
+/** Save local scores to localStorage */
+function saveLocal(entries: LeaderboardEntry[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      entries: entries.slice(0, 20), // keep max 20 local entries
+      total: entries.length,
+    }));
+  } catch {}
 }
 
 /**
- * Fetch leaderboard — tries API first, falls back to Gist
+ * Fetch leaderboard — merges Gist (seed) + localStorage (player)
  */
 export async function fetchLeaderboard(): Promise<LeaderboardData> {
-  // Try API (local or ngrok)
+  let gistEntries: LeaderboardEntry[] = [];
+
+  // Fetch seed entries from Gist
   try {
-    const res = await fetch(apiUrl(), { signal: AbortSignal.timeout(3000) });
-    if (res.ok) {
-      return await res.json();
-    }
-  } catch {}
-
-  // Fallback: read from Gist (works everywhere, read-only)
-  try {
-    const res = await fetch(GIST_RAW_URL + '?t=' + Date.now(), { signal: AbortSignal.timeout(5000) });
-    if (res.ok) {
-      return await res.json();
-    }
-  } catch {}
-
-  return { entries: [], total: 0 };
-}
-
-/**
- * Submit score — tries API (local or ngrok), falls back to localStorage
- */
-export async function submitScore(entry: Omit<LeaderboardEntry, 'timestamp'>): Promise<{ rank: number } | null> {
-  const payload = { ...entry, timestamp: Date.now() };
-
-  // Try API (local or ngrok with CORS)
-  try {
-    const res = await fetch(apiUrl(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+    const res = await fetch(GIST_RAW_URL + '?t=' + Date.now(), {
       signal: AbortSignal.timeout(5000),
     });
     if (res.ok) {
-      return await res.json();
+      const data = await res.json();
+      gistEntries = Array.isArray(data.entries) ? data.entries : [];
     }
   } catch {}
 
-  // Fallback: save to localStorage
-  try {
-    const stored = localStorage.getItem('calabouco-leaderboard');
-    const data: LeaderboardData = stored ? JSON.parse(stored) : { entries: [], total: 0 };
-    data.entries.push({ ...payload, timestamp: Date.now() });
-    data.entries.sort((a, b) => b.steps - a.steps);
-    data.entries = data.entries.slice(0, 50);
-    data.total = data.entries.length;
-    localStorage.setItem('calabouco-leaderboard', JSON.stringify(data));
-    const rank = data.entries.findIndex(e => e.timestamp === payload.timestamp) + 1;
-    return { rank };
-  } catch {}
+  // Merge with local entries
+  const localEntries = loadLocal();
+  const all = [...gistEntries, ...localEntries];
 
-  return null;
+  // Dedupe by timestamp (in case same entry exists in both)
+  const seen = new Set<number>();
+  const unique = all.filter(e => {
+    if (seen.has(e.timestamp)) return false;
+    seen.add(e.timestamp);
+    return true;
+  });
+
+  // Sort by steps descending, take top 50
+  unique.sort((a, b) => b.steps - a.steps);
+  const top = unique.slice(0, 50);
+
+  return { entries: top, total: top.length };
+}
+
+/**
+ * Submit score — saves to localStorage, returns rank in merged leaderboard
+ */
+export async function submitScore(entry: Omit<LeaderboardEntry, 'timestamp'>): Promise<{ rank: number } | null> {
+  const newEntry: LeaderboardEntry = {
+    ...entry,
+    name: String(entry.name).slice(0, 30),
+    timestamp: Date.now(),
+  };
+
+  // Save to localStorage
+  const local = loadLocal();
+  local.push(newEntry);
+  local.sort((a, b) => b.steps - a.steps);
+  saveLocal(local);
+
+  // Get merged leaderboard to calculate rank
+  const merged = await fetchLeaderboard();
+  const rank = merged.entries.findIndex(e => e.timestamp === newEntry.timestamp) + 1;
+
+  return { rank: rank || merged.entries.length };
 }
