@@ -241,15 +241,15 @@ export default function CinematicPlayer({
         key={`poster-${sectionId}`}
         src={posterSrc}
         alt=""
-        className="absolute inset-0 z-[1] w-full h-full object-cover"
+        className="absolute inset-0 z-[1] w-full h-full object-contain sm:object-cover bg-black"
         loading="eager"
       />
 
-     {/* VIDEO LAYER (plays over black bg) */}
+     {/* VIDEO LAYER */}
      <video
        key={`section-${sectionId}`}
        ref={videoRef}
-        className={`absolute inset-0 z-[2] w-full h-full object-cover transition-opacity duration-300 ${videoReady && !videoEnded ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 z-[2] w-full h-full object-contain sm:object-cover bg-black transition-opacity duration-300 ${videoReady && !videoEnded ? 'opacity-100' : 'opacity-0'}`}
         src={videoSrc}
         playsInline
         muted

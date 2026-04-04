@@ -291,7 +291,7 @@ export default function GamePage() {
         <img
           src={asset(`/cinematics/section-${String(currentSection).padStart(3, '0')}-poster.webp`)}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
+          className="absolute inset-0 w-full h-full object-contain sm:object-cover opacity-80 bg-black"
           loading="eager"
           onError={(e) => { (e.target as HTMLImageElement).src = asset('/cinematics/section-001-poster.webp'); }}
         />
@@ -435,7 +435,7 @@ export default function GamePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="absolute inset-0 z-10 flex flex-col justify-center items-center px-4 sm:px-6 pb-20 sm:pb-28 overflow-y-auto"
+            className="absolute inset-0 z-10 flex flex-col justify-end sm:justify-center items-center px-3 sm:px-6 pb-24 sm:pb-28 pt-16 sm:pt-0 overflow-y-auto"
           >
             {/* ─── SECTION TEXT with Typewriter (only for NON-cinematic sections) ─── */}
             {!isDeadFinal && !section.isVictory && !hasCinematic && (
