@@ -435,7 +435,7 @@ export default function GamePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="absolute inset-0 z-10 flex flex-col justify-end sm:justify-center items-center px-3 sm:px-6 pb-24 sm:pb-28 pt-16 sm:pt-0 overflow-y-auto"
+            className="absolute inset-0 z-10 flex flex-col justify-end sm:justify-center items-center px-3 sm:px-6 pb-32 sm:pb-28 pt-14 sm:pt-0 overflow-y-auto"
           >
             {/* ─── SECTION TEXT with Typewriter (only for NON-cinematic sections) ─── */}
             {!isDeadFinal && !section.isVictory && !hasCinematic && (

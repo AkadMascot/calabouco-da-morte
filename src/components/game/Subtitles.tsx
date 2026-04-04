@@ -14,7 +14,7 @@ export default function Subtitles({ text, isPlaying, persist = false }: Subtitle
   const visible = isPlaying || persist;
 
   return (
-    <div className="absolute bottom-16 sm:bottom-8 left-0 right-0 z-30 flex justify-center pointer-events-none px-3 sm:px-4">
+    <div className="absolute bottom-2 sm:bottom-8 left-0 right-0 z-30 flex justify-center pointer-events-none px-3 sm:px-4">
       <AnimatePresence>
         {visible && (
           <motion.div
