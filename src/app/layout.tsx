@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "O Calabouço da Morte",
   description: "Jogo interativo baseado no livro-jogo Aventuras Fantásticas 05",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

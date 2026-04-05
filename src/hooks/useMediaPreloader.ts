@@ -17,29 +17,27 @@ export function useMediaPreloader(nextSectionIds: number[], enabled: boolean = t
       const cinematic = (cinematicsData.sections as Record<string, SectionCinematic>)[sectionKey];
       if (!cinematic) return;
 
-      // Preload video
+      // Prefetch video (not preload — video/audio not valid preload `as` values)
       if (cinematic.composed) {
         const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'video';
+        link.rel = 'prefetch';
         link.href = asset(cinematic.composed);
-        link.type = 'video/mp4';
+        link.setAttribute('as', 'fetch');
         document.head.appendChild(link);
         links.push(link);
       }
 
-      // Preload narration
+      // Prefetch narration
       if (cinematic.narration) {
         const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'audio';
+        link.rel = 'prefetch';
         link.href = asset(cinematic.narration);
-        link.type = 'audio/mpeg';
+        link.setAttribute('as', 'fetch');
         document.head.appendChild(link);
         links.push(link);
       }
 
-      // Preload poster
+      // Preload poster (image IS a valid preload `as` value)
       const posterLink = document.createElement('link');
       posterLink.rel = 'preload';
       posterLink.as = 'image';
