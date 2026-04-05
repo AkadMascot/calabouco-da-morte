@@ -3,10 +3,11 @@ import { asset } from '@/lib/basePath';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useGameStore } from '@/engine/store';
 import { fetchLeaderboard, type LeaderboardEntry } from '@/lib/leaderboard';
+import { useMusic } from '@/contexts/MusicContext';
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function Home() {
   const character = store.character;
   const hasSave = character !== null && character.isAlive;
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { setTrack } = useMusic();
 
   useEffect(() => {
     fetchLeaderboard()
@@ -22,35 +23,9 @@ export default function Home() {
       .catch(() => {});
   }, []);
 
-  // Menu background music — starts on first user interaction
+  // Menu background music via global MusicProvider
   useEffect(() => {
-    const audio = new Audio(asset('/audio/menu-theme.mp3'));
-    audio.loop = true;
-    audio.volume = 0;
-    audioRef.current = audio;
-
-    const fadeIn = () => {
-      audio.play().then(() => {
-        let vol = 0;
-        const step = () => {
-          vol = Math.min(vol + 0.005, 0.15);
-          audio.volume = vol;
-          if (vol < 0.15) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      }).catch(() => {});
-    };
-
-    // Start on any user interaction
-    const handler = () => { fadeIn(); window.removeEventListener('click', handler); window.removeEventListener('touchstart', handler); };
-    window.addEventListener('click', handler);
-    window.addEventListener('touchstart', handler);
-
-    return () => {
-      audio.pause();
-      window.removeEventListener('click', handler);
-      window.removeEventListener('touchstart', handler);
-    };
+    setTrack('menu');
   }, []);
 
   return (

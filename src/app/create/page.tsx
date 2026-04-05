@@ -1,13 +1,14 @@
 'use client';
 import { asset } from '@/lib/basePath';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useGameStore } from '@/engine/store';
 import { rollCharacterSkill, rollCharacterStamina, rollCharacterLuck } from '@/engine/dice';
 import type { PotionType } from '@/engine/types';
+import { useMusic } from '@/contexts/MusicContext';
 
 const potionOptions: { value: PotionType; label: string; description: string }[] = [
   { value: 'skill', label: 'Poção da Habilidade', description: 'Restaura Habilidade ao valor inicial' },
@@ -18,6 +19,10 @@ const potionOptions: { value: PotionType; label: string; description: string }[]
 export default function CreateCharacterPage() {
   const router = useRouter();
   const createCharacter = useGameStore((state) => state.createCharacter);
+  const { setTrack } = useMusic();
+
+  // Character creation has its own music track
+  useEffect(() => { setTrack('create'); }, []);
 
   const [skill, setSkill] = useState<number | null>(null);
   const [stamina, setStamina] = useState<number | null>(null);

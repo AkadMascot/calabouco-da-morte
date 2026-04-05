@@ -20,6 +20,7 @@ import { useHeartbeat } from '@/hooks/useHeartbeat';
 // import { useGameLogSync } from '@/hooks/useGameLogSync'; // disabled for static export
 import { trackCinematicStarted, trackCinematicSkipped, trackCinematicCompleted, trackSectionVisited, trackChoiceMade, trackPlayerDeath } from '@/lib/analytics';
 import { registerServiceWorker } from '@/lib/register-sw';
+import { useMusic } from '@/contexts/MusicContext';
 
 type SectionCinematic = { composed: string; narration?: string };
 
@@ -27,6 +28,10 @@ export default function GamePage() {
   const router = useRouter();
   const store = useGameStore();
   const { character, goToSection: storeGoToSection, gamePhase } = store;
+
+  // Switch to game soundtrack
+  const { setTrack: setMusicTrack } = useMusic();
+  useEffect(() => { setMusicTrack('game'); }, []);
 
   // UI State
   const [showContent, setShowContent] = useState(false);
@@ -119,8 +124,8 @@ export default function GamePage() {
     setTransitioning(true);
     setShowContent(false);
     setAutoAdvanceCount(null);
-    // Stop any playing narration audio when navigating away
-    document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+    // Stop narration/cinematic audio when navigating — but spare background music
+    document.querySelectorAll<HTMLAudioElement>('audio:not([data-bgmusic])').forEach(a => { a.pause(); a.currentTime = 0; });
     setTimeout(() => {
       storeGoToSection(sectionId);
       setTimeout(() => setTransitioning(false), 50);
