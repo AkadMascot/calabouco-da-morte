@@ -51,7 +51,7 @@ export default function CinematicPlayer({
     const step = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      audio.volume = progress;
+      audio.volume = Math.max(0, Math.min(1, progress));
       if (progress < 1) {
         fadeRef.current = requestAnimationFrame(step);
       } else {
@@ -76,7 +76,7 @@ export default function CinematicPlayer({
     const step = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      audio.volume = startVolume * (1 - progress);
+      audio.volume = Math.max(0, Math.min(1, startVolume * (1 - progress)));
       if (progress < 1) {
         fadeRef.current = requestAnimationFrame(step);
       } else {
