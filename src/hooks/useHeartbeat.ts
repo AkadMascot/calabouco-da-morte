@@ -73,7 +73,7 @@ export function useHeartbeat() {
         // Fade out
         const fadeOut = () => {
           if (!audio) return;
-          audio.volume = Math.max(0, audio.volume - 0.01);
+          audio.volume = Math.max(0, Math.min(1, audio.volume - 0.01));
           if (audio.volume > 0.01) {
             requestAnimationFrame(fadeOut);
           } else {
@@ -98,10 +98,9 @@ export function useHeartbeat() {
       a.play().then(() => {
         // Fade in
         const fadeIn = () => {
-          if (a.volume < targetVol) {
-            a.volume = Math.min(a.volume + 0.005, targetVol);
-            requestAnimationFrame(fadeIn);
-          }
+          const next = Math.min(a.volume + 0.005, targetVol);
+          a.volume = Math.max(0, Math.min(1, next));
+          if (a.volume < targetVol - 0.001) requestAnimationFrame(fadeIn);
         };
         fadeIn();
       }).catch(() => {});
@@ -112,10 +111,9 @@ export function useHeartbeat() {
       audio.volume = 0;
       audio.play().then(() => {
         const fadeIn = () => {
-          if (audio.volume < targetVol) {
-            audio.volume = Math.min(audio.volume + 0.005, targetVol);
-            requestAnimationFrame(fadeIn);
-          }
+          const next = Math.min(audio.volume + 0.005, targetVol);
+          audio.volume = Math.max(0, Math.min(1, next));
+          if (audio.volume < targetVol - 0.001) requestAnimationFrame(fadeIn);
         };
         fadeIn();
       }).catch(() => {});
