@@ -16,6 +16,7 @@ import EndScreen from '@/components/EndScreen';
 import { useTypewriter } from '@/hooks/useTypewriter';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useMediaPreloader } from '@/hooks/useMediaPreloader';
+import { useHeartbeat } from '@/hooks/useHeartbeat';
 // import { useGameLogSync } from '@/hooks/useGameLogSync'; // disabled for static export
 import { trackCinematicStarted, trackCinematicSkipped, trackCinematicCompleted, trackSectionVisited, trackChoiceMade, trackPlayerDeath } from '@/lib/analytics';
 import { registerServiceWorker } from '@/lib/register-sw';
@@ -43,6 +44,9 @@ export default function GamePage() {
 
   // Combat done tracking (for post-combat choices display)
   const [combatDone, setCombatDone] = useState(false);
+
+  // Heartbeat ambient system
+  const { setMode: setHeartbeat } = useHeartbeat();
 
   const currentSection = character?.currentSection ?? 1;
   const section = getSection(currentSection);
@@ -241,7 +245,21 @@ export default function GamePage() {
   const isDeadFinal = !character.isAlive || character.staminaCurrent <= 0;
   const hasCombat = !!section.combat && !section.isEnding && !combatDone;
   const hasLuckTest = !!section.luckTest && !section.isEnding;
+
   const hasDiceRoll = !!section.diceRoll && !section.isEnding;
+
+  // Heartbeat mode based on game state
+  useEffect(() => {
+    if (isDeadFinal) {
+      setHeartbeat('death');
+    } else if (hasCombat && showContent) {
+      setHeartbeat('combat');
+    } else if (hasLuckTest || hasDiceRoll || section?.staminaChange) {
+      setHeartbeat('tense');
+    } else {
+      setHeartbeat('calm');
+    }
+  }, [isDeadFinal, hasCombat, hasLuckTest, hasDiceRoll, showContent, section, setHeartbeat]);
   const showCombatUI = hasCombat && showContent && !isDeadFinal;
   const showLuckUI = hasLuckTest && showContent && !hasCombat && !isDeadFinal;
   const showDiceUI = hasDiceRoll && showContent && !hasCombat && !hasLuckTest && !isDeadFinal;
@@ -267,6 +285,14 @@ export default function GamePage() {
 
       {/* ─── VIGNETTE OVERLAY ─── */}
       <div className="vignette-overlay" />
+      {/* Heartbeat pulse overlay — red vignette that pulses with heartbeat */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[5]"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 50%, rgba(80,0,0,var(--heartbeat-opacity,0)) 100%)',
+          transition: 'none',
+        }}
+      />
 
       {/* ─── SCANLINE OVERLAY ─── */}
       <div className="scanline-overlay" />
