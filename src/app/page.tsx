@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useGameStore } from '@/engine/store';
 import { fetchLeaderboard, type LeaderboardEntry } from '@/lib/leaderboard';
-import { useMusic } from '@/contexts/MusicContext';
+import { musicPlayer } from '@/lib/musicPlayer';
 
 export default function Home() {
   const router = useRouter();
@@ -15,18 +15,14 @@ export default function Home() {
   const character = store.character;
   const hasSave = character !== null && character.isAlive;
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const { setTrack } = useMusic();
-
   useEffect(() => {
     fetchLeaderboard()
       .then(data => setLeaderboard(data.entries?.slice(0, 5) || []))
       .catch(() => {});
   }, []);
 
-  // Menu background music via global MusicProvider
-  useEffect(() => {
-    setTrack('menu');
-  }, []);
+  // Menu background music
+  useEffect(() => { musicPlayer?.play('menu'); }, []);
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-4 overflow-hidden">

@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useGameStore } from '@/engine/store';
 import { rollCharacterSkill, rollCharacterStamina, rollCharacterLuck } from '@/engine/dice';
 import type { PotionType } from '@/engine/types';
-import { useMusic } from '@/contexts/MusicContext';
+import { musicPlayer } from '@/lib/musicPlayer';
 
 const potionOptions: { value: PotionType; label: string; description: string }[] = [
   { value: 'skill', label: 'Poção da Habilidade', description: 'Restaura Habilidade ao valor inicial' },
@@ -19,10 +19,8 @@ const potionOptions: { value: PotionType; label: string; description: string }[]
 export default function CreateCharacterPage() {
   const router = useRouter();
   const createCharacter = useGameStore((state) => state.createCharacter);
-  const { setTrack } = useMusic();
-
-  // Character creation has its own music track
-  useEffect(() => { setTrack('create'); }, []);
+  // Character creation music
+  useEffect(() => { musicPlayer?.play('create'); }, []);
 
   const [skill, setSkill] = useState<number | null>(null);
   const [stamina, setStamina] = useState<number | null>(null);

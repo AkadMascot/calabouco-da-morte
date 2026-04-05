@@ -20,7 +20,7 @@ import { useHeartbeat } from '@/hooks/useHeartbeat';
 // import { useGameLogSync } from '@/hooks/useGameLogSync'; // disabled for static export
 import { trackCinematicStarted, trackCinematicSkipped, trackCinematicCompleted, trackSectionVisited, trackChoiceMade, trackPlayerDeath } from '@/lib/analytics';
 import { registerServiceWorker } from '@/lib/register-sw';
-import { useMusic } from '@/contexts/MusicContext';
+import { musicPlayer } from '@/lib/musicPlayer';
 
 type SectionCinematic = { composed: string; narration?: string };
 
@@ -29,9 +29,8 @@ export default function GamePage() {
   const store = useGameStore();
   const { character, goToSection: storeGoToSection, gamePhase } = store;
 
-  // Switch to game soundtrack
-  const { setTrack: setMusicTrack } = useMusic();
-  useEffect(() => { setMusicTrack('game'); }, []);
+  // Game soundtrack
+  useEffect(() => { musicPlayer?.play('game'); }, []);
 
   // UI State
   const [showContent, setShowContent] = useState(false);

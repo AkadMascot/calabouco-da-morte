@@ -5,7 +5,7 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import introConfig from '@/data/intro-config.json';
-import { useMusic } from '@/contexts/MusicContext';
+import { musicPlayer } from '@/lib/musicPlayer';
 
 type Beat = typeof introConfig.beats[0];
 
@@ -16,10 +16,8 @@ function pickRandom<T>(arr: T[]): T {
 export default function IntroPage() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { setTrack } = useMusic();
-
-  // Intro has its own music track (lower volume — video audio dominates)
-  useEffect(() => { setTrack('intro'); }, []);
+  // Intro music track (lower volume — video audio dominates)
+  useEffect(() => { musicPlayer?.play('intro'); }, []);
 
   const [started, setStarted] = useState(false); // User must click to start
   const [currentBeatIndex, setCurrentBeatIndex] = useState(0);
