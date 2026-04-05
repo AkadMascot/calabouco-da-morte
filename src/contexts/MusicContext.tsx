@@ -35,7 +35,7 @@ const TRACK_VOLUMES: Record<string, number> = {
   menu: 0.15,
   intro: 0.10,
   create: 0.15,
-  game: 0.08,
+  game: 0.12,
 };
 
 const DEFAULT_VOLUME = 0.12;
