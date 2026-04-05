@@ -51,6 +51,19 @@ export default function GamePage() {
   const currentSection = character?.currentSection ?? 1;
   const section = getSection(currentSection);
 
+  // Heartbeat mode based on game state (must be before any early return)
+  useEffect(() => {
+    if (!character || !section) { setHeartbeat('off'); return; }
+    const isDead = !character.isAlive || character.staminaCurrent <= 0;
+    const inCombat = !!section.combat && !section.isEnding && !combatDone;
+    const inLuck = !!section.luckTest && !section.isEnding;
+    const inDice = !!section.diceRoll && !section.isEnding;
+    if (isDead) setHeartbeat('death');
+    else if (inCombat && showContent) setHeartbeat('combat');
+    else if (inLuck || inDice || section.staminaChange) setHeartbeat('tense');
+    else setHeartbeat('calm');
+  }, [character, section, combatDone, showContent, setHeartbeat]);
+
   // Cinematic lookup
   const sectionKey = String(currentSection);
   const cinematic: SectionCinematic | undefined =
@@ -248,18 +261,6 @@ export default function GamePage() {
 
   const hasDiceRoll = !!section.diceRoll && !section.isEnding;
 
-  // Heartbeat mode based on game state
-  useEffect(() => {
-    if (isDeadFinal) {
-      setHeartbeat('death');
-    } else if (hasCombat && showContent) {
-      setHeartbeat('combat');
-    } else if (hasLuckTest || hasDiceRoll || section?.staminaChange) {
-      setHeartbeat('tense');
-    } else {
-      setHeartbeat('calm');
-    }
-  }, [isDeadFinal, hasCombat, hasLuckTest, hasDiceRoll, showContent, section, setHeartbeat]);
   const showCombatUI = hasCombat && showContent && !isDeadFinal;
   const showLuckUI = hasLuckTest && showContent && !hasCombat && !isDeadFinal;
   const showDiceUI = hasDiceRoll && showContent && !hasCombat && !hasLuckTest && !isDeadFinal;
