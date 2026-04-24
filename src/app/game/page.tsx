@@ -143,17 +143,17 @@ export default function GamePage() {
       store.updateStats({ staminaChange: section.staminaChange });
       // Show damage/heal flash
       if (section.staminaChange < 0) {
-        setDamageFlash(`-${Math.abs(section.staminaChange)} Energia`);
+        setDamageFlash(`-${Math.abs(section.staminaChange)} Stamina`);
         setTimeout(() => setDamageFlash(null), 3000);
       } else if (section.staminaChange > 0) {
-        setDamageFlash(`+${section.staminaChange} Energia`);
+        setDamageFlash(`+${section.staminaChange} Stamina`);
         setTimeout(() => setDamageFlash(null), 3000);
       }
     }
     if (section.skillChange) {
       store.updateStats({ skillChange: section.skillChange });
       if (section.skillChange < 0) {
-        setDamageFlash(`-${Math.abs(section.skillChange)} Habilidade`);
+        setDamageFlash(`-${Math.abs(section.skillChange)} Skill`);
         setTimeout(() => setDamageFlash(null), 3000);
       }
     }
@@ -398,13 +398,13 @@ export default function GamePage() {
             exit={{ x: 300, opacity: 0 }}
             className="absolute top-0 right-0 z-30 h-full w-64 sm:w-72 bg-black/90 backdrop-blur-md border-l border-amber-900/30 p-4 sm:p-6 flex flex-col gap-4 overflow-y-auto"
           >
-            <h3 className="text-amber-500 font-bold text-sm tracking-widest uppercase game-text-shadow">Ficha</h3>
+            <h3 className="text-amber-500 font-bold text-sm tracking-widest uppercase game-text-shadow">Character Sheet</h3>
             <div className="flex flex-col gap-3 text-sm">
-              <StatBar label="Habilidade" current={character.skillCurrent} max={character.skillInitial} percent={skillPercent} />
-              <StatBar label="Energia" current={character.staminaCurrent} max={character.staminaInitial} percent={hpPercent} />
-              <StatBar label="Sorte" current={character.luckCurrent} max={character.luckInitial} percent={luckPercent} />
+              <StatBar label="Skill" current={character.skillCurrent} max={character.skillInitial} percent={skillPercent} />
+              <StatBar label="Stamina" current={character.staminaCurrent} max={character.staminaInitial} percent={hpPercent} />
+              <StatBar label="Luck" current={character.luckCurrent} max={character.luckInitial} percent={luckPercent} />
               <div className="flex justify-between text-amber-500/80 mt-2">
-                <span>Provisões</span>
+                <span>Provisions</span>
                 <span className="font-mono">{character.provisions}</span>
               </div>
 
@@ -419,8 +419,8 @@ export default function GamePage() {
               )}
 
               <div className="flex justify-between text-amber-500/80">
-                <span>Poção</span>
-                <span className="font-mono text-xs">{character.potionUsed ? 'Usada' : character.potion === 'skill' ? 'Habilidade' : character.potion === 'stamina' ? 'Energia' : 'Sorte'}</span>
+                <span>Potion</span>
+                <span className="font-mono text-xs">{character.potionUsed ? 'Used' : character.potion === 'skill' ? 'Skill' : character.potion === 'stamina' ? 'Stamina' : 'Luck'}</span>
               </div>
 
               {/* Use potion button */}
@@ -429,7 +429,7 @@ export default function GamePage() {
                   onClick={() => store.usePotion()}
                   className="text-xs px-3 py-1.5 bg-emerald-900/40 hover:bg-emerald-800/60 text-emerald-400 rounded border border-emerald-800/30 transition-all"
                 >
-                  🧪 Usar Poção
+                  🧪 Use Potion
                 </button>
               )}
 

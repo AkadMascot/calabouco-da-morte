@@ -1,4 +1,4 @@
-// Game engine types for O Calabouço da Morte
+// Game engine types for Deathtrap Dungeon
 
 export type PotionType = 'skill' | 'stamina' | 'luck';
 

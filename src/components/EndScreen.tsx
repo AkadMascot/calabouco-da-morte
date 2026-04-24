@@ -195,13 +195,13 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
               : 'bg-amber-700 hover:bg-amber-600 text-white'
           }`}
         >
-          {isDeath ? '💀 Tentar Novamente' : '🏆 Jogar Novamente'}
+          {isDeath ? '💀 Try Again' : '🏆 Play Again'}
         </button>
         <button
           onClick={onMenu}
           className="px-4 py-2 sm:px-6 sm:py-3 bg-gray-800/60 hover:bg-gray-700/80 text-gray-300 rounded-lg transition-colors border border-gray-600/30 game-text-shadow text-sm sm:text-base"
         >
-          Menu Principal
+          Main Menu
         </button>
       </div>
     </motion.div>

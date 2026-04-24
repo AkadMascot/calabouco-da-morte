@@ -1,81 +1,81 @@
 [
   {
     "id": 1,
-    "text": "O clamor dos espectadores excitados some gradualmente atrás de você, que se aventura cada vez mais fundo na penumbra do túnel da caverna. Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando uma luz suave, apenas suficiente para que se veja por onde anda. À medida que seus olhos vão pouco a pouco se acostumando à quase escuridão, você começa a ver movimentos à sua volta. Aranhas e besouros sobem e descem pelas paredes entalhadas, desaparecendo em frestas e gretas ao sentir sua aproximação; ratazanas e ratos correm pelo chão à sua frente. Pingos de água caem em pequenas poças com um sinistro som gotejante que ecoa pelo túnel. O ar é frio, úmido e pesado. Depois de caminhar lentamente pelo túnel por uns cinco minutos, você chega a uma mesa de pedra encostada contra a parede à sua esquerda. Nela há seis caixas, uma das quais tem o seu nome pintado na tampa.",
+    "text": "The clamor of the excited spectators gradually fades behind you as you venture ever deeper into the gloom of the cave tunnel. Large crystals hang from the tunnel ceiling at intervals of 20 meters, radiating a soft light, just enough for you to see where you are going. As your eyes gradually adjust to the near darkness, you begin to see movement around you. Spiders and beetles climb up and down the carved walls, disappearing into cracks and crevices as they sense your approach; rats and mice scurry across the floor ahead of you. Drops of water fall into small puddles with a sinister dripping sound that echoes through the tunnel. The air is cold, damp and heavy. After walking slowly through the tunnel for about five minutes, you arrive at a stone table set against the wall to your left. On it there are six boxes, one of which has your name painted on the lid.",
     "choices": [
-      { "text": "Abrir a caixa com o seu nome", "targetSection": 270 },
-      { "text": "Continuar caminhando para o norte", "targetSection": 66 }
+      { "text": "Open the box with your name on it", "targetSection": 270 },
+      { "text": "Continue walking north", "targetSection": 66 }
     ]
   },
   {
     "id": 2,
-    "text": "O Escorpião consegue prendê-lo nas garras por tempo suficiente para mover a cauda segmentada para frente, por sobre a cabeça, e cravar em você o ferrão venenoso. O efeito é fatal, e você desaba no chão da Arena da Morte, imaginando se Throm conseguirá vencer.",
+    "text": "The Scorpion manages to hold you in its pincers long enough to swing its segmented tail forward, over its head, and drive its venomous stinger into you. The effect is fatal, and you collapse on the floor of the Death Arena, wondering whether Throm will manage to win.",
     "choices": [],
     "isEnding": true
   },
   {
     "id": 3,
-    "text": "O Gnomo sacode a cabeça e diz: \"Temo que você não tenha passado pela Prova dos Campeões. Os segredos do Calabouço da Morte do Barão Sukumvit ficarão guardados por mais um ano, pois você não terá permissão para sair daqui. Você foi indicado para ser meu servo pelo resto dos seus dias; preparará e modificará o subterrâneo para competidores futuros. Talvez em outra vida você tenha sucesso...\"",
+    "text": "The Gnome shakes his head and says: \"I'm afraid you have not passed the Trial of Champions. The secrets of Baron Sukumvit's Deathtrap Dungeon will remain hidden for another year, as you will not be permitted to leave here. You have been appointed to be my servant for the rest of your days; you will prepare and modify the underground for future competitors. Perhaps in another life you will succeed...\"",
     "choices": [],
     "isEnding": true
   },
   {
     "id": 5,
-    "text": "Você se arrasta pelo chão e se vê no covil de uma tribo de TROGLODITAS. Ao engatinhar passando por eles, sua bainha bate em uma pedra. Teste sua Sorte.",
+    "text": "You crawl along the ground and find yourself in the lair of a tribe of TROGLODYTES. As you crawl past them, your scabbard strikes a rock. Test your Luck.",
     "choices": [],
     "luckTest": {
       "luckySection": 185,
       "unluckySection": 395,
-      "description": "Você tenta passar pelos Trogloditas sem ser notado."
+      "description": "You try to sneak past the Troglodytes without being noticed."
     }
   },
   {
     "id": 6,
-    "text": "Sabendo que o Mantécora disparará os espinhos da cauda, você corre para se proteger atrás de um dos pilares. Antes que consiga chegar lá, uma saraivada de espinhos voa pelo ar, e um deles penetra-lhe o braço. Você perde 2 pontos de ENERGIA. Se ainda estiver vivo, não perca tempo e ataque o Mantécora com espada, antes que ele possa disparar mais espinhos.",
+    "text": "Knowing that the Manticore will fire the spines from its tail, you run to take cover behind one of the pillars. Before you can get there, a volley of spines flies through the air, and one of them pierces your arm. You lose 2 STAMINA points. If you are still alive, waste no time and attack the Manticore with your sword before it can fire more spines.",
     "choices": [],
     "staminaChange": -2,
     "combat": {
       "enemies": [
-        { "name": "Mantécora", "skill": 11, "stamina": 11 }
+        { "name": "Manticore", "skill": 11, "stamina": 11 }
       ]
     }
   },
   {
     "id": 10,
-    "text": "Ainda correndo o mais rápido possível, você enfia a mão na mochila e tira o tubo de madeira. Seu plano é ficar sob a água, respirando pelo tubo. Com sorte, os Trogloditas pensarão que você será arrastado até a morte rio abaixo, pois a torrente desaparece nas profundezas da montanha. Você segura o tubo entre os dentes e mergulha na água. Segurando-se em um dos pilares da ponte embaixo d'água, você fica absolutamente imóvel por 10 minutos. Quando finalmente acha que os Trogloditas foram embora, você sobe à superfície e olha em volta. Não há ninguém à vista, e você sai do rio e atravessa a ponte para a margem norte. Quaisquer Provisões restantes que você possa ter estão agora encharcadas e imprestáveis. Risque-as de sua Folha de Aventuras. Você segue pela vasta caverna até que, finalmente, vê um túnel na parede do outro lado. Você caminha até uma pesada porta de madeira, que está trancada.",
+    "text": "Still running as fast as you can, you reach into your backpack and pull out the wooden tube. Your plan is to stay underwater, breathing through the tube. With luck, the Troglodytes will think you have been swept to your death downstream, as the torrent disappears into the depths of the mountain. You hold the tube between your teeth and plunge into the water. Holding on to one of the bridge pillars underwater, you remain absolutely still for 10 minutes. When you finally think the Troglodytes have gone, you surface and look around. There is nobody in sight, and you climb out of the river and cross the bridge to the north bank. Any remaining Provisions you may have had are now soaked and useless. Cross them off your Adventure Sheet. You follow the vast cavern until, at last, you see a tunnel in the far wall. You walk up to a heavy wooden door, which is locked.",
     "choices": [
-      { "text": "Usar a chave de ferro na porta", "targetSection": 86, "condition": { "hasItem": "Chave de Ferro" } },
-      { "text": "Tentar encontrar outra saída", "targetSection": 276 }
+      { "text": "Use the iron key on the door", "targetSection": 86, "condition": { "hasItem": "Iron Key" } },
+      { "text": "Try to find another way out", "targetSection": 276 }
     ]
   },
   {
     "id": 12,
-    "text": "A porta abre para um grande aposento iluminado por velas, repleto das mais extraordinárias estátuas, de aparência real, representando guerreiros e cavaleiros. Um velho de cabelos brancos, trajando trapos esfarrapados, salta de trás de uma das estátuas e começa a dar risinhos. Uma centelha nos olhos dele faz com que você pense que algo se esconde por trás daquela aparência de idiota. Numa voz estridente, ele diz: \"Bom, mais uma pedra para meu jardim. Fico feliz que você tenha vindo se juntar a seus amigos. Sou um homem justo, e por isso vou lhe fazer uma pergunta. Se responder corretamente, ficará livre - mas, se sua resposta estiver errada, eu o transformarei em pedra!\" Ele volta a dar risadinhas, obviamente feliz com sua chegada.",
+    "text": "The door opens into a large candlelit room filled with the most extraordinary lifelike statues of warriors and knights. A white-haired old man, dressed in tattered rags, leaps out from behind one of the statues and begins to giggle. A glint in his eyes makes you think that something lurks behind that idiotic appearance. In a shrill voice he says: \"Well, another stone for my garden. I'm glad you've come to join your friends. I am a fair man, so I will ask you one question. If you answer correctly, you will go free — but if your answer is wrong, I will turn you to stone!\" He giggles again, obviously delighted by your arrival.",
     "choices": [
-      { "text": "Esperar pela pergunta", "targetSection": 382 },
-      { "text": "Atacá-lo com sua espada", "targetSection": 195 },
-      { "text": "Correr para a porta", "targetSection": 250 }
+      { "text": "Wait for the question", "targetSection": 382 },
+      { "text": "Attack him with your sword", "targetSection": 195 },
+      { "text": "Run for the door", "targetSection": 250 }
     ]
   },
   {
     "id": 66,
-    "text": "Depois de caminhar pelo túnel por alguns minutos, você chega a uma encruzilhada. Uma seta branca pintada na parede aponta para o oeste. No chão, você vê pegadas molhadas, feitas por aqueles que entraram antes de você. É difícil ter certeza, mas parece que três deles seguiram a direção da seta, enquanto um resolveu ir para o leste.",
+    "text": "After walking through the tunnel for a few minutes, you arrive at a crossroads. A white arrow painted on the wall points west. On the ground, you see wet footprints made by those who entered before you. It is hard to be sure, but it seems that three of them followed the direction of the arrow, while one decided to go east.",
     "choices": [
-      { "text": "Ir para o oeste, seguindo a seta", "targetSection": 293 },
-      { "text": "Ir para o leste", "targetSection": 119 }
+      { "text": "Go west, following the arrow", "targetSection": 293 },
+      { "text": "Go east", "targetSection": 119 }
     ]
   },
   {
     "id": 270,
-    "text": "A tampa da caixa sai facilmente. Dentro, você acha duas Peças de Ouro e um bilhete, escrito num pequeno pedaço de pergaminho, endereçado a você. Depois de colocar o ouro no bolso, você lê a mensagem: \"Muito bem. Pelo menos você tem o bom senso de parar e tirar proveito da ajuda simbólica que lhe é dada. Agora, posso avisá-lo da necessidade de encontrar e usar diversos itens, se espera sair-se bem no meu Calabouço da Morte.\" Assinado \"Sukumvit.\" Guardando de cor o aviso do bilhete, você o rasga em pequenos pedaços e continua para o norte pelo túnel.",
+    "text": "The lid of the box comes off easily. Inside, you find two Gold Pieces and a note written on a small piece of parchment, addressed to you. After putting the gold in your pocket, you read the message: \"Well done. At least you have the good sense to stop and take advantage of the token help that is given to you. Now, I can warn you of the need to find and use several items if you hope to fare well in my Deathtrap Dungeon.\" Signed \"Sukumvit.\" Committing the note's warning to memory, you tear it into small pieces and continue north through the tunnel.",
     "choices": [
-      { "text": "Continuar para o norte pelo túnel", "targetSection": 66 }
+      { "text": "Continue north through the tunnel", "targetSection": 66 }
     ],
-    "itemGain": ["Peças de Ouro"]
+    "itemGain": ["Gold Pieces"]
   },
   {
     "id": 400,
-    "text": "Logo que você aparece na saída do túnel, uma multidão grita e vibra. As pessoas abrem alas para que você siga na direção de um pequeno palanque, no qual, sentado embaixo de um pára-sol de bambu colorido, está o Barão Sukumvit. Ele parece apalermado, como se jamais esperasse que alguém conseguisse sair vivo do Calabouço da Morte. O segredo de Fang foi revelado. Quando o Barão se levanta da cadeira, você sobe os degraus do palanque, inclina-se diante dele e observa aqueles olhos frios fixos em você em completo espanto. Você sorri meio sem graça quando ele lhe oferece a mão estendida. Em meio ao barulho ensurdecedor da ovação do povo de Fang, o Barão Sukumvit abre o cofre que contém seu prêmio de 10.000 Peças de Ouro. Em seguida, ele coloca uma coroa de louros sobre a sua cabeça e o proclama Campeão do Calabouço da Morte.",
+    "text": "As soon as you appear at the tunnel exit, a crowd screams and cheers. The people part to let you make your way towards a small podium, on which, seated beneath a colorful bamboo parasol, sits Baron Sukumvit. He looks dumbfounded, as if he never expected anyone to make it out of the Deathtrap Dungeon alive. The secret of Fang has been revealed. As the Baron rises from his chair, you climb the steps of the podium, bow before him and observe those cold eyes fixed on you in complete astonishment. You smile awkwardly as he offers you his outstretched hand. Amid the deafening roar of the people of Fang's ovation, Baron Sukumvit opens the chest containing your prize of 10,000 Gold Pieces. He then places a laurel wreath upon your head and proclaims you Champion of the Deathtrap Dungeon.",
     "choices": [],
     "isVictory": true
   }

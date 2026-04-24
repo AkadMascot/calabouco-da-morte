@@ -54,17 +54,17 @@ function CharacterStats() {
   return (
     <div className="flex flex-col gap-4">
       <StatBar
-        label="Habilidade"
+        label="Skill"
         current={character.skillCurrent}
         max={character.skillInitial}
       />
       <StatBar
-        label="Energia"
+        label="Stamina"
         current={character.staminaCurrent}
         max={character.staminaInitial}
       />
       <StatBar
-        label="Sorte"
+        label="Luck"
         current={character.luckCurrent}
         max={character.luckInitial}
       />
@@ -72,16 +72,16 @@ function CharacterStats() {
       <div className="h-px w-full bg-amber-900/30" />
 
       <div className="flex items-center justify-between text-sm">
-        <span className="text-muted-foreground">Provisões</span>
+        <span className="text-muted-foreground">Provisions</span>
         <span className="text-amber-400">{character.provisions}</span>
       </div>
 
       <div className="flex items-center justify-between text-sm">
-        <span className="text-muted-foreground">Poção</span>
+        <span className="text-muted-foreground">Potion</span>
         <span className={character.potionUsed ? 'text-zinc-600 line-through' : 'text-amber-400'}>
-          {character.potion === 'skill' && 'Habilidade'}
-          {character.potion === 'stamina' && 'Força'}
-          {character.potion === 'luck' && 'Fortuna'}
+          {character.potion === 'skill' && 'Skill'}
+          {character.potion === 'stamina' && 'Strength'}
+          {character.potion === 'luck' && 'Fortune'}
         </span>
       </div>
 
@@ -109,7 +109,7 @@ export function CharacterSheetSidebar() {
   return (
     <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:gap-4 lg:rounded-lg lg:border lg:border-amber-900/30 lg:bg-zinc-950/80 lg:p-4">
       <h2 className="text-sm font-bold uppercase tracking-wider text-amber-500">
-        Ficha do Aventureiro
+        Character Sheet
       </h2>
       <div className="h-px w-full bg-amber-900/30" />
       <CharacterStats />
@@ -145,7 +145,7 @@ export function CharacterSheetMobile() {
         </SheetTrigger>
         <SheetContent side="bottom" className="border-amber-900/30 bg-zinc-950">
           <SheetHeader>
-            <SheetTitle className="text-amber-500">Ficha do Aventureiro</SheetTitle>
+            <SheetTitle className="text-amber-500">Character Sheet</SheetTitle>
           </SheetHeader>
           <div className="px-1 pb-4 pt-4">
             <CharacterStats />

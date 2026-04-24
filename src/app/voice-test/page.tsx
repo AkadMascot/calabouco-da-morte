@@ -392,7 +392,7 @@ export default function VoiceTestPage() {
               marginBottom: '24px',
             }}
           >
-            Calabouço da Morte
+            Deathtrap Dungeon
           </span>
           <span
             style={{

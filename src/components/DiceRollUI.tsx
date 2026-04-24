@@ -67,8 +67,8 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
             const skill = character.skillCurrent;
             success = total <= skill;
             message = success
-              ? `${total} ≤ ${skill} (Habilidade) — Sucesso!`
-              : `${total} > ${skill} (Habilidade) — Falhou!`;
+              ? `${total} ≤ ${skill} (Skill) — Success!`
+              : `${total} > ${skill} (Skill) — Failed!`;
             targetSection = success ? diceRoll.successSection! : diceRoll.failSection!;
             break;
           }
@@ -137,11 +137,11 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
   // Description of what's being tested
   const testDescription = (() => {
     switch (diceRoll.type) {
-      case 'skillCheck': return 'Teste de Habilidade — Jogue 2 dados';
-      case 'skillAndStaminaCheck': return 'Teste de Habilidade e Energia — Jogue 2 dados';
-      case 'fixedThreshold': return `Teste de Sorte — Jogue 2 dados (alvo: ${diceRoll.threshold})`;
-      case 'd6Range': return 'Jogue 1 dado';
-      default: return 'Jogue os dados';
+      case 'skillCheck': return 'Skill Test — Roll 2 dice';
+      case 'skillAndStaminaCheck': return 'Skill and Stamina Test — Roll 2 dice';
+      case 'fixedThreshold': return `Luck Test — Roll 2 dice (target: ${diceRoll.threshold})`;
+      case 'd6Range': return 'Roll 1 die';
+      default: return 'Roll the dice';
     }
   })();
 
@@ -212,7 +212,7 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
           disabled={rolling}
           className="px-8 py-3 sm:px-10 sm:py-4 rounded-xl border border-amber-700/60 bg-amber-950/40 backdrop-blur-md text-amber-400 hover:bg-amber-900/40 hover:border-amber-500/60 transition-all font-bold disabled:opacity-40 disabled:cursor-not-allowed text-base sm:text-lg game-text-shadow"
         >
-          {rolling ? '🎲 Rolando...' : '🎲 Rolar Dados'}
+          {rolling ? '🎲 Rolling...' : '🎲 Roll Dice'}
         </motion.button>
       )}
 

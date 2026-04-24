@@ -1,4 +1,4 @@
-// Dice rolling utilities for O Calabouço da Morte
+// Dice rolling utilities for Deathtrap Dungeon
 
 /** Roll a single d6 (1-6) */
 export function rollD6(): number {

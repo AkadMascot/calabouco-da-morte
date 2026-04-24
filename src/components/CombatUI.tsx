@@ -126,7 +126,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
           animate={{ y: 0, opacity: 1 }}
           className="text-red-500 text-lg sm:text-xl font-bold text-center tracking-widest uppercase"
         >
-          ⚔ Combate ⚔
+          ⚔ Combat ⚔
         </motion.h2>
 
         {/* Enemy info */}
@@ -238,13 +238,13 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h3 className="text-green-400 text-base sm:text-lg font-bold mb-4">Inimigo derrotado!</h3>
+            <h3 className="text-green-400 text-base sm:text-lg font-bold mb-4">Enemy defeated!</h3>
             <button
               onClick={() => { if (!victoryHandled) { setVictoryHandled(true); onVictory(); } }}
               disabled={victoryHandled}
               className="px-4 py-3 sm:px-8 sm:py-3 bg-amber-700 hover:bg-amber-600 text-white rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed text-sm sm:text-base"
             >
-              Continuar
+              Continue
             </button>
           </motion.div>
         )}
@@ -257,7 +257,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
               disabled={rolling}
               className="flex-1 px-4 py-3 sm:px-6 sm:py-4 rounded-xl border border-red-900/60 bg-red-950/40 text-red-400 hover:bg-red-900/40 hover:border-red-600/60 transition-all font-bold disabled:opacity-40 disabled:cursor-not-allowed text-sm sm:text-base"
             >
-              {rolling ? 'Lutando...' : 'Atacar!'}
+              {rolling ? 'Fighting...' : 'Attack!'}
             </motion.button>
             {combat.escapeSection && (
               <motion.button
@@ -266,7 +266,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
                 disabled={rolling}
                 className="px-4 py-3 sm:px-6 sm:py-4 rounded-xl border border-gray-700 bg-gray-900/40 text-gray-400 hover:bg-gray-800/40 transition-all disabled:opacity-40 text-sm sm:text-base"
               >
-                Fugir
+                Flee
               </motion.button>
             )}
           </div>

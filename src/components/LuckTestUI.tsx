@@ -61,7 +61,7 @@ export default function LuckTestUI({ luckTest, onNavigate }: LuckTestUIProps) {
 
       {/* Luck display */}
       <div className="text-center text-sm text-gray-400">
-        Sorte atual: <span className="text-amber-400 font-mono font-bold">{character.luckCurrent}</span>
+        Current Luck: <span className="text-amber-400 font-mono font-bold">{character.luckCurrent}</span>
       </div>
 
       {/* Dice display */}
@@ -111,10 +111,10 @@ export default function LuckTestUI({ luckTest, onNavigate }: LuckTestUIProps) {
             transition={{ duration: 0.4 }}
             className={`text-2xl font-bold mb-2 ${isLucky ? 'text-green-400' : 'text-red-400'}`}
           >
-            {isLucky ? 'Sorte!' : 'Azar!'}
+            {isLucky ? 'Lucky!' : 'Unlucky!'}
           </motion.div>
           <p className="text-gray-400 text-sm mb-4">
-            Rolou {rollTotal} {isLucky ? '≤' : '>'} {character.luckCurrent + 1} (sorte)
+            Rolled {rollTotal} {isLucky ? '≤' : '>'} {character.luckCurrent + 1} (luck)
           </p>
 
           {/* Screen flash effect */}
@@ -136,7 +136,7 @@ export default function LuckTestUI({ luckTest, onNavigate }: LuckTestUIProps) {
                 : 'bg-red-900 hover:bg-red-800 text-red-200'
             }`}
           >
-            Continuar
+            Continue
           </motion.button>
         </motion.div>
       )}
@@ -150,7 +150,7 @@ export default function LuckTestUI({ luckTest, onNavigate }: LuckTestUIProps) {
           onClick={doTest}
           className="w-full px-6 py-4 rounded-xl border border-amber-900/40 bg-black/60 backdrop-blur-md text-amber-400 hover:bg-amber-900/30 hover:border-amber-600/60 transition-all text-center font-bold"
         >
-          Teste sua Sorte
+          Test your Luck
         </motion.button>
       )}
     </motion.div>

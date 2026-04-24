@@ -11,9 +11,9 @@ import type { PotionType } from '@/engine/types';
 import { musicPlayer } from '@/lib/musicPlayer';
 
 const potionOptions: { value: PotionType; label: string; description: string }[] = [
-  { value: 'skill', label: 'Poção da Habilidade', description: 'Restaura Habilidade ao valor inicial' },
-  { value: 'stamina', label: 'Poção da Força', description: 'Restaura Energia ao valor inicial' },
-  { value: 'luck', label: 'Poção da Fortuna', description: 'Restaura Sorte ao valor inicial' },
+  { value: 'skill', label: 'Potion of Skill', description: 'Restores Skill to its initial value' },
+  { value: 'stamina', label: 'Potion of Strength', description: 'Restores Stamina to its initial value' },
+  { value: 'luck', label: 'Potion of Fortune', description: 'Restores Luck to its initial value' },
 ];
 
 export default function CreateCharacterPage() {
@@ -80,7 +80,7 @@ export default function CreateCharacterPage() {
       {/* ─── Content ─── */}
       <div className="relative z-10 flex flex-col items-center gap-6 w-full max-w-md">
         <h1 className="text-3xl font-bold text-amber-500 sm:text-4xl game-text-shadow title-glow-pulse">
-          Criar Personagem
+          Create Character
         </h1>
 
         <div className="h-px w-48 bg-amber-900/50" />
@@ -88,7 +88,7 @@ export default function CreateCharacterPage() {
         {/* Attribute Rolls */}
         <div className="flex flex-col gap-4 w-full">
           <StatRoll
-            label="Habilidade"
+            label="Skill"
             formula="1d6 + 6"
             value={skill}
             isRolling={rolling === 'skill'}
@@ -96,7 +96,7 @@ export default function CreateCharacterPage() {
             disabled={skill !== null || rolling !== null}
           />
           <StatRoll
-            label="Energia"
+            label="Stamina"
             formula="2d6 + 12"
             value={stamina}
             isRolling={rolling === 'stamina'}
@@ -104,7 +104,7 @@ export default function CreateCharacterPage() {
             disabled={stamina !== null || rolling !== null}
           />
           <StatRoll
-            label="Sorte"
+            label="Luck"
             formula="1d6 + 6"
             value={luck}
             isRolling={rolling === 'luck'}
@@ -116,7 +116,7 @@ export default function CreateCharacterPage() {
         {/* Potion Selection */}
         {allRolled && (
           <div className="flex flex-col gap-3 w-full">
-            <h2 className="text-lg font-semibold text-amber-500 game-text-shadow">Escolha sua Poção</h2>
+            <h2 className="text-lg font-semibold text-amber-500 game-text-shadow">Choose your Potion</h2>
             <div className="flex flex-col gap-2">
               {potionOptions.map((opt) => (
                 <Card
@@ -141,7 +141,7 @@ export default function CreateCharacterPage() {
         {/* Dramatic text */}
         {showDramatic && (
           <p className="dramatic-text-enter text-amber-600/90 text-sm italic text-center tracking-[0.15em] game-text-shadow">
-            Que os deuses tenham piedade da sua alma.
+            May the gods have mercy on your soul.
           </p>
         )}
 
@@ -150,19 +150,19 @@ export default function CreateCharacterPage() {
           <div className="flex flex-col gap-4 w-full">
             <div className="h-px w-full bg-amber-900/50" />
             <div className="flex justify-between text-sm text-muted-foreground game-text-shadow">
-              <span>Habilidade: {skill}</span>
-              <span>Energia: {stamina}</span>
-              <span>Sorte: {luck}</span>
+              <span>Skill: {skill}</span>
+              <span>Stamina: {stamina}</span>
+              <span>Luck: {luck}</span>
             </div>
             <p className="text-sm text-muted-foreground text-center game-text-shadow">
-              Provisões: 10 | Poção: {potionOptions.find((p) => p.value === potion)?.label}
+              Provisions: 10 | Potion: {potionOptions.find((p) => p.value === potion)?.label}
             </p>
             <Button
               size="lg"
               className="bg-amber-700 text-white hover:bg-amber-600 w-full choice-btn font-bold"
               onClick={handleConfirm}
             >
-              ⚔ Começar Aventura
+              ⚔ Begin Adventure
             </Button>
           </div>
         )}
@@ -213,7 +213,7 @@ function StatRoll({
             onClick={onRoll}
             disabled={disabled}
           >
-            🎲 Rolar
+            🎲 Roll
           </Button>
         )}
       </CardContent>
