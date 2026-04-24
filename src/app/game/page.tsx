@@ -317,7 +317,8 @@ export default function GamePage() {
       {/* ─── SCANLINE OVERLAY ─── */}
       <div className="scanline-overlay" />
 
-      {/* ─── CINEMATIC PLAYER ─── */}
+      {/* ─── CINEMATIC PLAYER — camera shake while waiting for voice command ─── */}
+      <div className={voiceChoicesReady && !matchFeedback ? 'camera-shake' : ''}>
       {hasCinematic && (
         <CinematicPlayer
           key={`cinematic-${currentSection}`}
@@ -342,6 +343,7 @@ export default function GamePage() {
           onError={(e) => { (e.target as HTMLImageElement).src = asset('/cinematics/section-001-poster.webp'); }}
         />
       )}
+      </div>
 
       {/* ─── DAMAGE/HEAL FLASH ─── */}
       <AnimatePresence>
