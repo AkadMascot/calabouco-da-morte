@@ -47,6 +47,9 @@ export default function GamePage() {
   // Scanlines toggle
   const [scanlinesOn, setScanlinesOn] = useState(false);
 
+  // Last successfully loaded poster — persists across sections as fallback
+  const [lastPoster, setLastPoster] = useState<string>('');
+
   // Combat done tracking (for post-combat choices display)
   const [combatDone, setCombatDone] = useState(false);
 
@@ -338,9 +341,10 @@ export default function GamePage() {
         <img
           src={asset(`/cinematics/section-${String(currentSection).padStart(3, '0')}-poster.webp`)}
           alt=""
-          className="absolute inset-0 w-full h-full object-contain sm:object-cover opacity-80 bg-black"
+          className="absolute inset-0 w-full h-full object-contain sm:object-cover opacity-80"
           loading="eager"
-          onError={(e) => { (e.target as HTMLImageElement).src = asset('/cinematics/section-001-poster.webp'); }}
+          onLoad={(e) => { setLastPoster((e.target as HTMLImageElement).src); }}
+          onError={(e) => { if (lastPoster) (e.target as HTMLImageElement).src = lastPoster; }}
         />
       )}
       </div>
@@ -377,7 +381,7 @@ export default function GamePage() {
       {/* ─── GRADIENT OVERLAY ─── */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: showContent
-          ? 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.05) 60%, transparent 100%)'
+          ? 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 25%, rgba(0,0,0,0.05) 50%, transparent 100%)'
           : 'linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 30%)'
       }} />
 

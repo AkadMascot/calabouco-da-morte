@@ -239,7 +239,7 @@ export default function CinematicPlayer({
         key={`poster-${sectionId}`}
         src={posterSrc}
         alt=""
-        className="absolute inset-0 z-[1] w-full h-full object-contain sm:object-cover bg-black"
+        className="absolute inset-0 z-[1] w-full h-full object-contain sm:object-cover"
         loading="eager"
       />
 
@@ -247,7 +247,7 @@ export default function CinematicPlayer({
      <video
        key={`section-${sectionId}`}
        ref={videoRef}
-        className={`absolute inset-0 z-[2] w-full h-full object-contain sm:object-cover bg-black transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 z-[2] w-full h-full object-contain sm:object-cover transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
         src={videoSrc}
         playsInline
         preload="auto"
