@@ -178,53 +178,30 @@ export default function CinematicPlayer({
       setVideoProgress((v.currentTime / masterDuration) * 100);
     }
 
-    // M3: Trigger fade-out when audio is within 1.5s of ending
+    // M3: Trigger fade-out when narration is within 1.5s of ending
     if (a && aDur > 0 && (aDur - a.currentTime) <= 1.5 && !isFadingOutRef.current) {
       fadeOutVolume();
     }
   }, [fadeOutVolume]);
 
-  // M4: Audio/Video sync with performance.now() precision
+  // M4: Start video and narration together — no delay
   const startSyncedPlayback = useCallback(() => {
     const v = videoRef.current;
     const a = audioRef.current;
 
     if (!v) return;
-
-    const vDur = v.duration || 0;
-    const aDur = a?.duration || 0;
-
     if (mediaStarted) return;
     setMediaStarted(true);
     setIsPlaying(true);
 
-    // Choices appear ONLY when video ends (handleVideoEnd fires onComplete)
-
-    if (aDur > vDur && a) {
-      // M4: Use performance.now() for precise delay calculation
-      const delay = (aDur - vDur) * 1000 + 100; // +100ms buffer for play() latency
-      const audioStartTime = performance.now();
-
+    // Always start both immediately — video ends first if narration is longer,
+    // choices appear on video end, narration continues over the choices
+    v.play().catch(() => {});
+    if (a) {
       a.volume = 0; // Start at 0 for fade-in
       a.play().then(() => {
         fadeInVolume();
-        // Calculate actual elapsed time for more precise video start
-        const elapsed = performance.now() - audioStartTime;
-        const adjustedDelay = Math.max(delay - elapsed, 0);
-
-        videoDelayTimerRef.current = setTimeout(() => {
-          v.play().catch(() => {});
-          videoDelayTimerRef.current = null;
-        }, adjustedDelay);
       }).catch(() => {});
-    } else {
-      v.play().catch(() => {});
-      if (a) {
-        a.volume = 0; // Start at 0 for fade-in
-        a.play().then(() => {
-          fadeInVolume();
-        }).catch(() => {});
-      }
     }
   }, [mediaStarted, fadeInVolume]);
 
@@ -328,7 +305,7 @@ export default function CinematicPlayer({
           onClick={handleSkip}
           className="absolute top-12 right-3 sm:top-14 sm:right-4 z-40 text-white/60 hover:text-white text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-sm transition-all game-text-shadow"
         >
-          Pular ▸▸
+          Skip ▸▸
         </motion.button>
       )}
     </>
