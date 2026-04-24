@@ -213,13 +213,13 @@ export default function CinematicPlayer({
         const adjustedDelay = Math.max(delay - elapsed, 0);
 
         videoDelayTimerRef.current = setTimeout(() => {
-          v.volume = 0.15; // VFX ambient low — narration is the star
+          v.volume = 0.3; // Video VFX audio lower than narration
           v.play().catch(() => {});
           videoDelayTimerRef.current = null;
         }, adjustedDelay);
       }).catch(() => {});
     } else {
-      v.volume = 0.15; // VFX ambient low — narration is the star
+      v.volume = 0.3; // Video VFX audio lower than narration
       v.play().catch(() => {});
       if (a) {
         a.volume = 0; // Start at 0 for fade-in
