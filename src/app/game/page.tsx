@@ -328,7 +328,6 @@ export default function GamePage() {
           sectionId={currentSection}
           videoSrc={asset(cinematic!.composed)}
           narrationSrc={cinematic?.narration ? asset(cinematic.narration) : undefined}
-          sfxSrc={asset(`/cinematics/section-${String(currentSection).padStart(3, '0')}-sfx.mp3`)}
           posterSrc={asset(`/cinematics/section-${String(currentSection).padStart(3, '0')}-poster.webp`)}
           isRevisit={character.visitedSections.includes(currentSection)}
           subtitleText={displayText}

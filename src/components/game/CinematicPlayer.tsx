@@ -8,7 +8,6 @@ interface CinematicPlayerProps {
   sectionId: number;
   videoSrc: string;
   narrationSrc?: string;
-  sfxSrc?: string;
   posterSrc: string;
   isRevisit: boolean;
   subtitleText?: string;
@@ -20,7 +19,6 @@ export default function CinematicPlayer({
   sectionId,
   videoSrc,
   narrationSrc,
-  sfxSrc,
   posterSrc,
   isRevisit,
   subtitleText,
@@ -29,7 +27,6 @@ export default function CinematicPlayer({
 }: CinematicPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const sfxRef = useRef<HTMLAudioElement>(null);
   const videoDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fadeRef = useRef<number | null>(null);
   const isFadingOutRef = useRef(false);
@@ -151,7 +148,6 @@ export default function CinematicPlayer({
   const handleSkip = useCallback(() => {
     if (videoRef.current) videoRef.current.pause();
     if (audioRef.current) audioRef.current.pause();
-    if (sfxRef.current) sfxRef.current.pause();
     setVideoEnded(true);
     setAudioEnded(true);
     setVideoProgress(100);
@@ -204,12 +200,6 @@ export default function CinematicPlayer({
 
     // Choices appear ONLY when video ends (handleVideoEnd fires onComplete)
 
-    // Start SFX ambient layer synced with video
-    const startSfx = () => {
-      const sfx = sfxRef.current;
-      if (sfx) { sfx.volume = 0.15; sfx.play().catch(() => {}); }
-    };
-
     if (aDur > vDur && a) {
       // M4: Use performance.now() for precise delay calculation
       const delay = (aDur - vDur) * 1000 + 100; // +100ms buffer for play() latency
@@ -224,13 +214,11 @@ export default function CinematicPlayer({
 
         videoDelayTimerRef.current = setTimeout(() => {
           v.play().catch(() => {});
-          startSfx();
           videoDelayTimerRef.current = null;
         }, adjustedDelay);
       }).catch(() => {});
     } else {
       v.play().catch(() => {});
-      startSfx();
       if (a) {
         a.volume = 0; // Start at 0 for fade-in
         a.play().then(() => {
@@ -308,17 +296,6 @@ export default function CinematicPlayer({
           }}
           onEnded={handleAudioEnd}
           onTimeUpdate={handleTimeUpdate}
-        />
-      )}
-
-      {/* SFX AMBIENT AUDIO (extracted VFX — footsteps, torches, echoes) */}
-      {sfxSrc && (
-        <audio
-          key={`sfx-${sectionId}`}
-          ref={sfxRef}
-          src={sfxSrc}
-          preload="auto"
-          loop
         />
       )}
 
