@@ -2,123 +2,85 @@
   "beats": [
     {
       "id": "01",
-      "title": "A Cidade de Fang",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Fang era apenas uma cidade comum às margens do rio Kok. Até o Barão Sukumvit construir o labirinto.",
+      "title": "The Town of Fang",
+      "variants": ["a", "b"],
+      "subtitle": "Fang was just an ordinary town on the banks of the River Kok. Until Baron Sukumvit built the labyrinth.",
       "typewriterSpeed": 57
     },
     {
       "id": "02",
-      "title": "O Barão Sukumvit",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Com a ajuda dos habitantes, Sukumvit construiu um labirinto nas profundezas da montanha. Do qual só havia um modo de sair.",
+      "title": "Baron Sukumvit",
+      "variants": ["a", "b"],
+      "subtitle": "With the help of the townsfolk, Sukumvit built a maze deep beneath the mountain. From which there was only one way out.",
       "typewriterSpeed": 46
     },
     {
       "id": "03",
-      "title": "O Labirinto",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "O labirinto foi povoado com monstros pavorosos, armadilhas e ardis mortais.",
+      "title": "The Labyrinth",
+      "variants": ["a", "b"],
+      "subtitle": "The labyrinth was filled with hideous monsters, deadly traps, and cunning tricks.",
       "typewriterSpeed": 76
     },
     {
       "id": "04",
-      "title": "Os Dez Guardas",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Sukumvit enviou seus dez melhores guardas para testar o labirinto. Nunca mais foram vistos.",
+      "title": "The Ten Guards",
+      "variants": ["a", "b"],
+      "subtitle": "Sukumvit sent his ten best guards to test the labyrinth. They were never seen again.",
       "typewriterSpeed": 62
     },
     {
       "id": "05",
-      "title": "A Prova dos Campeões",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Dez mil Peças de Ouro para quem sobrevivesse. Ano após ano, ninguém retornou.",
+      "title": "The Trial of Champions",
+      "variants": ["a", "b"],
+      "subtitle": "Ten thousand Gold Pieces for anyone who survived. Year after year, no one returned.",
       "typewriterSpeed": 74
     },
     {
       "id": "06",
-      "title": "O Desafio",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Não pelas recompensas. Pelo simples fato de que ninguém jamais conseguiu. Você pretende ser o primeiro.",
+      "title": "The Challenge",
+      "variants": ["a", "b"],
+      "subtitle": "Not for the reward. Simply because no one has ever done it. You intend to be the first.",
       "typewriterSpeed": 55
     },
     {
       "id": "07",
-      "title": "Chegada a Fang",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Dois dias de caminhada e quatro de rio levam você a Fang.",
+      "title": "Arrival at Fang",
+      "variants": ["a", "b"],
+      "subtitle": "Two days on foot and four by river bring you to Fang.",
       "typewriterSpeed": 80
     },
     {
       "id": "08",
-      "title": "A Última Noite",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Na noite anterior à Prova, a magnitude da tarefa começa a dominar seus pensamentos.",
+      "title": "The Last Night",
+      "variants": ["a", "b"],
+      "subtitle": "The night before the Trial, the magnitude of the task begins to consume your thoughts.",
       "typewriterSpeed": 68
     },
     {
       "id": "09",
-      "title": "O Clarim",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Um toque de clarim desperta você de sonhos povoados por poços flamejantes e aranhas gigantescas.",
+      "title": "The Trumpet",
+      "variants": ["a", "b"],
+      "subtitle": "A trumpet blast wakes you from dreams of flaming pits and giant spiders.",
       "typewriterSpeed": 59
     },
     {
       "id": "10",
-      "title": "Os Cinco Rivais",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Um cavaleiro. Uma elfa. Dois bárbaros. Um assassino nas sombras. E você.",
+      "title": "The Five Rivals",
+      "variants": ["a", "b"],
+      "subtitle": "A knight. An elf. Two barbarians. An assassin in the shadows. And you.",
       "typewriterSpeed": 79
     },
     {
       "id": "11",
-      "title": "A Caminhada",
-      "variants": [
-        "a",
-        "b"
-      ],
-      "subtitle": "Você enche os pulmões de ar fresco uma última vez. É hora de enfrentar o Calabouço da Morte.",
+      "title": "The Walk",
+      "variants": ["a", "b"],
+      "subtitle": "You fill your lungs with fresh air one last time. It is time to face the Deathtrap Dungeon.",
       "typewriterSpeed": 61
     },
     {
       "id": "12",
-      "title": "O Calabouço da Morte",
-      "variants": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
+      "title": "Deathtrap Dungeon",
+      "variants": ["a", "b", "c", "d"],
       "subtitle": "",
       "typewriterSpeed": 40
     }

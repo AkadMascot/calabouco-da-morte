@@ -16,8 +16,9 @@ function pickRandom<T>(arr: T[]): T {
 export default function IntroPage() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
-  // Intro music track (lower volume — video audio dominates)
-  useEffect(() => { musicPlayer?.play('intro'); }, []);
+  // Videos already have narration + VFX baked in — no separate music needed
+  // Stop any music from previous page so it doesn't overlap
+  useEffect(() => { musicPlayer?.stop(); }, []);
 
   const [started, setStarted] = useState(false); // User must click to start
   const [currentBeatIndex, setCurrentBeatIndex] = useState(0);
@@ -146,18 +147,18 @@ export default function IntroPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="relative z-10 flex flex-col items-center gap-6"
             >
-              <h2 className="text-amber-500 text-3xl sm:text-4xl font-bold tracking-tight game-text-shadow">
-                O Calabouço da Morte
+              <h2 className="text-amber-400 text-3xl sm:text-4xl font-cinzel-deco font-bold tracking-wider game-text-shadow uppercase">
+                Deathtrap Dungeon
               </h2>
-              <p className="text-gray-400 text-sm italic">Aventuras Fantásticas 05</p>
+              <p className="text-gray-400 text-sm font-im-fell italic">Fighting Fantasy</p>
               <motion.button
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                className="mt-4 px-8 py-3 bg-amber-700 hover:bg-amber-600 text-white rounded-lg text-lg font-medium transition-colors choice-btn"
+                className="mt-4 medieval-btn-primary"
               >
-                ▶ Iniciar
+                <span className="font-cinzel text-sm tracking-wider uppercase">▶ Begin</span>
               </motion.button>
-              <p className="text-gray-600 text-xs mt-2">Toque para iniciar com áudio</p>
+              <p className="text-gray-600 text-xs mt-2 font-im-fell">Tap to start with audio</p>
             </motion.div>
           </motion.div>
         )}
@@ -179,7 +180,7 @@ export default function IntroPage() {
         <video
           key={`intro-${currentBeatIndex}-${selectedVariants[currentBeatIndex]}`}
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain bg-black"
           src={videoSrc}
           playsInline
           preload="auto"
@@ -207,7 +208,7 @@ export default function IntroPage() {
             transition={{ duration: 0.6 }}
             className="absolute bottom-12 sm:bottom-16 left-0 right-0 z-10 flex justify-center px-4 sm:px-8"
           >
-            <p className="text-gray-100 text-base sm:text-lg md:text-xl font-light italic text-center max-w-3xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            <p className="text-gray-100 text-base sm:text-lg md:text-xl font-im-fell italic text-center max-w-3xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               {subtitleText}
               {!typewriterDone && <span className="animate-pulse text-amber-500">|</span>}
             </p>
@@ -239,7 +240,7 @@ export default function IntroPage() {
           onClick={handleSkipAll}
           className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 text-white/60 hover:text-white text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-sm transition-all"
         >
-          Pular Intro ▸▸
+          Skip ▸▸
         </motion.button>
       )}
     </div>
