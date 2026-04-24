@@ -254,13 +254,29 @@ export default function CinematicPlayer({
         onLoadedMetadata={() => {
           setVideoReady(true);
           if (!narrationSrc) {
-            if (videoRef.current) videoRef.current.volume = 1.0; // Full volume when no narration
+            if (videoRef.current) videoRef.current.volume = 1.0;
             videoRef.current?.play().catch(() => {});
             setMediaStarted(true);
             setIsPlaying(true);
-            // Don't show choices yet — wait for video to end (handleVideoEnd fires onComplete)
           } else if (audioRef.current && audioRef.current.readyState >= 1) {
             startSyncedPlayback();
+          } else {
+            // Audio not ready yet — set up a listener
+            console.log('[Cinematic] Video ready, waiting for audio...');
+            const checkAudio = () => {
+              if (audioRef.current && audioRef.current.readyState >= 1) {
+                startSyncedPlayback();
+              }
+            };
+            audioRef.current?.addEventListener('loadedmetadata', checkAudio, { once: true });
+            audioRef.current?.addEventListener('canplay', checkAudio, { once: true });
+            // Fallback: if audio still not ready after 3s, start anyway
+            setTimeout(() => {
+              if (!mediaStarted) {
+                console.log('[Cinematic] Fallback: forcing playback start');
+                startSyncedPlayback();
+              }
+            }, 3000);
           }
         }}
         onEnded={handleVideoEnd}
