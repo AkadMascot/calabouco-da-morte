@@ -321,7 +321,7 @@ export default function GamePage() {
       <div className="scanline-overlay" />
 
       {/* ─── CINEMATIC PLAYER — camera shake while waiting for voice command ─── */}
-      <div className={voiceChoicesReady && !matchFeedback ? 'camera-shake' : ''}>
+      <div className={`absolute inset-0 ${voiceChoicesReady && !matchFeedback ? 'camera-shake' : ''}`}>
       {hasCinematic && (
         <CinematicPlayer
           key={`cinematic-${currentSection}`}
