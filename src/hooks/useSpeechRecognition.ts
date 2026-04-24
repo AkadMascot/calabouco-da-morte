@@ -263,7 +263,11 @@ export function useSpeechRecognition(
     };
 
     recognition.onerror = (event: any) => {
-      if (event.error !== 'no-speech' && event.error !== 'aborted') {
+      if (event.error === 'not-allowed') {
+        // Mic blocked (HTTP non-localhost) — disable auto-retry
+        console.warn('Speech recognition blocked: mic requires HTTPS or localhost');
+        setIsSupported(false); // Prevents auto-listen from retrying
+      } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
         console.warn('Speech recognition error:', event.error);
       }
       setIsListening(false);
