@@ -17,6 +17,7 @@ import { useTypewriter } from '@/hooks/useTypewriter';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useMediaPreloader } from '@/hooks/useMediaPreloader';
 import { useHeartbeat } from '@/hooks/useHeartbeat';
+import { useSpeechRecognition } from '@/hooks/useSpeechRecognition';
 // import { useGameLogSync } from '@/hooks/useGameLogSync'; // disabled for static export
 import { trackCinematicStarted, trackCinematicSkipped, trackCinematicCompleted, trackSectionVisited, trackChoiceMade, trackPlayerDeath } from '@/lib/analytics';
 import { registerServiceWorker } from '@/lib/register-sw';
@@ -251,10 +252,24 @@ export default function GamePage() {
     enabled: !!character && !!section,
   });
 
+  // ─── Voice commands — "the voice in the warrior's head" ───
+  // (must be before early return — hooks can't be conditional)
+  const isDeadComputed = character ? (!character.isAlive || character.staminaCurrent <= 0) : false;
+  const voiceChoicesReady = !!character && !!section && showContent && !isDeadComputed && availableChoices.length > 0 && (typewriterDone || hasCinematic);
+  const { isListening, isSupported: voiceSupported, transcript, matchFeedback, startListening, stopListening } = useSpeechRecognition(
+    availableChoices,
+    (choiceIndex: number) => {
+      if (choiceIndex < availableChoices.length) {
+        handleChoice(availableChoices[choiceIndex].targetSection, choiceIndex, availableChoices[choiceIndex].text);
+      }
+    },
+    voiceChoicesReady
+  );
+
   if (!character || !section) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-black">
-        <p className="text-amber-500 text-xl game-text-shadow">Carregando...</p>
+        <p className="text-amber-500 text-xl game-text-shadow">Loading...</p>
       </div>
     );
   }
@@ -538,21 +553,63 @@ export default function GamePage() {
                   <motion.button
                     key={i}
                     initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{
+                      opacity: 1, y: 0,
+                      scale: matchFeedback?.choiceIndex === i ? 1.03 : 1,
+                      borderColor: matchFeedback?.choiceIndex === i ? 'rgba(245,158,11,0.8)' : undefined,
+                    }}
                     transition={{ delay: 0.5 + i * 0.15, type: 'spring', stiffness: 120, damping: 14 }}
                     onClick={() => handleChoice(choice.targetSection, i, choice.text)}
-                    className="medieval-choice w-full relative overflow-hidden text-sm sm:text-base game-text-shadow"
+                    className={`medieval-choice w-full relative overflow-hidden text-sm sm:text-base game-text-shadow ${matchFeedback?.choiceIndex === i ? 'ring-2 ring-amber-500/60' : ''}`}
                   >
                     <span className="text-amber-600 mr-2 font-cinzel font-bold">{String.fromCharCode(65 + i)}.</span>
                     {choice.text}
-                    {/* Auto-advance removed — player always clicks */}
-                    {false && (
-                      <span className="ml-2 text-amber-500/60 text-xs font-mono">
-                        ...
-                      </span>
-                    )}
                   </motion.button>
                 ))}
+
+                {/* ─── VOICE COMMAND — mic button ─── */}
+                {voiceSupported && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2 }}
+                    className="flex flex-col items-center gap-2 mt-2"
+                  >
+                    <button
+                      onClick={isListening ? stopListening : startListening}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all text-xs sm:text-sm ${
+                        isListening
+                          ? 'border-red-500/60 bg-red-950/40 text-red-400 animate-pulse'
+                          : 'border-amber-900/30 bg-black/40 text-amber-600/60 hover:text-amber-500 hover:border-amber-700/50'
+                      }`}
+                    >
+                      <span className="text-base">{isListening ? '⏹' : '🎙'}</span>
+                      {isListening ? 'Listening...' : 'Speak your command'}
+                    </button>
+
+                    {/* Live transcript */}
+                    {isListening && transcript && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-amber-500/50 text-xs italic font-im-fell text-center"
+                      >
+                        &ldquo;{transcript}&rdquo;
+                      </motion.p>
+                    )}
+
+                    {/* Match feedback */}
+                    {matchFeedback && (
+                      <motion.p
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-green-400/80 text-xs font-im-fell text-center"
+                      >
+                        ✓ {String.fromCharCode(65 + matchFeedback.choiceIndex)}. {matchFeedback.choiceText}
+                      </motion.p>
+                    )}
+                  </motion.div>
+                )}
               </div>
             )}
 
