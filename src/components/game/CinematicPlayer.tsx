@@ -198,11 +198,7 @@ export default function CinematicPlayer({
     setMediaStarted(true);
     setIsPlaying(true);
 
-    // Show text + choices IMMEDIATELY when media starts — video is just visual backdrop
-    if (!completeFiredRef.current) {
-      completeFiredRef.current = true;
-      onComplete();
-    }
+    // Choices appear ONLY when video ends (handleVideoEnd fires onComplete)
 
     if (aDur > vDur && a) {
       // M4: Use performance.now() for precise delay calculation
@@ -217,11 +213,13 @@ export default function CinematicPlayer({
         const adjustedDelay = Math.max(delay - elapsed, 0);
 
         videoDelayTimerRef.current = setTimeout(() => {
+          v.volume = 0.3; // Video VFX audio lower than narration
           v.play().catch(() => {});
           videoDelayTimerRef.current = null;
         }, adjustedDelay);
       }).catch(() => {});
     } else {
+      v.volume = 0.3; // Video VFX audio lower than narration
       v.play().catch(() => {});
       if (a) {
         a.volume = 0; // Start at 0 for fade-in
@@ -249,22 +247,18 @@ export default function CinematicPlayer({
      <video
        key={`section-${sectionId}`}
        ref={videoRef}
-        className={`absolute inset-0 z-[2] w-full h-full object-contain sm:object-cover bg-black transition-opacity duration-300 ${videoReady && !videoEnded ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 z-[2] w-full h-full object-contain sm:object-cover bg-black transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
         src={videoSrc}
         playsInline
-        muted
         preload="auto"
         onLoadedMetadata={() => {
           setVideoReady(true);
           if (!narrationSrc) {
+            if (videoRef.current) videoRef.current.volume = 1.0; // Full volume when no narration
             videoRef.current?.play().catch(() => {});
             setMediaStarted(true);
             setIsPlaying(true);
-            // Show choices immediately even without narration
-            if (!completeFiredRef.current) {
-              completeFiredRef.current = true;
-              onComplete();
-            }
+            // Don't show choices yet — wait for video to end (handleVideoEnd fires onComplete)
           } else if (audioRef.current && audioRef.current.readyState >= 1) {
             startSyncedPlayback();
           }
