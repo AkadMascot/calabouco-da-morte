@@ -256,7 +256,7 @@ export default function GamePage() {
   // (must be before early return — hooks can't be conditional)
   const isDeadComputed = character ? (!character.isAlive || character.staminaCurrent <= 0) : false;
   const voiceChoicesReady = !!character && !!section && showContent && !isDeadComputed && availableChoices.length > 0 && (typewriterDone || hasCinematic);
-  const { isListening, isSupported: voiceSupported, transcript, matchFeedback, startListening, stopListening } = useSpeechRecognition(
+  const { isListening, isSupported: voiceSupported, transcript, matchFeedback, echoPlaying, startListening, stopListening } = useSpeechRecognition(
     availableChoices,
     (choiceIndex: number) => {
       if (choiceIndex < availableChoices.length) {
@@ -567,7 +567,7 @@ export default function GamePage() {
                   </motion.button>
                 ))}
 
-                {/* ─── VOICE COMMAND — mic button ─── */}
+                {/* ─── VOICE COMMAND — auto-listening, "voice in the warrior's head" ─── */}
                 {voiceSupported && (
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -575,30 +575,54 @@ export default function GamePage() {
                     transition={{ delay: 1.2 }}
                     className="flex flex-col items-center gap-2 mt-2"
                   >
-                    <button
-                      onClick={isListening ? stopListening : startListening}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all text-xs sm:text-sm ${
-                        isListening
-                          ? 'border-red-500/60 bg-red-950/40 text-red-400 animate-pulse'
-                          : 'border-amber-900/30 bg-black/40 text-amber-600/60 hover:text-amber-500 hover:border-amber-700/50'
-                      }`}
-                    >
-                      <span className="text-base">{isListening ? '⏹' : '🎙'}</span>
-                      {isListening ? 'Listening...' : 'Speak your command'}
-                    </button>
+                    {/* Mic status indicator */}
+                    <div className="flex items-center gap-2">
+                      {isListening && (
+                        <motion.div
+                          animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+                          transition={{ repeat: Infinity, duration: 1.5 }}
+                          className="w-2 h-2 rounded-full bg-red-500"
+                        />
+                      )}
+                      <button
+                        onClick={isListening ? stopListening : startListening}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all text-xs sm:text-sm ${
+                          isListening
+                            ? 'border-red-500/40 bg-red-950/20 text-red-400/80'
+                            : 'border-amber-900/30 bg-black/40 text-amber-600/40 hover:text-amber-500 hover:border-amber-700/50'
+                        }`}
+                      >
+                        <span className="text-base">{isListening ? '🎙' : '🎙'}</span>
+                        <span className="font-im-fell italic">
+                          {isListening ? 'Speak, mortal...' : 'Tap to command'}
+                        </span>
+                      </button>
+                    </div>
 
-                    {/* Live transcript */}
+                    {/* Live transcript — the warrior hears you */}
                     {isListening && transcript && (
                       <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-amber-500/50 text-xs italic font-im-fell text-center"
+                        className="text-amber-500/40 text-xs italic font-im-fell text-center"
                       >
                         &ldquo;{transcript}&rdquo;
                       </motion.p>
                     )}
 
-                    {/* Match feedback */}
+                    {/* Echo playing indicator */}
+                    {echoPlaying && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0.3, 0.7, 0.3] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        className="text-purple-400/50 text-[10px] font-im-fell italic tracking-wider"
+                      >
+                        ✦ the warrior hears your voice echoing ✦
+                      </motion.p>
+                    )}
+
+                    {/* Match feedback — choice highlighted */}
                     {matchFeedback && (
                       <motion.p
                         initial={{ opacity: 0, y: 5 }}
