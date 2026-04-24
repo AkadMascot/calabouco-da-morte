@@ -412,9 +412,9 @@ export default function GamePage() {
               {character.provisions > 0 && !hasCombat && (
                 <button
                   onClick={() => store.eatProvision()}
-                  className="text-xs px-3 py-1.5 bg-amber-900/40 hover:bg-amber-800/60 text-amber-400 rounded border border-amber-800/30 transition-all choice-btn"
+                  className="text-xs px-3 py-1.5 medieval-btn-secondary font-cinzel"
                 >
-                  🍞 Comer Provisão (+4 Energia)
+                  🍞 Eat Provision (+4 Stamina)
                 </button>
               )}
 
@@ -482,7 +482,7 @@ export default function GamePage() {
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-gray-100 text-sm sm:text-base md:text-lg leading-relaxed game-text-shadow font-light italic mb-2"
+                    className="text-gray-200 text-sm sm:text-base md:text-lg leading-relaxed game-text-shadow font-im-fell italic mb-2"
                   >
                     {p.text}
                     {!typewriterDone && i === typewriterParagraphs.length - 1 && !p.isComplete && (
@@ -541,9 +541,9 @@ export default function GamePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 + i * 0.15, type: 'spring', stiffness: 120, damping: 14 }}
                     onClick={() => handleChoice(choice.targetSection, i, choice.text)}
-                    className="choice-btn w-full px-4 py-3 sm:px-6 sm:py-4 text-left rounded-xl border border-amber-900/40 bg-black/60 backdrop-blur-md text-gray-100 hover:bg-amber-900/30 hover:border-amber-600/60 transition-all duration-300 text-sm sm:text-base relative overflow-hidden game-text-shadow"
+                    className="medieval-choice w-full relative overflow-hidden text-sm sm:text-base game-text-shadow"
                   >
-                    <span className="text-amber-500 mr-2 font-bold">{String.fromCharCode(65 + i)}.</span>
+                    <span className="text-amber-600 mr-2 font-cinzel font-bold">{String.fromCharCode(65 + i)}.</span>
                     {choice.text}
                     {/* Auto-advance removed — player always clicks */}
                     {false && (
@@ -578,9 +578,9 @@ export default function GamePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + i * 0.12, type: 'spring', stiffness: 120, damping: 14 }}
                     onClick={() => handleChoice(choice.targetSection, i, choice.text)}
-                    className="choice-btn w-full px-4 py-3 sm:px-6 sm:py-4 text-left rounded-xl border border-amber-900/40 bg-black/60 backdrop-blur-md text-gray-100 hover:bg-amber-900/30 hover:border-amber-600/60 transition-all duration-300 text-sm sm:text-base game-text-shadow"
+                    className="medieval-choice w-full text-sm sm:text-base game-text-shadow"
                   >
-                    <span className="text-amber-500 mr-2 font-bold">{String.fromCharCode(65 + i)}.</span>
+                    <span className="text-amber-600 mr-2 font-cinzel font-bold">{String.fromCharCode(65 + i)}.</span>
                     {choice.text}
                   </motion.button>
                 ))}

@@ -142,6 +142,100 @@
   box-shadow: 0 0 15px rgba(245,158,11,0.25), 0 0 30px rgba(245,158,11,0.1), inset 0 0 15px rgba(245,158,11,0.05);
 }
 
+/* ─── Medieval Fonts ─── */
+.font-cinzel { font-family: var(--font-cinzel), 'Georgia', serif; }
+.font-cinzel-deco { font-family: var(--font-cinzel-deco), var(--font-cinzel), 'Georgia', serif; }
+.font-im-fell { font-family: var(--font-im-fell), 'Georgia', serif; }
+
+/* ─── Medieval Primary Button ─── */
+.medieval-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: linear-gradient(180deg, #8B6914 0%, #6B4F10 40%, #4A3508 100%);
+  border: 1px solid rgba(180, 140, 60, 0.5);
+  border-top-color: rgba(220, 180, 80, 0.4);
+  border-bottom-color: rgba(60, 40, 10, 0.8);
+  border-radius: 4px;
+  color: #f5deb3;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,220,120,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.medieval-btn-primary:hover {
+  background: linear-gradient(180deg, #A07818 0%, #7D5C14 40%, #5A420C 100%);
+  border-color: rgba(220, 180, 80, 0.6);
+  box-shadow:
+    0 2px 12px rgba(180,140,40,0.3),
+    0 4px 16px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,220,120,0.25);
+  color: #fff5d0;
+}
+.medieval-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.6), inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ─── Medieval Secondary Button ─── */
+.medieval-btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: linear-gradient(180deg, rgba(40,30,20,0.8) 0%, rgba(25,18,10,0.9) 100%);
+  border: 1px solid rgba(120,90,40,0.3);
+  border-radius: 4px;
+  color: rgba(180,160,120,0.8);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.medieval-btn-secondary:hover {
+  background: linear-gradient(180deg, rgba(60,45,25,0.8) 0%, rgba(35,25,12,0.9) 100%);
+  border-color: rgba(160,120,50,0.4);
+  color: rgba(220,200,150,0.9);
+}
+
+/* ─── Medieval Panel (parchment/leather look) ─── */
+.medieval-panel {
+  background: linear-gradient(180deg, rgba(20,15,8,0.85) 0%, rgba(12,8,4,0.92) 100%);
+  border: 1px solid rgba(120,90,40,0.25);
+  border-radius: 6px;
+  padding: 14px;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(120,90,40,0.08);
+}
+
+/* ─── Medieval Choice Button (in-game) ─── */
+.medieval-choice {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(30,22,12,0.7) 0%, rgba(18,12,6,0.8) 100%);
+  border: 1px solid rgba(120,90,40,0.2);
+  border-radius: 4px;
+  color: rgba(200,180,140,0.9);
+  font-family: var(--font-im-fell), 'Georgia', serif;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.medieval-choice:hover {
+  background: linear-gradient(180deg, rgba(50,38,18,0.75) 0%, rgba(30,22,10,0.85) 100%);
+  border-color: rgba(180,140,60,0.4);
+  color: #f5deb3;
+  box-shadow: 0 0 12px rgba(180,140,40,0.15), inset 0 0 8px rgba(180,140,40,0.05);
+}
+
 /* ─── Universal text shadow for readability ─── */
 .game-text-shadow {
   text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.9);
