@@ -16,9 +16,9 @@ function pickRandom<T>(arr: T[]): T {
 export default function IntroPage() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
-  // Videos already have narration + VFX baked in — no separate music needed
-  // Stop any music from previous page so it doesn't overlap
-  useEffect(() => { musicPlayer?.stop(); }, []);
+  const narrationRef = useRef<HTMLAudioElement | null>(null);
+  // Background music — low volume, narration dominates
+  useEffect(() => { musicPlayer?.play('intro'); }, []);
 
   const [started, setStarted] = useState(false); // User must click to start
   const [currentBeatIndex, setCurrentBeatIndex] = useState(0);
@@ -42,20 +42,48 @@ export default function IntroPage() {
     ? asset(`/cinematics/intro/beat-${beat.id}-${selectedVariants[currentBeatIndex]}.mp4`)
     : '';
 
+  // Narration MP3 URL (beats 01-11 have narration, beat 12 does not)
+  const narrationSrc = beat && beat.id !== '12'
+    ? asset(`/cinematics/intro/beat-${beat.id}-narration.mp3`)
+    : '';
+
+  // Play narration audio synced with each beat
+  useEffect(() => {
+    if (!started || !narrationSrc) {
+      // No narration for this beat — clean up
+      if (narrationRef.current) {
+        narrationRef.current.pause();
+        narrationRef.current = null;
+      }
+      return;
+    }
+    // Stop previous narration
+    if (narrationRef.current) {
+      narrationRef.current.pause();
+    }
+    const audio = new Audio(narrationSrc);
+    audio.volume = 1.0;
+    narrationRef.current = audio;
+    // Delay narration slightly for cinematic feel
+    const t = setTimeout(() => {
+      audio.play().catch(() => {});
+    }, 800);
+    return () => {
+      clearTimeout(t);
+      audio.pause();
+    };
+  }, [started, currentBeatIndex, narrationSrc]);
+
   // ─── START HANDLER ───
   // User interaction unlocks autoplay for the entire session
   const handleStart = useCallback(() => {
     setStarted(true);
-    // Play the first video immediately after user click
+    // Play the first video immediately after user click (muted — narration is separate)
     setTimeout(() => {
       const v = videoRef.current;
       if (v) {
-        v.muted = false;
-        v.play().catch(() => {
-          // If unmuted play fails, try muted
-          v.muted = true;
-          v.play().catch(() => {});
-        });
+        v.muted = true;
+        v.play().catch(() => {});
       }
     }, 100);
   }, []);
@@ -92,16 +120,13 @@ export default function IntroPage() {
     setCurrentBeatIndex(prev => prev + 1);
   }, [isLastBeat, router]);
 
-  // Auto-play next beat video (user already interacted, so autoplay works)
+  // Auto-play next beat video (muted — narration is separate)
   useEffect(() => {
     if (!started || currentBeatIndex === 0) return;
     const v = videoRef.current;
     if (v) {
-      v.muted = false;
-      v.play().catch(() => {
-        v.muted = true;
-        v.play().catch(() => {});
-      });
+      v.muted = true;
+      v.play().catch(() => {});
     }
   }, [currentBeatIndex, started]);
 
@@ -116,6 +141,7 @@ export default function IntroPage() {
   const handleSkipAll = useCallback(() => {
     setSkipping(true);
     if (videoRef.current) videoRef.current.pause();
+    if (narrationRef.current) narrationRef.current.pause();
     setTimeout(() => router.push('/create'), 300);
   }, [router]);
 
@@ -175,7 +201,7 @@ export default function IntroPage() {
         )}
       </AnimatePresence>
 
-      {/* Video — audio is baked in (George narration + Veo ambient) */}
+      {/* Video — MUTED (narration plays as separate .mp3 audio) */}
       {started && (
         <video
           key={`intro-${currentBeatIndex}-${selectedVariants[currentBeatIndex]}`}
