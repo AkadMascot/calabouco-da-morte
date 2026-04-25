@@ -1447,7 +1447,8 @@
     },
     "387": {
       "composed": "/cinematics/section-387.mp4",
-      "narration": "/cinematics/section-387-narration.mp3"
+      "narration": "/cinematics/section-387-narration.mp3",
+      "sfx": "/cinematics/section-387-sfx.mp3"
     },
     "388": {
       "composed": "/cinematics/section-388.mp4",
