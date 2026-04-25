@@ -37,7 +37,7 @@ export interface DiceRollRange {
 }
 
 export interface DiceRoll {
-  type: 'skillCheck' | 'skillAndStaminaCheck' | 'fixedThreshold' | 'd6Range';
+  type: 'skillCheck' | 'skillAndStaminaCheck' | 'fixedThreshold' | 'd6Range' | 'damageRoll';
   // skillCheck / skillAndStaminaCheck
   successSection?: number;
   failSection?: number;
@@ -51,6 +51,12 @@ export interface DiceRoll {
   otherSection?: number;
   // d6Range
   ranges?: DiceRollRange[];
+  // damageRoll — roll dice, apply damage, then continue to section's other mechanics
+  dice?: 1 | 2;           // 1d6 or 2d6 (default: 1)
+  multiplier?: number;    // damage per die result (default: 1)
+  bonus?: number;         // added to die result before multiplying (default: 0)
+  stat?: 'stamina';       // which stat to reduce (currently only stamina)
+  description?: string;   // flavour text shown during roll
 }
 
 export interface ChoiceCondition {

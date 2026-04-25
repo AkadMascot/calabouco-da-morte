@@ -53,6 +53,9 @@ export default function GamePage() {
   // Combat done tracking (for post-combat choices display)
   const [combatDone, setCombatDone] = useState(false);
 
+  // Damage roll done tracking (damageRoll resolves before combat/choices/luckTest)
+  const [damageRollDone, setDamageRollDone] = useState(false);
+
   // Heartbeat ambient system
   const { setMode: setHeartbeat } = useHeartbeat();
 
@@ -176,6 +179,7 @@ export default function GamePage() {
   useEffect(() => {
     setShowContent(false);
     setCombatDone(false);
+    setDamageRollDone(false);
     setShowStats(false);
     setAutoAdvanceCount(null);
   }, [currentSection]);
@@ -282,11 +286,16 @@ export default function GamePage() {
   const hasLuckTest = !!section.luckTest && !section.isEnding;
 
   const hasDiceRoll = !!section.diceRoll && !section.isEnding;
+  const isDamageRoll = hasDiceRoll && section.diceRoll?.type === 'damageRoll';
+  const isNavigationDiceRoll = hasDiceRoll && !isDamageRoll;
+  // Damage roll must resolve before other mechanics become visible
+  const damageRollPending = isDamageRoll && !damageRollDone;
 
-  const showCombatUI = hasCombat && showContent && !isDeadFinal;
-  const showLuckUI = hasLuckTest && showContent && !hasCombat && !isDeadFinal;
-  const showDiceUI = hasDiceRoll && showContent && !hasCombat && !hasLuckTest && !isDeadFinal;
-  const showChoicesUI = showContent && !hasCombat && !hasLuckTest && !hasDiceRoll && !isDeadFinal;
+  const showCombatUI = hasCombat && showContent && !isDeadFinal && !damageRollPending;
+  const showLuckUI = hasLuckTest && showContent && !hasCombat && !isDeadFinal && !damageRollPending;
+  const showDamageRollUI = damageRollPending && showContent && !isDeadFinal;
+  const showNavigationDiceUI = isNavigationDiceRoll && showContent && !hasCombat && !hasLuckTest && !isDeadFinal;
+  const showChoicesUI = showContent && !hasCombat && !hasLuckTest && !isNavigationDiceRoll && !isDeadFinal && !damageRollPending;
 
   const hpPercent = Math.round((character.staminaCurrent / character.staminaInitial) * 100);
   const skillPercent = Math.round((character.skillCurrent / character.skillInitial) * 100);
@@ -545,10 +554,26 @@ export default function GamePage() {
               </div>
             )}
 
-            {/* ─── DICE ROLL UI ─── */}
-            {showDiceUI && section.diceRoll && (
+            {/* ─── DICE ROLL UI (navigation type) ─── */}
+            {showNavigationDiceUI && section.diceRoll && (
               <div className="w-full max-w-sm sm:max-w-lg mb-4">
                 <DiceRollUI diceRoll={section.diceRoll} onNavigate={goToSection} />
+              </div>
+            )}
+
+            {/* ─── DICE ROLL UI (damage type — resolves before combat/choices) ─── */}
+            {showDamageRollUI && section.diceRoll && (
+              <div className="w-full max-w-sm sm:max-w-lg mb-4">
+                <DiceRollUI
+                  diceRoll={section.diceRoll}
+                  onNavigate={goToSection}
+                  onDamageResolved={(damage) => {
+                    store.updateStats({ staminaChange: -damage });
+                    setDamageFlash(`-${damage} Stamina`);
+                    setTimeout(() => setDamageFlash(null), 3000);
+                    setDamageRollDone(true);
+                  }}
+                />
               </div>
             )}
 

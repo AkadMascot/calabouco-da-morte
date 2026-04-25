@@ -209,7 +209,15 @@
         "text": "A: Sapphire, B: Diamond, C: Emerald",
         "targetSection": 249
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 1,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Energy bolt — Roll 1 die, add 1"
+    }
   },
   "17": {
     "id": 17,
@@ -1769,7 +1777,15 @@
         "text": "A: Sapphire, B: Diamond, C: Emerald",
         "targetSection": 249
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 1,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Energy bolt — Roll 1 die, add 1"
+    }
   },
   "133": {
     "id": 133,
@@ -2772,7 +2788,15 @@
         "targetSection": 74
       }
     ],
-    "luckChange": -1
+    "luckChange": -1,
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 0,
+      "multiplier": 2,
+      "stat": "stamina",
+      "description": "Crossbow bolts — Roll 1 die, lose 2 Stamina per bolt"
+    }
   },
   "200": {
     "id": 200,
@@ -3110,7 +3134,15 @@
         "targetSection": 313
       }
     ],
-    "luckChange": -2
+    "luckChange": -2,
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 2,
+      "bonus": 0,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Razor-sharp barbs — Roll 2 dice for damage"
+    }
   },
   "224": {
     "id": 224,
@@ -3433,7 +3465,15 @@
         "targetSection": 313
       }
     ],
-    "luckChange": -2
+    "luckChange": -2,
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 2,
+      "bonus": 0,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Razor-sharp barbs — Roll 2 dice for damage"
+    }
   },
   "247": {
     "id": 247,
@@ -3448,6 +3488,14 @@
         }
       ],
       "winSection": 364
+    },
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 0,
+      "multiplier": 2,
+      "stat": "stamina",
+      "description": "Manticore spines — Roll 1 die, lose 2 Stamina per spine"
     }
   },
   "248": {
@@ -3484,7 +3532,15 @@
         "text": "A: Diamond, B: Emerald, C: Sapphire",
         "targetSection": 132
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 1,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Energy bolt — Roll 1 die, add 1"
+    }
   },
   "250": {
     "id": 250,
@@ -3976,7 +4032,15 @@
         "text": "A: Sapphire, B: Diamond, C: Emerald",
         "targetSection": 249
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 1,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Energy bolt — Roll 1 die, add 1"
+    }
   },
   "288": {
     "id": 288,
@@ -4880,7 +4944,15 @@
         "text": "Fight the Giant Fly",
         "targetSection": 39
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 0,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Falling damage — Roll 1 die"
+    }
   },
   "351": {
     "id": 351,
@@ -5475,7 +5547,15 @@
         "text": "A: Sapphire, B: Diamond, C: Emerald",
         "targetSection": 249
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 1,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Energy bolt — Roll 1 die, add 1"
+    }
   },
   "393": {
     "id": 393,
@@ -5503,7 +5583,15 @@
         "text": "Return to the junction to continue north",
         "targetSection": 14
       }
-    ]
+    ],
+    "diceRoll": {
+      "type": "damageRoll",
+      "dice": 1,
+      "bonus": 2,
+      "multiplier": 1,
+      "stat": "stamina",
+      "description": "Giant Insect stings — Roll 1 die, add 2"
+    }
   },
   "395": {
     "id": 395,
