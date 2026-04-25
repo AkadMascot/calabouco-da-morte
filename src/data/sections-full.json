@@ -13,7 +13,7 @@
       }
     ],
     "itemGain": [
-      "Provisões"
+      "Provisions"
     ]
   },
   "2": {
@@ -129,7 +129,7 @@
         "text": "Open the door with the iron key",
         "targetSection": 86,
         "condition": {
-          "hasItem": "Chave de Ferro"
+          "hasItem": "Iron Key"
         }
       },
       {
@@ -138,7 +138,7 @@
       }
     ],
     "conditions": [
-      "chave de ferro"
+      "Iron Key"
     ]
   },
   "11": {
@@ -155,7 +155,7 @@
       }
     ],
     "itemGain": [
-      "Esmeralda"
+      "Emerald"
     ]
   },
   "12": {
@@ -412,7 +412,7 @@
         "text": "Show the sapphire",
         "targetSection": 376,
         "condition": {
-          "hasItem": "Safira"
+          "hasItem": "Sapphire"
         }
       },
       {
@@ -441,8 +441,8 @@
       }
     ],
     "itemGain": [
-      "Sino",
-      "Gancho de Ferro"
+      "Bell",
+      "Iron Hook"
     ],
     "skillChange": -3
   },
@@ -625,7 +625,7 @@
         "text": "Use the hollow wooden tube",
         "targetSection": 10,
         "condition": {
-          "hasItem": "Tubo Oco de Madeira"
+          "hasItem": "Hollow Wooden Tube"
         }
       },
       {
@@ -702,7 +702,7 @@
       }
     ],
     "itemGain": [
-      "Livro encadernado em couro"
+      "Leather-bound Book"
     ]
   },
   "53": {
@@ -729,7 +729,7 @@
       }
     ],
     "itemGain": [
-      "Corda"
+      "Rope"
     ]
   },
   "55": {
@@ -877,7 +877,7 @@
         "text": "Drank the Potion from the black leather book",
         "targetSection": 345,
         "condition": {
-          "hasItem": "Poção de Detecção"
+          "hasItem": "Detection Potion"
         }
       },
       {
@@ -963,7 +963,7 @@
       }
     ],
     "itemGain": [
-      "Pergaminho do Guerreiro Esqueleto"
+      "Skeleton Warrior's Scroll"
     ]
   },
   "72": {
@@ -999,7 +999,7 @@
         "text": "Make a wish with the Wishing Ring",
         "targetSection": 265,
         "condition": {
-          "hasItem": "Anel dos Desejos"
+          "hasItem": "Ring of Wishes"
         }
       },
       {
@@ -1209,7 +1209,7 @@
         "text": "Read about the Bloodbeast in the book",
         "targetSection": 172,
         "condition": {
-          "hasItem": "Livro encadernado em couro"
+          "hasItem": "Leather-bound Book"
         }
       },
       {
@@ -1277,7 +1277,7 @@
       }
     ],
     "itemGain": [
-      "Punhal"
+      "Dagger"
     ]
   },
   "95": {
@@ -1290,7 +1290,7 @@
       }
     ],
     "itemGain": [
-      "Escudo"
+      "Shield"
     ],
     "skillChange": 1
   },
@@ -1422,7 +1422,7 @@
       }
     ],
     "itemGain": [
-      "Poção da Réplica"
+      "Doppelganger Potion"
     ]
   },
   "107": {
@@ -1724,14 +1724,14 @@
         "text": "Throw your monkey bone amulet into the pit",
         "targetSection": 361,
         "condition": {
-          "hasItem": "Amuleto de Osso de Macaco"
+          "hasItem": "Monkey Bone Amulet"
         }
       },
       {
         "text": "Try to snag the PIT FIEND with the iron hook from atop the wall",
         "targetSection": 167,
         "condition": {
-          "hasItem": "Gancho de Ferro"
+          "hasItem": "Iron Hook"
         }
       }
     ],
@@ -1818,7 +1818,7 @@
         "text": "You have read the poem on the Skeleton Warrior's Scroll",
         "targetSection": 222,
         "condition": {
-          "hasItem": "Pergaminho do Guerreiro Esqueleto"
+          "hasItem": "Skeleton Warrior's Scroll"
         }
       },
       {
@@ -1827,7 +1827,7 @@
       }
     ],
     "conditions": [
-      "lido o poema escrito no \nPergaminho do Guerreiro Esqueleto"
+      "read the poem on the Skeleton Warrior's Scroll"
     ]
   },
   "135": {
@@ -1953,7 +1953,7 @@
       "specialEvent": {
         "condition": "attackTotal22",
         "targetSection": 2,
-        "description": "Se a Força de Ataque do Escorpião totalizar 22"
+        "description": "If the Scorpion's Attack Strength totals 22"
       }
     }
   },
@@ -1995,7 +1995,7 @@
         "text": "Open the door with the iron key",
         "targetSection": 86,
         "condition": {
-          "hasItem": "Chave de Ferro"
+          "hasItem": "Iron Key"
         }
       },
       {
@@ -2004,7 +2004,7 @@
       }
     ],
     "conditions": [
-      "chave de ferro"
+      "Iron Key"
     ]
   },
   "147": {
@@ -2076,8 +2076,8 @@
       }
     ],
     "itemGain": [
-      "Sino",
-      "Gancho de Ferro"
+      "Bell",
+      "Iron Hook"
     ],
     "skillChange": -1
   },
@@ -2203,7 +2203,7 @@
         "text": "Use the dagger to free yourself",
         "targetSection": 294,
         "condition": {
-          "hasItem": "Punhal"
+          "hasItem": "Dagger"
         }
       },
       {
@@ -2212,7 +2212,7 @@
       }
     ],
     "conditions": [
-      "punhal"
+      "Dagger"
     ]
   },
   "160": {
@@ -2235,21 +2235,21 @@
       }
     ],
     "itemLose": [
-      "Esmeralda",
-      "Safira",
-      "Diamante",
-      "Pergaminho do Guerreiro",
-      "Escudo",
-      "Corda",
-      "Sino",
-      "Chave de Ferro",
-      "Moringa de Ácido",
-      "Tubo de Madeira",
-      "Poção da Réplica",
-      "Poção de Detecção",
-      "Marreta",
-      "Espiões",
-      "Punhais"
+      "Emerald",
+      "Sapphire",
+      "Diamond",
+      "Warrior's Scroll",
+      "Shield",
+      "Rope",
+      "Bell",
+      "Iron Key",
+      "Acid Flask",
+      "Wooden Tube",
+      "Doppelganger Potion",
+      "Detection Potion",
+      "Mallet",
+      "Spies",
+      "Daggers"
     ]
   },
   "162": {
@@ -2262,8 +2262,8 @@
       }
     ],
     "itemGain": [
-      "Safira",
-      "Chave de Ferro"
+      "Sapphire",
+      "Iron Key"
     ],
     "luckChange": 1
   },
@@ -2361,7 +2361,7 @@
       }
     ],
     "itemGain": [
-      "Informação do Servo"
+      "Servant's Information"
     ]
   },
   "170": {
@@ -2389,7 +2389,7 @@
     ],
     "staminaChange": -4,
     "itemGain": [
-      "Corda"
+      "Rope"
     ]
   },
   "172": {
@@ -2552,7 +2552,7 @@
       }
     ],
     "conditions": [
-      "bebido o líquido do tubo de bambu"
+      "drank the bamboo tube liquid"
     ]
   },
   "183": {
@@ -2638,7 +2638,7 @@
         "text": "Remember the spirit-girl's poem",
         "targetSection": 155,
         "condition": {
-          "hasItem": "Poema da Garota-Espírito"
+          "hasItem": "Spirit Girl's Poem"
         }
       },
       {
@@ -2827,7 +2827,7 @@
       }
     ],
     "itemGain": [
-      "Osso Velho"
+      "Old Bone"
     ]
   },
   "202": {
@@ -2933,7 +2933,7 @@
       }
     ],
     "itemGain": [
-      "Corda"
+      "Rope"
     ]
   },
   "209": {
@@ -3053,11 +3053,11 @@
       }
     ],
     "itemLoss": [
-      "Escudo"
+      "Shield"
     ],
     "conditionalSkillChange": {
       "condition": {
-        "hasItem": "Escudo"
+        "hasItem": "Shield"
       },
       "skillChange": -1
     }
@@ -3118,7 +3118,7 @@
         "text": "Use your shield for protection",
         "targetSection": 196,
         "condition": {
-          "hasItem": "Escudo"
+          "hasItem": "Shield"
         }
       },
       {
@@ -3127,7 +3127,7 @@
       }
     ],
     "conditions": [
-      "escudo"
+      "Shield"
     ]
   },
   "223": {
@@ -3224,7 +3224,7 @@
       }
     ],
     "itemGain": [
-      "Poema da Garota-Espírito"
+      "Spirit Girl's Poem"
     ]
   },
   "230": {
@@ -3243,7 +3243,7 @@
         "text": "Drink the Potion of Replication",
         "targetSection": 385,
         "condition": {
-          "hasItem": "Poção da Réplica"
+          "hasItem": "Doppelganger Potion"
         }
       }
     ],
@@ -3386,7 +3386,7 @@
       }
     ],
     "itemGain": [
-      "Esmeralda"
+      "Emerald"
     ]
   },
   "241": {
@@ -3543,7 +3543,7 @@
       }
     ],
     "itemGain": [
-      "Anel dos Desejos"
+      "Ring of Wishes"
     ]
   },
   "252": {
@@ -3607,7 +3607,7 @@
       }
     ],
     "itemGain": [
-      "Poção da Réplica"
+      "Doppelganger Potion"
     ]
   },
   "257": {
@@ -3620,7 +3620,7 @@
       }
     ],
     "itemGain": [
-      "Tubo Oco de Madeira"
+      "Hollow Wooden Tube"
     ]
   },
   "258": {
@@ -3910,9 +3910,9 @@
       }
     ],
     "itemGain": [
-      "Punhais",
-      "Espelho",
-      "Amuleto de Osso de Macaco"
+      "Daggers",
+      "Mirror",
+      "Monkey Bone Amulet"
     ]
   },
   "282": {
@@ -3947,7 +3947,7 @@
         "text": "Drank the Potion from the black leather book",
         "targetSection": 398,
         "condition": {
-          "hasItem": "Poção de Detecção"
+          "hasItem": "Detection Potion"
         }
       },
       {
@@ -3956,7 +3956,7 @@
       }
     ],
     "conditions": [
-      "bebido"
+      "drank"
     ]
   },
   "285": {
@@ -4256,7 +4256,7 @@
         "text": "Throw the old bone to the dogs",
         "targetSection": 253,
         "condition": {
-          "hasItem": "Osso Velho"
+          "hasItem": "Old Bone"
         }
       },
       {
@@ -4275,21 +4275,21 @@
       }
     ],
     "itemLose": [
-      "Esmeralda",
-      "Safira",
-      "Diamante",
-      "Pergaminho do Guerreiro",
-      "Escudo",
-      "Corda",
-      "Sino",
-      "Chave de Ferro",
-      "Moringa de Ácido",
-      "Tubo de Madeira",
-      "Poção da Réplica",
-      "Poção de Detecção",
-      "Marreta",
-      "Espiões",
-      "Punhais"
+      "Emerald",
+      "Sapphire",
+      "Diamond",
+      "Warrior's Scroll",
+      "Shield",
+      "Rope",
+      "Bell",
+      "Iron Key",
+      "Acid Flask",
+      "Wooden Tube",
+      "Doppelganger Potion",
+      "Detection Potion",
+      "Mallet",
+      "Spies",
+      "Daggers"
     ],
     "luckChange": -2
   },
@@ -4307,8 +4307,8 @@
       }
     ],
     "itemGain": [
-      "Marreta",
-      "Espiões"
+      "Mallet",
+      "Spies"
     ]
   },
   "308": {
@@ -4321,7 +4321,7 @@
       }
     ],
     "itemGain": [
-      "Gema"
+      "Gem"
     ]
   },
   "309": {
@@ -4416,7 +4416,7 @@
         "text": "Use the rope and iron grapple to scale the wall",
         "targetSection": 129,
         "condition": {
-          "hasItem": "Corda"
+          "hasItem": "Rope"
         }
       },
       {
@@ -4425,7 +4425,7 @@
       }
     ],
     "conditions": [
-      "rolo de corda e um gancho \nde ferro"
+      "rope coil and iron hook"
     ]
   },
   "316": {
@@ -4456,7 +4456,7 @@
         "text": "Open the door with the iron key",
         "targetSection": 86,
         "condition": {
-          "hasItem": "Chave de Ferro"
+          "hasItem": "Iron Key"
         }
       },
       {
@@ -4465,7 +4465,7 @@
       }
     ],
     "conditions": [
-      "chave de ferro"
+      "Iron Key"
     ]
   },
   "319": {
@@ -4496,7 +4496,7 @@
       }
     ],
     "itemGain": [
-      "Diamante"
+      "Diamond"
     ]
   },
   "321": {
@@ -4541,7 +4541,7 @@
         "text": "Spoke with the crippled servant",
         "targetSection": 256,
         "condition": {
-          "hasItem": "Informação do Servo"
+          "hasItem": "Servant's Information"
         }
       },
       {
@@ -4757,7 +4757,7 @@
         "text": "Use the flask of acid on the handle",
         "targetSection": 303,
         "condition": {
-          "hasItem": "Moringa de Ácido"
+          "hasItem": "Acid Flask"
         }
       },
       {
@@ -4767,7 +4767,7 @@
     ],
     "staminaChange": -1,
     "conditions": [
-      "moringa de ácido"
+      "Acid Flask"
     ]
   },
   "340": {
@@ -4796,7 +4796,7 @@
         "text": "Offer him some of your Provisions",
         "targetSection": 169,
         "condition": {
-          "hasItem": "Provisões"
+          "hasItem": "Provisions"
         }
       }
     ]
@@ -4809,7 +4809,7 @@
         "text": "Use your dagger to free yourself",
         "targetSection": 294,
         "condition": {
-          "hasItem": "Punhal"
+          "hasItem": "Dagger"
         }
       },
       {
@@ -4818,7 +4818,7 @@
       }
     ],
     "conditions": [
-      "punhal"
+      "Dagger"
     ]
   },
   "343": {
@@ -4924,7 +4924,7 @@
         "text": "Use the rope to climb the idol",
         "targetSection": 396,
         "condition": {
-          "hasItem": "Corda"
+          "hasItem": "Rope"
         }
       },
       {
@@ -5005,7 +5005,7 @@
         "text": "Throw a gem into the pool",
         "targetSection": 332,
         "condition": {
-          "hasItem": "Gema"
+          "hasItem": "Gem"
         }
       },
       {
@@ -5097,7 +5097,7 @@
         "text": "Show the emerald",
         "targetSection": 31,
         "condition": {
-          "hasItem": "Esmeralda"
+          "hasItem": "Emerald"
         }
       },
       {
@@ -5106,7 +5106,7 @@
       }
     ],
     "conditions": [
-      "esmeralda"
+      "Emerald"
     ]
   },
   "365": {
@@ -5147,7 +5147,7 @@
       }
     ],
     "itemGain": [
-      "Informação do Servo"
+      "Servant's Information"
     ]
   },
   "368": {
@@ -5249,7 +5249,7 @@
       }
     ],
     "itemGain": [
-      "Moringa de Ácido"
+      "Acid Flask"
     ]
   },
   "376": {
@@ -5260,7 +5260,7 @@
         "text": "Show the diamond",
         "targetSection": 62,
         "condition": {
-          "hasItem": "Diamante"
+          "hasItem": "Diamond"
         }
       },
       {
@@ -5269,7 +5269,7 @@
       }
     ],
     "conditions": [
-      "encontrado um diamante"
+      "found a diamond"
     ]
   },
   "377": {
@@ -5578,7 +5578,7 @@
       }
     ],
     "itemGain": [
-      "Poção de Detecção"
+      "Detection Potion"
     ],
     "luckChange": 2
   },

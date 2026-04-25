@@ -60,31 +60,31 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
     >
       {/* Title */}
       <div className={`${isDeath ? 'death-title text-red-500' : 'victory-title text-amber-400'} text-xl sm:text-2xl md:text-3xl font-bold mb-2 tracking-wider game-text-shadow`}>
-        {isDeath ? 'O CALABOUÇO COBRA MAIS UMA VIDA' : 'CAMPEÃO DO CALABOUÇO DA MORTE'}
+        {isDeath ? 'THE DUNGEON CLAIMS ANOTHER LIFE' : 'CHAMPION OF THE DEATHTRAP DUNGEON'}
       </div>
       {isDeath
-        ? <p className="text-gray-400 text-xs sm:text-sm mb-4 italic game-text-shadow">Sua jornada terminou nas profundezas...</p>
+        ? <p className="text-gray-400 text-xs sm:text-sm mb-4 italic game-text-shadow">Your journey ended in the depths...</p>
         : <>
-            <p className="text-amber-200/80 text-base sm:text-lg mb-1 font-light game-text-shadow">10.000 Peças de Ouro são suas!</p>
-            <p className="text-gray-400 text-xs sm:text-sm mb-4 italic game-text-shadow">O segredo de Fang foi revelado.</p>
+            <p className="text-amber-200/80 text-base sm:text-lg mb-1 font-light game-text-shadow">10,000 Gold Pieces are yours!</p>
+            <p className="text-gray-400 text-xs sm:text-sm mb-4 italic game-text-shadow">The secret of Fang has been revealed.</p>
           </>
       }
 
       {/* Journey stats */}
       <div className={`bg-black/70 backdrop-blur-md rounded-xl border border-${accentColor}-900/40 p-4 mb-4 w-full`}>
-        <h4 className={`text-${accentColor}-400/80 text-xs uppercase tracking-widest mb-2 game-text-shadow`}>Sua Jornada</h4>
+        <h4 className={`text-${accentColor}-400/80 text-xs uppercase tracking-widest mb-2 game-text-shadow`}>Your Journey</h4>
         <div className="flex justify-around text-sm">
           <div className="text-center">
             <div className={`font-mono font-bold text-lg text-${accentColor}-400`}>{sectionsVisited}</div>
-            <div className="text-gray-500 text-xs">Passos</div>
+            <div className="text-gray-500 text-xs">Steps</div>
           </div>
           <div className="text-center">
             <div className={`font-mono font-bold text-lg text-${accentColor}-400`}>{itemsCollected}</div>
-            <div className="text-gray-500 text-xs">Itens</div>
+            <div className="text-gray-500 text-xs">Items</div>
           </div>
           <div className="text-center">
             <div className={`font-mono font-bold text-lg text-${accentColor}-400`}>§{character.currentSection}</div>
-            <div className="text-gray-500 text-xs">Seção</div>
+            <div className="text-gray-500 text-xs">Section</div>
           </div>
         </div>
       </div>
@@ -99,14 +99,14 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
             exit={{ opacity: 0, y: -10 }}
             className="w-full mb-4"
           >
-            <p className="text-gray-400 text-xs mb-2 game-text-shadow">Registre seu nome no ranking dos aventureiros</p>
+            <p className="text-gray-400 text-xs mb-2 game-text-shadow">Enter your name for the Hall of Champions</p>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={playerName}
                 onChange={e => setPlayerName(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-                placeholder="Seu nome..."
+                placeholder="Your name..."
                 maxLength={20}
                 className="flex-1 px-3 py-2 rounded-lg bg-black/60 border border-gray-700 text-gray-100 text-sm placeholder-gray-600 focus:border-amber-600 focus:outline-none backdrop-blur-md"
                 autoFocus
@@ -120,7 +120,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
                     : 'bg-amber-700 hover:bg-amber-600 text-white'
                 }`}
               >
-                Registrar
+                Submit
               </button>
             </div>
           </motion.div>
@@ -133,7 +133,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
           >
             <div className={`bg-black/60 backdrop-blur-md rounded-xl border border-${accentColor}-700/40 p-4 text-center`}>
               <div className="text-amber-400 text-2xl font-bold mb-1">#{rank}</div>
-              <div className="text-gray-400 text-xs">no ranking dos aventureiros</div>
+              <div className="text-gray-400 text-xs">in the Hall of Champions</div>
             </div>
           </motion.div>
         )}
@@ -146,7 +146,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
           animate={{ opacity: 1, y: 0 }}
           className="w-full bg-black/70 backdrop-blur-md rounded-xl border border-amber-900/30 p-3 mb-4 max-h-48 overflow-y-auto"
         >
-          <h4 className="text-amber-500/80 text-xs uppercase tracking-widest mb-2 text-center game-text-shadow">Ranking</h4>
+          <h4 className="text-amber-500/80 text-xs uppercase tracking-widest mb-2 text-center game-text-shadow">Leaderboard</h4>
           <div className="flex flex-col gap-1">
             {leaderboard.slice(0, 10).map((entry, i) => (
               <div
@@ -168,7 +168,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
                     {entry.outcome === 'victory' ? '🏆' : '💀'}
                   </span>
                 </div>
-                <span className="font-mono text-gray-400">{entry.steps} passos</span>
+                <span className="font-mono text-gray-400">{entry.steps} steps</span>
               </div>
             ))}
           </div>
@@ -181,7 +181,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
           onClick={() => setShowLeaderboard(true)}
           className="text-amber-500/60 text-xs mb-3 hover:text-amber-400 transition-colors"
         >
-          Ver ranking completo ▾
+          View full leaderboard ▾
         </button>
       )}
 
