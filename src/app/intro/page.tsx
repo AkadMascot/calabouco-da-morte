@@ -173,7 +173,7 @@ export default function IntroPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="relative z-10 flex flex-col items-center gap-6"
             >
-              <h2 className="text-amber-400 text-3xl sm:text-4xl font-cinzel-deco font-bold tracking-wider game-text-shadow uppercase">
+              <h2 className="text-amber-400 text-3xl sm:text-4xl font-cinzel-deco font-bold tracking-wider game-text-shadow uppercase text-center">
                 Deathtrap Dungeon
               </h2>
               <p className="text-gray-400 text-sm font-im-fell italic">Fighting Fantasy</p>
