@@ -486,6 +486,7 @@ export default function GamePage() {
           <CombatUI
             combat={section.combat}
             onVictory={handleCombatVictory}
+            skillPenalty={section.combat.skillPenalty}
           />
         </div>
      )}

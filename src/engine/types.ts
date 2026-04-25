@@ -15,6 +15,7 @@ export interface Combat {
   fightTwoAtOnce?: boolean;
   escapeSection?: number;
   winSection?: number;
+  skillPenalty?: number;
   note?: string;
 }
 

@@ -8,6 +8,7 @@ import { useGameStore } from '@/engine/store';
 interface CombatUIProps {
   combat: Combat;
   onVictory: () => void;
+  skillPenalty?: number;
 }
 
 interface CombatLog {
@@ -23,7 +24,7 @@ function roll2d6(): [number, number] {
   return [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
 }
 
-export default function CombatUI({ combat, onVictory }: CombatUIProps) {
+export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: CombatUIProps) {
   const { character, updateStats, goToSection } = useGameStore();
   const [currentEnemyIndex, setCurrentEnemyIndex] = useState(0);
   const [enemyStamina, setEnemyStamina] = useState(combat.enemies[0].stamina);
@@ -53,7 +54,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
 
       const playerDice = roll2d6();
       const enemyDice = roll2d6();
-      const playerAttack = playerDice[0] + playerDice[1] + character.skillCurrent;
+      const playerAttack = playerDice[0] + playerDice[1] + character.skillCurrent - skillPenalty;
       const enemyAttack = enemyDice[0] + enemyDice[1] + enemy.skill;
 
       setDisplayDice({ player: playerDice, enemy: enemyDice });
@@ -157,7 +158,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
         <div className="border border-amber-900/50 bg-amber-950/60 backdrop-blur-md rounded-xl p-4 text-center">
           <h3 className="text-amber-400 font-bold">Adventurer</h3>
           <div className="flex justify-center gap-6 mt-2 text-sm">
-            <span className="text-gray-400">SKL <span className="text-amber-500 font-mono">{character.skillCurrent}</span></span>
+            <span className="text-gray-400">SKL <span className={`text-amber-500 font-mono ${skillPenalty > 0 ? 'line-through opacity-50' : ''}`}>{character.skillCurrent}</span>{skillPenalty > 0 && <span className="text-red-400 font-mono ml-1">({character.skillCurrent - skillPenalty})</span>}</span>
             <span className="text-gray-400">STA <span className={`font-mono ${character.staminaCurrent <= 4 ? 'text-red-500' : 'text-amber-500'}`}>{character.staminaCurrent}</span></span>
           </div>
           <div className="mt-2 h-2 rounded-full bg-gray-800 overflow-hidden">

@@ -249,7 +249,8 @@
         "text": "Head north",
         "targetSection": 279
       }
-    ]
+    ],
+    "skillChange": -1
   },
   "21": {
     "id": 21,
@@ -584,7 +585,8 @@
         "targetSection": 312
       }
     ],
-    "skillChange": -1
+    "skillChange": -1,
+    "staminaChange": -4
   },
   "46": {
     "id": 46,
@@ -1618,7 +1620,8 @@
         "targetSection": 282
       }
     ],
-    "skillChange": 1
+    "skillChange": 1,
+    "staminaChange": 1
   },
   "124": {
     "id": 124,
@@ -2090,7 +2093,8 @@
           "stamina": 8
         }
       ],
-      "winSection": 240
+      "winSection": 240,
+      "skillPenalty": 2
     }
   },
   "152": {
@@ -2310,7 +2314,8 @@
           "stamina": 8
         }
       ],
-      "winSection": 11
+      "winSection": 11,
+      "skillPenalty": 3
     }
   },
   "167": {
@@ -3995,7 +4000,8 @@
         "targetSection": 237
       }
     ],
-    "skillChange": -1
+    "skillChange": -1,
+    "staminaChange": -2
   },
   "286": {
     "id": 286,
@@ -4136,7 +4142,8 @@
           "stamina": 10
         }
       ],
-      "winSection": 97
+      "winSection": 97,
+      "skillPenalty": 2
     },
     "luckTest": {
       "description": "Test upon winning the first Attack Round",
@@ -4748,7 +4755,8 @@
         "text": "Head north",
         "targetSection": 298
       }
-    ]
+    ],
+    "skillChange": -4
   },
   "337": {
     "id": 337,
@@ -4994,7 +5002,8 @@
         "targetSection": 325
       }
     ],
-    "skillChange": -1
+    "skillChange": -1,
+    "staminaChange": -4
   },
   "354": {
     "id": 354,
