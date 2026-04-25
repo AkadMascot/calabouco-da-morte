@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import introConfig from '@/data/intro-config.json';
 import { musicPlayer } from '@/lib/musicPlayer';
+import CinematicBackground from '@/components/CinematicBackground';
 
 type Beat = typeof introConfig.beats[0];
 
@@ -159,14 +160,11 @@ export default function IntroPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black cursor-pointer"
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center cursor-pointer"
             onClick={handleStart}
           >
-            {/* Background poster for atmosphere */}
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-30"
-              style={{ backgroundImage: `url(${asset(`/cinematics/intro/beat-01-${selectedVariants[0] || 'a'}.mp4`)})` }}
-            />
+            {/* Cinematic slideshow background */}
+            <CinematicBackground overlayOpacity={0.45} />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

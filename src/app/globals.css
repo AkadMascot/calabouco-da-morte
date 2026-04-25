@@ -289,6 +289,17 @@
   animation: ken-burns-home 25s ease-in-out infinite;
 }
 
+/* Ken Burns animation for cinematic slideshow background */
+@keyframes cinematicKB {
+  0% { transform: scale(1.0) translate(0, 0); }
+  50% { transform: scale(1.12) translate(-1.5%, -0.8%); }
+  100% { transform: scale(1.0) translate(0, 0); }
+}
+.cinematic-kb {
+  animation: cinematicKB 12s ease-in-out infinite;
+  will-change: transform;
+}
+
 .fog-layer {
   position: absolute;
   bottom: 0;

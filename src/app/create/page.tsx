@@ -1,5 +1,4 @@
 'use client';
-import { asset } from '@/lib/basePath';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,6 +8,7 @@ import { useGameStore } from '@/engine/store';
 import { rollCharacterSkill, rollCharacterStamina, rollCharacterLuck } from '@/engine/dice';
 import type { PotionType } from '@/engine/types';
 import { musicPlayer } from '@/lib/musicPlayer';
+import CinematicBackground from '@/components/CinematicBackground';
 
 const potionOptions: { value: PotionType; label: string; description: string }[] = [
   { value: 'skill', label: 'Potion of Skill', description: 'Restores Skill to its initial value' },
@@ -61,18 +61,8 @@ export default function CreateCharacterPage() {
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-4 py-8 overflow-hidden">
-      {/* ─── Background (same as home page) ─── */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${asset('/cinematics/section-001-poster.webp')})`,
-            animation: 'kenBurnsCreate 30s ease-in-out infinite',
-          }}
-        />
-        <div className="absolute inset-0 bg-black/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70" />
-      </div>
+      {/* ─── Background slideshow ─── */}
+      <CinematicBackground overlayOpacity={0.5} />
 
       {/* ─── Vignette ─── */}
       <div className="vignette-overlay" />
@@ -167,14 +157,6 @@ export default function CreateCharacterPage() {
           </div>
         )}
       </div>
-
-      <style jsx global>{`
-        @keyframes kenBurnsCreate {
-          0% { transform: scale(1.0); }
-          50% { transform: scale(1.08) translate(1%, -0.5%); }
-          100% { transform: scale(1.0); }
-        }
-      `}</style>
     </main>
   );
 }
