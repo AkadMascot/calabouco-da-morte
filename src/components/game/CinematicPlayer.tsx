@@ -184,7 +184,7 @@ export default function CinematicPlayer({
     }
   }, [fadeOutVolume]);
 
-  // M4: Audio/Video sync with performance.now() precision
+  // M4: Audio/Video sync — wait for video to actually render before starting narration
   const startSyncedPlayback = useCallback(() => {
     const v = videoRef.current;
     const a = audioRef.current;
@@ -201,32 +201,47 @@ export default function CinematicPlayer({
     // Choices appear ONLY when video ends (handleVideoEnd fires onComplete)
 
     if (aDur > vDur && a) {
-      // M4: Use performance.now() for precise delay calculation
-      const delay = (aDur - vDur) * 1000 + 100; // +100ms buffer for play() latency
+      // Audio longer than video — start audio first, delay video so they END together
+      const delay = (aDur - vDur) * 1000 + 100;
       const audioStartTime = performance.now();
 
-      a.volume = 0; // Start at 0 for fade-in
+      a.volume = 0;
       a.play().then(() => {
         fadeInVolume();
-        // Calculate actual elapsed time for more precise video start
         const elapsed = performance.now() - audioStartTime;
         const adjustedDelay = Math.max(delay - elapsed, 0);
 
         videoDelayTimerRef.current = setTimeout(() => {
-          v.muted = true; // Ensure video audio (Veo PT) never plays
+          v.muted = true;
           v.play().catch(() => {});
           videoDelayTimerRef.current = null;
         }, adjustedDelay);
       }).catch(() => {});
     } else {
-      v.muted = true; // Ensure video audio (Veo PT) never plays
-      v.play().catch(() => {});
-      if (a) {
-        a.volume = 0; // Start at 0 for fade-in
-        a.play().then(() => {
-          fadeInVolume();
-        }).catch(() => {});
-      }
+      // Video longer or equal — start video first, wait for it to render, THEN start narration
+      v.muted = true;
+
+      // Listen for 'playing' event = video is actually rendering frames
+      const onVideoPlaying = () => {
+        v.removeEventListener('playing', onVideoPlaying);
+        if (a) {
+          a.volume = 0;
+          a.play().then(() => {
+            fadeInVolume();
+          }).catch(() => {});
+        }
+      };
+      v.addEventListener('playing', onVideoPlaying);
+      v.play().catch(() => {
+        // If play fails, start audio anyway to avoid deadlock
+        v.removeEventListener('playing', onVideoPlaying);
+        if (a) {
+          a.volume = 0;
+          a.play().then(() => {
+            fadeInVolume();
+          }).catch(() => {});
+        }
+      });
     }
   }, [mediaStarted, fadeInVolume]);
 
