@@ -131,8 +131,7 @@ export default function CinematicPlayer({
     return () => clearTimeout(fallback);
   }, [sectionId, onComplete]);
 
-  // Show choices when NARRATION ends (+ 1s buffer) or video ends, whichever comes first
-  // This prevents the silent gap where video plays after narration finishes
+  // Show choices IMMEDIATELY when video ends — narration plays OVER the choices
   const handleVideoEnd = useCallback(() => {
     setVideoEnded(true);
     if (!completeFiredRef.current) {
@@ -144,16 +143,7 @@ export default function CinematicPlayer({
   const handleAudioEnd = useCallback(() => {
     setAudioEnded(true);
     setIsPlaying(false);
-    // Fire onComplete 1s after narration ends — don't wait for video
-    if (!completeFiredRef.current) {
-      setTimeout(() => {
-        if (!completeFiredRef.current) {
-          completeFiredRef.current = true;
-          onComplete();
-        }
-      }, 1000);
-    }
-  }, [onComplete]);
+  }, []);
 
   const handleSkip = useCallback(() => {
     if (videoRef.current) videoRef.current.pause();
