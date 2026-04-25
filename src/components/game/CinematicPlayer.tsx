@@ -250,11 +250,11 @@ export default function CinematicPlayer({
         className={`absolute inset-0 z-[2] w-full h-full object-contain sm:object-cover transition-opacity duration-300 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
         src={videoSrc}
         playsInline
+        muted
         preload="auto"
         onLoadedMetadata={() => {
           setVideoReady(true);
           if (!narrationSrc) {
-            if (videoRef.current) videoRef.current.volume = 1.0; // Full volume when no narration
             videoRef.current?.play().catch(() => {});
             setMediaStarted(true);
             setIsPlaying(true);
@@ -313,7 +313,7 @@ export default function CinematicPlayer({
           onClick={handleSkip}
           className="absolute top-12 right-3 sm:top-14 sm:right-4 z-40 text-white/60 hover:text-white text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-white/20 hover:border-white/40 backdrop-blur-sm transition-all game-text-shadow"
         >
-          Pular ▸▸
+          Skip ▸▸
         </motion.button>
       )}
     </>
