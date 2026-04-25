@@ -24,37 +24,8 @@
   },
   "3": {
     "id": 3,
-    "text": "The Gnome shakes his head and says: \"I fear you have not passed the Trial of Champions. The secrets of Baron Sukumvit's Deathtrap Dungeon shall remain hidden for another year, for you will not be permitted to leave this place. You have been appointed my servant for the rest of your days; you shall prepare and modify the underground labyrinth for future competitors. Perhaps in another life you will succeed...\" In the total darkness, you fail to see the pipe curving downward. You slip and, unable to grip the slime-coated pipe, slide over the edge. Your screams echo through the tube as you plummet fifty metres to the bottom. You have failed the Trial of Champions. You crawl across the floor and find yourself in the lair of a tribe of TROGLODYTES. As you creep past them, your scabbard strikes a stone. Test your Luck.",
-    "choices": [
-      {
-        "text": "Lucky",
-        "targetSection": 185
-      },
-      {
-        "text": "Unlucky",
-        "targetSection": 395
-      },
-      {
-        "text": "Fight",
-        "targetSection": 364
-      }
-    ],
-    "combat": {
-      "enemies": [
-        {
-          "name": "MANTICORE",
-          "skill": 11,
-          "stamina": 11
-        }
-      ],
-      "winSection": 185
-    },
-    "luckTest": {
-      "description": "Test your Luck",
-      "luckySection": 185,
-      "unluckySection": 395
-    },
-    "staminaChange": -2,
+    "text": "The Gnome shakes his head and says: \"I fear you have not passed the Trial of Champions. The secrets of Baron Sukumvit's Deathtrap Dungeon shall remain hidden for another year, for you will not be permitted to leave this place. You have been appointed my servant for the rest of your days; you shall prepare and modify the underground labyrinth for future competitors. Perhaps in another life you will succeed...\"",
+    "choices": [],
     "isEnding": true
   },
   "4": {
@@ -87,7 +58,7 @@
           "stamina": 11
         }
       ],
-      "winSection": 364
+      "winSection": 257
     },
     "staminaChange": -2
   },
@@ -4092,12 +4063,7 @@
   "294": {
     "id": 294,
     "text": "You pull the dagger from your belt with your free hand and stab at the Bloodbeast's tongue. The creature howls in pain and rolls forward as far as it can, trying to snap at you with its bloodied jaws. From the ground, you must fight the beast with your dagger. Reduce your Skill by 2 points during this combat, as you are not fighting with your sword. BLOODBEAST SKILL 12 STAMINA 10 As soon as you win your first Attack Round, Test your Luck.",
-    "choices": [
-      {
-        "text": "Press on after victory",
-        "targetSection": 206
-      }
-    ],
+    "choices": [],
     "combat": {
       "enemies": [
         {
