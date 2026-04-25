@@ -36,6 +36,7 @@ export default function CinematicPlayer({
   const [videoEnded, setVideoEnded] = useState(false);
   const [audioEnded, setAudioEnded] = useState(false);
   const [mediaStarted, setMediaStarted] = useState(false);
+  const mediaStartedRef = useRef(false);
   const [videoProgress, setVideoProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -93,6 +94,7 @@ export default function CinematicPlayer({
     setVideoEnded(false);
     setAudioEnded(false);
     setMediaStarted(false);
+    mediaStartedRef.current = false;
     setVideoProgress(0);
     setIsPlaying(false);
     isFadingOutRef.current = false;
@@ -194,7 +196,9 @@ export default function CinematicPlayer({
     const vDur = v.duration || 0;
     const aDur = a?.duration || 0;
 
-    if (mediaStarted) return;
+    // Use ref for atomic guard — state can be stale in closures
+    if (mediaStartedRef.current) return;
+    mediaStartedRef.current = true;
     setMediaStarted(true);
     setIsPlaying(true);
 
@@ -243,7 +247,7 @@ export default function CinematicPlayer({
         }
       });
     }
-  }, [mediaStarted, fadeInVolume]);
+  }, [fadeInVolume]);
 
   const bothEnded = videoEnded && audioEnded;
 
