@@ -137,10 +137,10 @@ export function useSpeechRecognition(
 
     // Strategy 2: Number match — "one", "two", "first", "second"
     const numberMap: Record<string, number> = {
-      'one': 0, 'first': 0, '1': 0, 'won': 0,
-      'two': 1, 'second': 1, '2': 1, 'to': 1, 'too': 1,
-      'three': 2, 'third': 2, '3': 2, 'tree': 2,
-      'four': 3, 'fourth': 3, '4': 3, 'for': 3,
+      'one': 0, 'first': 0, '1': 0,
+      'two': 1, 'second': 1, '2': 1,
+      'three': 2, 'third': 2, '3': 2,
+      'four': 3, 'fourth': 3, '4': 3,
     };
     for (const [word, idx] of Object.entries(numberMap)) {
       if (spokenLower.includes(word) && idx < choices.length) {
@@ -165,7 +165,7 @@ export function useSpeechRecognition(
         }
       }
       const score = choiceWords.length > 0 ? overlap / choiceWords.length : 0;
-      if (score > bestScore && score >= 0.3) {
+      if (score > bestScore && score >= 0.5) {
         bestScore = score;
         bestIdx = idx;
       }
@@ -250,7 +250,7 @@ export function useSpeechRecognition(
         }
 
         const match = findBestMatch(finalTranscript);
-        if (match && match.confidence >= 0.3) {
+        if (match && match.confidence >= 0.5) {
           setMatchFeedback(match);
           // Delay to let echo play a bit before navigating
           matchTimeoutRef.current = setTimeout(() => {
@@ -303,9 +303,9 @@ export function useSpeechRecognition(
     setMatchFeedback(null);
   }, []);
 
-  // ─── AUTO-LISTEN: start mic when choices appear ───
+  // ─── AUTO-LISTEN: start mic when choices appear (skip single-choice "Continue" sections) ───
   useEffect(() => {
-    if (enabled && isSupported && choices.length > 0 && !isListening && !autoStartedRef.current) {
+    if (enabled && isSupported && choices.length > 1 && !isListening && !autoStartedRef.current) {
       autoStartedRef.current = true;
       // Small delay so the choices animate in first
       const t = setTimeout(() => {
