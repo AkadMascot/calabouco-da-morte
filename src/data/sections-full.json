@@ -1178,7 +1178,7 @@
     ],
     "luckTest": {
       "description": "Test your Luck",
-      "luckySection": 261,
+      "luckySection": 54,
       "unluckySection": 261
     }
   },
@@ -1648,7 +1648,7 @@
     ],
     "luckTest": {
       "description": "Test your Luck",
-      "luckySection": 139,
+      "luckySection": 69,
       "unluckySection": 139
     }
   },
@@ -2052,7 +2052,7 @@
     ],
     "luckTest": {
       "description": "Test your Luck",
-      "luckySection": 353,
+      "luckySection": 70,
       "unluckySection": 353
     }
   },
@@ -2184,7 +2184,7 @@
       }
     ],
     "skillChange": -1,
-    "staminaChange": -1
+    "staminaChange": -4
   },
   "159": {
     "id": 159,
@@ -2428,7 +2428,7 @@
     ],
     "luckTest": {
       "description": "Test your Luck",
-      "luckySection": 350,
+      "luckySection": 39,
       "unluckySection": 350
     }
   },
@@ -3878,7 +3878,7 @@
     ],
     "luckTest": {
       "description": "Test your Luck",
-      "luckySection": 309,
+      "luckySection": 231,
       "unluckySection": 309
     }
   },
@@ -5111,7 +5111,7 @@
     ],
     "luckTest": {
       "description": "Test your Luck",
-      "luckySection": 377,
+      "luckySection": 82,
       "unluckySection": 377
     }
   },
