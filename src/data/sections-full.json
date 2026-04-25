@@ -42,7 +42,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "MANTÉCORA",
+          "name": "MANTICORE",
           "skill": 11,
           "stamina": 11
         }
@@ -82,7 +82,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "MANTÉCORA",
+          "name": "MANTICORE",
           "skill": 11,
           "stamina": 11
         }
@@ -517,7 +517,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "MOSCA GIGANTE",
+          "name": "GIANT FLY",
           "skill": 7,
           "stamina": 8
         }
@@ -538,7 +538,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "MINOTAURO",
+          "name": "MINOTAUR",
           "skill": 9,
           "stamina": 9
         }
@@ -1230,12 +1230,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro Orca",
+          "name": "First Orc",
           "skill": 5,
           "stamina": 5
         },
         {
-          "name": "Segundo Orca",
+          "name": "Second Orc",
           "skill": 5,
           "stamina": 6
         }
@@ -1751,12 +1751,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro HOBGOBLIN",
+          "name": "First HOBGOBLIN",
           "skill": 7,
           "stamina": 5
         },
         {
-          "name": "Segundo HOBGOBLIN",
+          "name": "Second HOBGOBLIN",
           "skill": 6,
           "stamina": 5
         }
@@ -1902,7 +1902,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "ERVA",
+          "name": "IVY",
           "skill": 9,
           "stamina": 9
         }
@@ -1944,7 +1944,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "ESCORPIÃO GIGANTE",
+          "name": "GIANT SCORPION",
           "skill": 10,
           "stamina": 10
         }
@@ -1979,7 +1979,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "ANÃO",
+          "name": "DWARF",
           "skill": 8,
           "stamina": 6
         }
@@ -2034,12 +2034,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro CÃO DE GUARDA",
+          "name": "First GUARD DOG",
           "skill": 7,
           "stamina": 7
         },
         {
-          "name": "Segundo CÃO DE GUARDA",
+          "name": "Second GUARD DOG",
           "skill": 7,
           "stamina": 8
         }
@@ -2093,12 +2093,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro GUARDIÃO VOADOR",
+          "name": "First FLYING GUARDIAN",
           "skill": 7,
           "stamina": 8
         },
         {
-          "name": "Segundo GUARDIÃO VOADOR",
+          "name": "Second FLYING GUARDIAN",
           "skill": 8,
           "stamina": 8
         }
@@ -2313,12 +2313,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro GUARDIÃO VOADOR",
+          "name": "First FLYING GUARDIAN",
           "skill": 7,
           "stamina": 8
         },
         {
-          "name": "Segundo GUARDIÃO VOADOR",
+          "name": "Second FLYING GUARDIAN",
           "skill": 8,
           "stamina": 8
         }
@@ -2399,7 +2399,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "Besta Sangrenta",
+          "name": "Bloodbeast",
           "skill": 12,
           "stamina": 10
         }
@@ -2660,12 +2660,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro ORCA",
+          "name": "First ORC",
           "skill": 5,
           "stamina": 5
         },
         {
-          "name": "Segundo ORCA",
+          "name": "Second ORC",
           "skill": 6,
           "stamina": 4
         }
@@ -2756,7 +2756,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "MANTÉCORA",
+          "name": "MANTICORE",
           "skill": 11,
           "stamina": 11
         }
@@ -2857,7 +2857,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "DIABO DO POÇO",
+          "name": "PIT FIEND",
           "skill": 12,
           "stamina": 15
         }
@@ -2972,7 +2972,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "ERVA",
+          "name": "IVY",
           "skill": 9,
           "stamina": 9
         }
@@ -3158,7 +3158,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "BESTA SANGRENTA",
+          "name": "BLOODBEAST",
           "skill": 12,
           "stamina": 10
         }
@@ -3316,7 +3316,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "IMITADOR",
+          "name": "MIMIC",
           "skill": 9,
           "stamina": 8
         }
@@ -3445,7 +3445,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "DIABO DO POÇO",
+          "name": "PIT FIEND",
           "skill": 12,
           "stamina": 15
         }
@@ -3471,7 +3471,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "Mantécora",
+          "name": "Manticore",
           "skill": 11,
           "stamina": 11
         }
@@ -3582,7 +3582,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "VERME DA ROCHA",
+          "name": "ROCK WORM",
           "skill": 7,
           "stamina": 11
         }
@@ -4101,7 +4101,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "BESTA SANGRENTA",
+          "name": "BLOODBEAST",
           "skill": 12,
           "stamina": 10
         }
@@ -4219,7 +4219,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "Throm, o Bárbaro",
+          "name": "Throm the Barbarian",
           "skill": 10,
           "stamina": 12
         }
@@ -4597,7 +4597,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "DEMÔNIO DO ESPELHO",
+          "name": "MIRROR DEMON",
           "skill": 10,
           "stamina": 10
         }
@@ -4652,7 +4652,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "GUERREIRO-ESQUELETO",
+          "name": "SKELETON WARRIOR",
           "skill": 8,
           "stamina": 6
         }
@@ -4898,7 +4898,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "DIABO DO POÇO",
+          "name": "PIT FIEND",
           "skill": 12,
           "stamina": 15
         }
@@ -5176,7 +5176,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "TROLL DA CAVERNA",
+          "name": "CAVE TROLL",
           "skill": 10,
           "stamina": 11
         }
@@ -5324,12 +5324,12 @@
     "combat": {
       "enemies": [
         {
-          "name": "Primeiro ORCA",
+          "name": "First ORC",
           "skill": 5,
           "stamina": 5
         },
         {
-          "name": "Segundo ORCA",
+          "name": "Second ORC",
           "skill": 6,
           "stamina": 4
         }
@@ -5427,7 +5427,7 @@
     "combat": {
       "enemies": [
         {
-          "name": "HOMEM DA CAVERNA",
+          "name": "CAVEMAN",
           "skill": 7,
           "stamina": 7
         }

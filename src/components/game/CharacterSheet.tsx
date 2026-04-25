@@ -89,7 +89,7 @@ function CharacterStats() {
         <>
           <div className="h-px w-full bg-amber-900/30" />
           <div className="flex flex-col gap-1">
-            <span className="text-sm text-muted-foreground">Inventário</span>
+            <span className="text-sm text-muted-foreground">Inventory</span>
             <ul className="flex flex-col gap-0.5">
               {character.inventory.map((item, i) => (
                 <li key={i} className="text-sm text-amber-400/80">

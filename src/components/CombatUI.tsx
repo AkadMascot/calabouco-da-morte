@@ -137,8 +137,8 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
         >
           <h3 className="text-amber-400 font-bold text-base sm:text-lg">{enemy.name}</h3>
           <div className="flex justify-center gap-6 mt-2 text-sm">
-            <span className="text-gray-400">HAB <span className="text-amber-500 font-mono">{enemy.skill}</span></span>
-            <span className="text-gray-400">ENE <span className={`font-mono ${enemyStamina <= 4 ? 'text-red-500' : 'text-amber-500'}`}>{Math.max(0, enemyStamina)}</span></span>
+            <span className="text-gray-400">SKL <span className="text-amber-500 font-mono">{enemy.skill}</span></span>
+            <span className="text-gray-400">STA <span className={`font-mono ${enemyStamina <= 4 ? 'text-red-500' : 'text-amber-500'}`}>{Math.max(0, enemyStamina)}</span></span>
           </div>
           {/* Enemy stamina bar */}
           <div className="mt-2 h-2 rounded-full bg-gray-800 overflow-hidden">
@@ -155,10 +155,10 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
 
         {/* Player info */}
         <div className="border border-amber-900/50 bg-amber-950/60 backdrop-blur-md rounded-xl p-4 text-center">
-          <h3 className="text-amber-400 font-bold">Aventureiro</h3>
+          <h3 className="text-amber-400 font-bold">Adventurer</h3>
           <div className="flex justify-center gap-6 mt-2 text-sm">
-            <span className="text-gray-400">HAB <span className="text-amber-500 font-mono">{character.skillCurrent}</span></span>
-            <span className="text-gray-400">ENE <span className={`font-mono ${character.staminaCurrent <= 4 ? 'text-red-500' : 'text-amber-500'}`}>{character.staminaCurrent}</span></span>
+            <span className="text-gray-400">SKL <span className="text-amber-500 font-mono">{character.skillCurrent}</span></span>
+            <span className="text-gray-400">STA <span className={`font-mono ${character.staminaCurrent <= 4 ? 'text-red-500' : 'text-amber-500'}`}>{character.staminaCurrent}</span></span>
           </div>
           <div className="mt-2 h-2 rounded-full bg-gray-800 overflow-hidden">
             <motion.div
@@ -186,7 +186,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
                     {displayDice.player[1]}
                   </span>
                 </div>
-                <span className="text-xs text-gray-500">Você</span>
+                <span className="text-xs text-gray-500">You</span>
               </div>
               <div className="text-center">
                 <div className="flex gap-2 justify-center">
@@ -215,9 +215,9 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
               'text-gray-400 bg-gray-900/30'
             }`}
           >
-            {lastLog.result === 'hit' && `Você acertou! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
-            {lastLog.result === 'miss' && `Você foi atingido! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
-            {lastLog.result === 'draw' && `Empate! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
+            {lastLog.result === 'hit' && `You hit! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
+            {lastLog.result === 'miss' && `You were hit! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
+            {lastLog.result === 'draw' && `Draw! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
           </motion.div>
         )}
 
@@ -228,7 +228,7 @@ export default function CombatUI({ combat, onVictory }: CombatUIProps) {
             animate={{ opacity: 1 }}
             className="text-center"
           >
-            <h3 className="text-red-500 text-lg sm:text-xl font-bold mb-4">Você morreu em combate!</h3>
+            <h3 className="text-red-500 text-lg sm:text-xl font-bold mb-4">You died in combat!</h3>
           </motion.div>
         )}
 

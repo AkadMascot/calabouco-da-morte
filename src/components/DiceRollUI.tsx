@@ -56,7 +56,7 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
         const range = diceRoll.ranges?.find(r => d >= r.min && d <= r.max);
         targetSection = range?.targetSection ?? 1;
         success = true;
-        message = `Resultado: ${d}`;
+        message = `Result: ${d}`;
       } else {
         const [a, b] = roll2d6();
         diceValues = [a, b];
@@ -77,8 +77,8 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
             const staminaOk = total <= character.staminaCurrent;
             success = skillOk && staminaOk;
             message = success
-              ? `${total} ≤ HAB ${character.skillCurrent} e ENE ${character.staminaCurrent} — Sucesso!`
-              : `${total} > HAB ${character.skillCurrent} ou ENE ${character.staminaCurrent} — Falhou!`;
+              ? `${total} ≤ SKL ${character.skillCurrent} & STA ${character.staminaCurrent} — Success!`
+              : `${total} > SKL ${character.skillCurrent} or STA ${character.staminaCurrent} — Failed!`;
             targetSection = success ? diceRoll.successSection! : diceRoll.failSection!;
             break;
           }
@@ -88,29 +88,29 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
               // Exact match type (section 290: == 8)
               success = total === threshold;
               message = success
-                ? `${total} = ${threshold} — Exato!`
+                ? `${total} = ${threshold} — Exact!`
                 : `${total} ≠ ${threshold}`;
               targetSection = success ? diceRoll.exactSection! : diceRoll.otherSection!;
             } else if (diceRoll.aboveSection !== undefined) {
               // Above threshold (section 84: > 8)
               success = total > threshold;
               message = success
-                ? `${total} > ${threshold} — Acima!`
-                : `${total} ≤ ${threshold} — Abaixo!`;
+                ? `${total} > ${threshold} — Above!`
+                : `${total} ≤ ${threshold} — Below!`;
               targetSection = success ? diceRoll.aboveSection! : diceRoll.belowOrEqualSection!;
             } else {
               // Below threshold (section 191: < 8)
               success = total < threshold;
               message = success
-                ? `${total} < ${threshold} — Abaixo!`
-                : `${total} ≥ ${threshold} — Acima!`;
+                ? `${total} < ${threshold} — Below!`
+                : `${total} ≥ ${threshold} — Above!`;
               targetSection = success ? diceRoll.belowSection! : diceRoll.equalOrAboveSection!;
             }
             break;
           }
           default:
             success = false;
-            message = 'Erro';
+            message = 'Error';
             targetSection = 1;
         }
       }
@@ -223,7 +223,7 @@ export default function DiceRollUI({ diceRoll, onNavigate }: DiceRollUIProps) {
           animate={{ opacity: 0.6 }}
           className="text-gray-500 text-xs"
         >
-          Continuando...
+          Continuing...
         </motion.div>
       )}
     </div>
