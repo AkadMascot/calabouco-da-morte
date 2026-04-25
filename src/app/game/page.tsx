@@ -23,7 +23,7 @@ import { trackCinematicStarted, trackCinematicSkipped, trackCinematicCompleted, 
 import { registerServiceWorker } from '@/lib/register-sw';
 import { musicPlayer } from '@/lib/musicPlayer';
 
-type SectionCinematic = { composed: string; narration?: string };
+type SectionCinematic = { composed: string; narration?: string; sfx?: string };
 
 export default function GamePage() {
   const router = useRouter();
@@ -337,6 +337,7 @@ export default function GamePage() {
           sectionId={currentSection}
           videoSrc={asset(cinematic!.composed)}
           narrationSrc={cinematic?.narration ? asset(cinematic.narration) : undefined}
+          sfxSrc={cinematic?.sfx ? asset(cinematic.sfx) : undefined}
           posterSrc={asset(`/cinematics/section-${String(currentSection).padStart(3, '0')}-poster.webp`)}
           isRevisit={character.visitedSections.includes(currentSection)}
           subtitleText={displayText}

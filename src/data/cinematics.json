@@ -2,7 +2,8 @@
   "sections": {
     "1": {
       "composed": "/cinematics/section-001.mp4",
-      "narration": "/cinematics/section-001-narration.mp3"
+      "narration": "/cinematics/section-001-narration.mp3",
+      "sfx": "/cinematics/section-001-sfx.mp3"
     },
     "2": {
       "composed": "/cinematics/section-002.mp4",
@@ -14,7 +15,8 @@
     },
     "4": {
       "composed": "/cinematics/section-004.mp4",
-      "narration": "/cinematics/section-004-narration.mp3"
+      "narration": "/cinematics/section-004-narration.mp3",
+      "sfx": "/cinematics/section-004-sfx.mp3"
     },
     "5": {
       "composed": "/cinematics/section-005.mp4",
@@ -102,7 +104,8 @@
     },
     "27": {
       "composed": "/cinematics/section-027.mp4",
-      "narration": "/cinematics/section-027-narration.mp3"
+      "narration": "/cinematics/section-027-narration.mp3",
+      "sfx": "/cinematics/section-027-sfx.mp3"
     },
     "29": {
       "composed": "/cinematics/section-029.mp4",
@@ -146,7 +149,8 @@
     },
     "39": {
       "composed": "/cinematics/section-039.mp4",
-      "narration": "/cinematics/section-039-narration.mp3"
+      "narration": "/cinematics/section-039-narration.mp3",
+      "sfx": "/cinematics/section-039-sfx.mp3"
     },
     "41": {
       "composed": "/cinematics/section-041.mp4",
@@ -202,7 +206,8 @@
     },
     "55": {
       "composed": "/cinematics/section-055.mp4",
-      "narration": "/cinematics/section-055-narration.mp3"
+      "narration": "/cinematics/section-055-narration.mp3",
+      "sfx": "/cinematics/section-055-sfx.mp3"
     },
     "56": {
       "composed": "/cinematics/section-056.mp4",
@@ -246,7 +251,8 @@
     },
     "66": {
       "composed": "/cinematics/section-066.mp4",
-      "narration": "/cinematics/section-066-narration.mp3"
+      "narration": "/cinematics/section-066-narration.mp3",
+      "sfx": "/cinematics/section-066-sfx.mp3"
     },
     "67": {
       "composed": "/cinematics/section-067.mp4",
@@ -454,7 +460,8 @@
     },
     "124": {
       "composed": "/cinematics/section-124.mp4",
-      "narration": "/cinematics/section-124-narration.mp3"
+      "narration": "/cinematics/section-124-narration.mp3",
+      "sfx": "/cinematics/section-124-sfx.mp3"
     },
     "125": {
       "composed": "/cinematics/section-125.mp4",
@@ -522,7 +529,8 @@
     },
     "143": {
       "composed": "/cinematics/section-143.mp4",
-      "narration": "/cinematics/section-143-narration.mp3"
+      "narration": "/cinematics/section-143-narration.mp3",
+      "sfx": "/cinematics/section-143-sfx.mp3"
     },
     "144": {
       "composed": "/cinematics/section-144.mp4",
@@ -534,7 +542,8 @@
     },
     "148": {
       "composed": "/cinematics/section-148.mp4",
-      "narration": "/cinematics/section-148-narration.mp3"
+      "narration": "/cinematics/section-148-narration.mp3",
+      "sfx": "/cinematics/section-148-sfx.mp3"
     },
     "149": {
       "composed": "/cinematics/section-149.mp4",
@@ -554,7 +563,8 @@
     },
     "153": {
       "composed": "/cinematics/section-153.mp4",
-      "narration": "/cinematics/section-153-narration.mp3"
+      "narration": "/cinematics/section-153-narration.mp3",
+      "sfx": "/cinematics/section-153-sfx.mp3"
     },
     "154": {
       "composed": "/cinematics/section-154.mp4",
@@ -610,7 +620,8 @@
     },
     "168": {
       "composed": "/cinematics/section-168.mp4",
-      "narration": "/cinematics/section-168-narration.mp3"
+      "narration": "/cinematics/section-168-narration.mp3",
+      "sfx": "/cinematics/section-168-sfx.mp3"
     },
     "169": {
       "composed": "/cinematics/section-169.mp4",
@@ -626,7 +637,8 @@
     },
     "172": {
       "composed": "/cinematics/section-172.mp4",
-      "narration": "/cinematics/section-172-narration.mp3"
+      "narration": "/cinematics/section-172-narration.mp3",
+      "sfx": "/cinematics/section-172-sfx.mp3"
     },
     "173": {
       "composed": "/cinematics/section-173.mp4",
@@ -714,7 +726,8 @@
     },
     "197": {
       "composed": "/cinematics/section-197.mp4",
-      "narration": "/cinematics/section-197-narration.mp3"
+      "narration": "/cinematics/section-197-narration.mp3",
+      "sfx": "/cinematics/section-197-sfx.mp3"
     },
     "198": {
       "composed": "/cinematics/section-198.mp4",
@@ -798,7 +811,8 @@
     },
     "218": {
       "composed": "/cinematics/section-218.mp4",
-      "narration": "/cinematics/section-218-narration.mp3"
+      "narration": "/cinematics/section-218-narration.mp3",
+      "sfx": "/cinematics/section-218-sfx.mp3"
     },
     "219": {
       "composed": "/cinematics/section-219.mp4",
@@ -894,7 +908,8 @@
     },
     "245": {
       "composed": "/cinematics/section-245.mp4",
-      "narration": "/cinematics/section-245-narration.mp3"
+      "narration": "/cinematics/section-245-narration.mp3",
+      "sfx": "/cinematics/section-245-sfx.mp3"
     },
     "246": {
       "composed": "/cinematics/section-246.mp4",
@@ -918,7 +933,8 @@
     },
     "252": {
       "composed": "/cinematics/section-252.mp4",
-      "narration": "/cinematics/section-252-narration.mp3"
+      "narration": "/cinematics/section-252-narration.mp3",
+      "sfx": "/cinematics/section-252-sfx.mp3"
     },
     "253": {
       "composed": "/cinematics/section-253.mp4",
@@ -986,7 +1002,8 @@
     },
     "270": {
       "composed": "/cinematics/section-270.mp4",
-      "narration": "/cinematics/section-270-narration.mp3"
+      "narration": "/cinematics/section-270-narration.mp3",
+      "sfx": "/cinematics/section-270-sfx.mp3"
     },
     "271": {
       "composed": "/cinematics/section-271.mp4",
@@ -1042,7 +1059,8 @@
     },
     "285": {
       "composed": "/cinematics/section-285.mp4",
-      "narration": "/cinematics/section-285-narration.mp3"
+      "narration": "/cinematics/section-285-narration.mp3",
+      "sfx": "/cinematics/section-285-sfx.mp3"
     },
     "286": {
       "composed": "/cinematics/section-286.mp4",
@@ -1106,7 +1124,8 @@
     },
     "302": {
       "composed": "/cinematics/section-302.mp4",
-      "narration": "/cinematics/section-302-narration.mp3"
+      "narration": "/cinematics/section-302-narration.mp3",
+      "sfx": "/cinematics/section-302-sfx.mp3"
     },
     "303": {
       "composed": "/cinematics/section-303.mp4",
@@ -1130,7 +1149,8 @@
     },
     "308": {
       "composed": "/cinematics/section-308.mp4",
-      "narration": "/cinematics/section-308-narration.mp3"
+      "narration": "/cinematics/section-308-narration.mp3",
+      "sfx": "/cinematics/section-308-sfx.mp3"
     },
     "309": {
       "composed": "/cinematics/section-309.mp4",
@@ -1238,7 +1258,8 @@
     },
     "336": {
       "composed": "/cinematics/section-336.mp4",
-      "narration": "/cinematics/section-336-narration.mp3"
+      "narration": "/cinematics/section-336-narration.mp3",
+      "sfx": "/cinematics/section-336-sfx.mp3"
     },
     "337": {
       "composed": "/cinematics/section-337.mp4",
@@ -1266,7 +1287,8 @@
     },
     "343": {
       "composed": "/cinematics/section-343.mp4",
-      "narration": "/cinematics/section-343-narration.mp3"
+      "narration": "/cinematics/section-343-narration.mp3",
+      "sfx": "/cinematics/section-343-sfx.mp3"
     },
     "344": {
       "composed": "/cinematics/section-344.mp4",
@@ -1334,7 +1356,8 @@
     },
     "364": {
       "composed": "/cinematics/section-364.mp4",
-      "narration": "/cinematics/section-364-narration.mp3"
+      "narration": "/cinematics/section-364-narration.mp3",
+      "sfx": "/cinematics/section-364-sfx.mp3"
     },
     "365": {
       "composed": "/cinematics/section-365.mp4",
@@ -1354,11 +1377,13 @@
     },
     "369": {
       "composed": "/cinematics/section-369.mp4",
-      "narration": "/cinematics/section-369-narration.mp3"
+      "narration": "/cinematics/section-369-narration.mp3",
+      "sfx": "/cinematics/section-369-sfx.mp3"
     },
     "371": {
       "composed": "/cinematics/section-371.mp4",
-      "narration": "/cinematics/section-371-narration.mp3"
+      "narration": "/cinematics/section-371-narration.mp3",
+      "sfx": "/cinematics/section-371-sfx.mp3"
     },
     "372": {
       "composed": "/cinematics/section-372.mp4",
@@ -1454,7 +1479,8 @@
     },
     "398": {
       "composed": "/cinematics/section-398.mp4",
-      "narration": "/cinematics/section-398-narration.mp3"
+      "narration": "/cinematics/section-398-narration.mp3",
+      "sfx": "/cinematics/section-398-sfx.mp3"
     },
     "399": {
       "composed": "/cinematics/section-399.mp4",
@@ -1462,7 +1488,8 @@
     },
     "400": {
       "composed": "/cinematics/section-400.mp4",
-      "narration": "/cinematics/section-400-narration.mp3"
+      "narration": "/cinematics/section-400-narration.mp3",
+      "sfx": "/cinematics/section-400-sfx.mp3"
     },
     "396": {
       "composed": "/cinematics/section-396.mp4",
@@ -1502,7 +1529,8 @@
     },
     "104": {
       "composed": "/cinematics/section-104.mp4",
-      "narration": "/cinematics/section-104-narration.mp3"
+      "narration": "/cinematics/section-104-narration.mp3",
+      "sfx": "/cinematics/section-104-sfx.mp3"
     },
     "105": {
       "composed": "/cinematics/section-105.mp4",
@@ -1538,7 +1566,8 @@
     },
     "196": {
       "composed": "/cinematics/section-196.mp4",
-      "narration": "/cinematics/section-196-narration.mp3"
+      "narration": "/cinematics/section-196-narration.mp3",
+      "sfx": "/cinematics/section-196-sfx.mp3"
     },
     "222": {
       "composed": "/cinematics/section-222.mp4",
@@ -1594,7 +1623,8 @@
     },
     "392": {
       "composed": "/cinematics/section-392.mp4",
-      "narration": "/cinematics/section-392-narration.mp3"
+      "narration": "/cinematics/section-392-narration.mp3",
+      "sfx": "/cinematics/section-392-sfx.mp3"
     },
     "394": {
       "composed": "/cinematics/section-394.mp4",

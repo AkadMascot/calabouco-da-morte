@@ -8,6 +8,7 @@ interface CinematicPlayerProps {
   sectionId: number;
   videoSrc: string;
   narrationSrc?: string;
+  sfxSrc?: string;
   posterSrc: string;
   isRevisit: boolean;
   subtitleText?: string;
@@ -19,6 +20,7 @@ export default function CinematicPlayer({
   sectionId,
   videoSrc,
   narrationSrc,
+  sfxSrc,
   posterSrc,
   isRevisit,
   subtitleText,
@@ -27,6 +29,7 @@ export default function CinematicPlayer({
 }: CinematicPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const sfxRef = useRef<HTMLAudioElement | null>(null);
   const videoDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fadeRef = useRef<number | null>(null);
   const isFadingOutRef = useRef(false);
@@ -113,8 +116,27 @@ export default function CinematicPlayer({
   useEffect(() => {
     return () => {
       if (fadeRef.current !== null) cancelAnimationFrame(fadeRef.current);
+      // Cleanup SFX
+      if (sfxRef.current) {
+        sfxRef.current.pause();
+        sfxRef.current = null;
+      }
     };
   }, []);
+
+  // SFX ambient layer — plays at low volume alongside narration
+  useEffect(() => {
+    if (!sfxSrc || !mediaStarted) return;
+    const sfx = new Audio(sfxSrc);
+    sfx.volume = 0.15;
+    sfx.loop = true;
+    sfxRef.current = sfx;
+    sfx.play().catch(() => {});
+    return () => {
+      sfx.pause();
+      sfxRef.current = null;
+    };
+  }, [sfxSrc, mediaStarted]);
 
   // 45s fallback timer
   useEffect(() => {
@@ -159,6 +181,7 @@ export default function CinematicPlayer({
   const handleSkip = useCallback(() => {
     if (videoRef.current) videoRef.current.pause();
     if (audioRef.current) audioRef.current.pause();
+    if (sfxRef.current) { sfxRef.current.pause(); sfxRef.current = null; }
     setVideoEnded(true);
     setAudioEnded(true);
     setVideoProgress(100);

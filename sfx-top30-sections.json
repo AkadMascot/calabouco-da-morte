@@ -1,0 +1,182 @@
+[
+  {
+    "section_id": 1,
+    "sfx_category": "cave_ambience",
+    "suggested_prompt": "Dark cave tunnel ambience with dripping water echoing, distant crowd cheering fading away, small creatures scurrying on stone walls, soft crystalline humming, cold damp atmosphere",
+    "duration_seconds": 15
+  },
+  {
+    "section_id": 400,
+    "sfx_category": "crowd_cheering",
+    "suggested_prompt": "Massive crowd eruption of cheering and applause, triumphant fanfare, footsteps on stone emerging from dark tunnel into bright daylight, celebratory atmosphere",
+    "duration_seconds": 12
+  },
+  {
+    "section_id": 143,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Giant scorpion combat sounds, chitinous legs clicking on stone arena floor, pincers snapping, venomous tail striking, sword clashing against armored exoskeleton, arena crowd gasping",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 148,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Two guard dogs barking aggressively and snarling, descending stone staircase footsteps, sword being drawn, dogs lunging and growling during combat",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 308,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Medusa shrieking in a cage, frantic sword slashing blindly from side to side, blade connecting with flesh, creature hissing, snakes writhing on her head",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 196,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Manticore roaring, volley of sharp spines hitting a metal shield with rapid thuds, heavy beast charging, sword combat against large winged creature",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 392,
+    "sfx_category": "magic",
+    "suggested_prompt": "Magical energy beam firing from an enchanted lock, white crackling energy bolt striking chest, body being knocked backward, mystical humming lock mechanism, gnome speaking",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 172,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Bloodbeast creature gurgling in a toxic pool, bubbling poisonous liquid, muffled combat through cloth mask, wet tentacle slashing, sword striking slimy flesh",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 270,
+    "sfx_category": "treasure",
+    "suggested_prompt": "Wooden box lid being lifted, gold coins clinking, parchment being unfolded and read, quiet cave tunnel ambience with distant echoes",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 197,
+    "sfx_category": "door_mechanical",
+    "suggested_prompt": "Heavy stone door creaking open, temperature dropping with wind rushing sound, trapdoor mechanism clicking, descending into darkness, footsteps on stone steps",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 153,
+    "sfx_category": "trap_mechanical",
+    "suggested_prompt": "Door opening into small room, crossbow bolts firing in rapid succession, mechanical trap triggering, bolts thudding into walls, jewelled skull sitting ominously on marble pedestal",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 218,
+    "sfx_category": "door_mechanical",
+    "suggested_prompt": "Double door handle turning slowly, heavy door creaking open slightly, peering into room, treasure glinting, cautious footsteps on stone floor",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 245,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Heavy door opening into sand-covered arena, pit fiend demon growling menacingly, sand crunching underfoot, massive creature lunging, intense sword combat with powerful beast",
+    "duration_seconds": 12
+  },
+  {
+    "section_id": 302,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Dwarf shouting from balcony, barbarian warrior battle cry, two swords clashing in arena combat, heavy footwork on stone, crowd watching intense duel",
+    "duration_seconds": 12
+  },
+  {
+    "section_id": 369,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Cave troll heavy breathing echoing in tunnel, massive footsteps shaking the ground, troll roaring, club smashing against stone walls, intense melee combat",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 55,
+    "sfx_category": "crowd_cheering",
+    "suggested_prompt": "Cobra hissing aggressively, hand grabbing snake swiftly, dwarf shouting commands, crowd of spectators cheering and gasping, arena atmosphere with torches crackling",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 168,
+    "sfx_category": "cave_ambience",
+    "suggested_prompt": "Heavy stone door latch lifting, large dark cavern with distant dripping echoes, eyes adjusting to dim light, creature stirring in the darkness, cautious footsteps",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 124,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Trapdoor bursting open, racing up stone steps, two goblins sharpening swords on whetstone, goblin battle cries, frantic combat with short swords in dim lantern-lit room",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 364,
+    "sfx_category": "door_mechanical",
+    "suggested_prompt": "Wiping blood from sword blade, small gnome leaping out from behind marble pillar, multiple doors being unlocked with clicking mechanisms, treasure chest opening with metallic creak",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 343,
+    "sfx_category": "footsteps_stone",
+    "suggested_prompt": "Troglodytes speaking in shrill voices, arrow being fired and whistling through air, rapid footsteps running on wet cave floor, torches flickering, water dripping in cavern",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 285,
+    "sfx_category": "falling",
+    "suggested_prompt": "Body falling and landing heavily on stone ground with backpack cushioning impact, groaning in pain, pitch darkness ambience, scrambling to feet on rough cave floor",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 4,
+    "sfx_category": "falling",
+    "suggested_prompt": "Slipping on slimy pipe surface, desperate scrambling for grip, screaming while plummeting down a long tube, echoing screams fading into darkness, distant impact",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 66,
+    "sfx_category": "cave_ambience",
+    "suggested_prompt": "Quiet tunnel footsteps approaching crossroads, faint wind from different passages, examining painted arrow on wall, wet footprints on stone floor, distant cave echoes",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 336,
+    "sfx_category": "magic",
+    "suggested_prompt": "Cursed wristband tightening with dark magical energy crackling, senses dulling with low-frequency hum, angry kick against treasure chest, frustrated grunt in dark tunnel",
+    "duration_seconds": 6
+  },
+  {
+    "section_id": 371,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Taking aim and throwing wooden ball through air with a whoosh, ball striking skull with a crack, bones shattering, dark dungeon echo",
+    "duration_seconds": 6
+  },
+  {
+    "section_id": 398,
+    "sfx_category": "treasure",
+    "suggested_prompt": "Trapped treasure chest being carefully examined, magical detection potion tingling, chest lock being picked, lid creaking open revealing gold coins and jewels jingling",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 39,
+    "sfx_category": "combat_creature",
+    "suggested_prompt": "Giant fly buzzing loudly and diving with outstretched legs, dodging and rolling away, drawing sword with metallic ring, insect wings buzzing frantically during combat",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 27,
+    "sfx_category": "cave_ambience",
+    "suggested_prompt": "Sword striking chain and breaking it, man falling to knees on stone floor, grateful speaking voice echoing in cavern, deep underground cave ambience with distant rumbling",
+    "duration_seconds": 10
+  },
+  {
+    "section_id": 252,
+    "sfx_category": "cave_ambience",
+    "suggested_prompt": "Dead-end tunnel ambience, discovering chute entrance in wall, wind whistling up from below, loose gravel falling down into darkness, preparing to descend",
+    "duration_seconds": 8
+  },
+  {
+    "section_id": 104,
+    "sfx_category": "water",
+    "suggested_prompt": "Leaping over wet slimy tongue, splashing through shallow pool, running footsteps into tunnel, bloodbeast gurgling and wallowing in water behind, echoing retreat",
+    "duration_seconds": 8
+  }
+]
