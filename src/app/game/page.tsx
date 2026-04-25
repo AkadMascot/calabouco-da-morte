@@ -457,7 +457,7 @@ export default function GamePage() {
               {/* Inventory */}
               {character.inventory.length > 0 && (
                 <div className="mt-2">
-                  <span className="text-amber-500/60 text-xs uppercase tracking-wider">Itens</span>
+                  <span className="text-amber-500/60 text-xs uppercase tracking-wider">Items</span>
                   <div className="mt-1 flex flex-col gap-1">
                     {character.inventory.map((item, i) => (
                       <span key={i} className="text-gray-300 text-xs">• {item}</span>
