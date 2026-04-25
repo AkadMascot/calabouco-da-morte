@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Combat } from '@/engine/types';
 import { useGameStore } from '@/engine/store';
@@ -9,6 +9,8 @@ interface CombatUIProps {
   combat: Combat;
   onVictory: () => void;
   skillPenalty?: number;
+  onFirstHit?: () => void;   // called when player wins first attack round (for luckTest trigger)
+  onFlee?: (targetSection: number) => void;  // transition-aware flee handler
 }
 
 interface CombatLog {
@@ -17,28 +19,37 @@ interface CombatLog {
   playerAttack: number;
   enemyRoll: number;
   enemyAttack: number;
-  result: 'hit' | 'miss' | 'draw';
+  result: 'hit' | 'miss' | 'draw' | 'special';
 }
 
 function roll2d6(): [number, number] {
   return [Math.floor(Math.random() * 6) + 1, Math.floor(Math.random() * 6) + 1];
 }
 
-export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: CombatUIProps) {
+export default function CombatUI({ combat, onVictory, skillPenalty = 0, onFirstHit, onFlee }: CombatUIProps) {
   const { character, updateStats, goToSection } = useGameStore();
   const [currentEnemyIndex, setCurrentEnemyIndex] = useState(0);
   const [enemyStamina, setEnemyStamina] = useState(combat.enemies[0].stamina);
+  const enemyStaminaRef = useRef(combat.enemies[0].stamina); // Bug #4 fix: ref for stale closure
   const [rolling, setRolling] = useState(false);
   const [logs, setLogs] = useState<CombatLog[]>([]);
   const [playerDead, setPlayerDead] = useState(false);
   const [enemyDead, setEnemyDead] = useState(false);
   const [victoryHandled, setVictoryHandled] = useState(false);
+  const [specialEventTriggered, setSpecialEventTriggered] = useState(false);
+  const [firstHitTriggered, setFirstHitTriggered] = useState(false);
   const [displayDice, setDisplayDice] = useState<{ player: [number, number]; enemy: [number, number] } | null>(null);
+  const totalHitsRef = useRef(0); // track total player hits across all enemies
 
   const enemy = combat.enemies[currentEnemyIndex];
 
+  const updateEnemyStamina = (val: number) => {
+    enemyStaminaRef.current = val;
+    setEnemyStamina(val);
+  };
+
   const doRound = useCallback(() => {
-    if (!character || rolling) return;
+    if (!character || rolling || specialEventTriggered || firstHitTriggered) return;
     setRolling(true);
 
     // Animate dice for 800ms
@@ -59,11 +70,49 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
 
       setDisplayDice({ player: playerDice, enemy: enemyDice });
 
+      // Bug #2 fix: Check specialEvent BEFORE normal hit/miss
+      if (combat.specialEvent) {
+        const { condition, targetSection } = combat.specialEvent;
+        if (condition === 'attackTotal22' && enemyAttack === 22) {
+          setLogs(prev => [...prev, {
+            round: prev.length + 1,
+            playerRoll: playerDice[0] + playerDice[1],
+            playerAttack,
+            enemyRoll: enemyDice[0] + enemyDice[1],
+            enemyAttack,
+            result: 'special',
+          }]);
+          setSpecialEventTriggered(true);
+          setRolling(false);
+          setTimeout(() => goToSection(targetSection), 2000);
+          return;
+        }
+      }
+
       let result: 'hit' | 'miss' | 'draw';
       if (playerAttack > enemyAttack) {
         result = 'hit';
-        const newEnemyStamina = enemyStamina - 2;
-        setEnemyStamina(newEnemyStamina);
+        const newEnemyStamina = enemyStaminaRef.current - 2;
+        updateEnemyStamina(newEnemyStamina);
+
+        totalHitsRef.current += 1;
+
+        // Bug #3 fix: Check onFirstHit (combat+luckTest trigger) on first player hit
+        if (totalHitsRef.current === 1 && onFirstHit) {
+          setLogs(prev => [...prev, {
+            round: prev.length + 1,
+            playerRoll: playerDice[0] + playerDice[1],
+            playerAttack,
+            enemyRoll: enemyDice[0] + enemyDice[1],
+            enemyAttack,
+            result: 'hit',
+          }]);
+          setFirstHitTriggered(true);
+          setRolling(false);
+          setTimeout(() => onFirstHit(), 1000);
+          return;
+        }
+
         if (newEnemyStamina <= 0) {
           setEnemyDead(true);
         }
@@ -89,7 +138,7 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
 
       setRolling(false);
     }, 800);
-  }, [character, rolling, enemy, enemyStamina, updateStats]);
+  }, [character, rolling, enemy, updateStats, skillPenalty, combat.specialEvent, goToSection, onFirstHit, specialEventTriggered, firstHitTriggered]);
 
   // Handle enemy defeated - advance to next enemy or victory
   useEffect(() => {
@@ -99,7 +148,8 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
       // Next enemy after a delay
       const timer = setTimeout(() => {
         setCurrentEnemyIndex(nextIndex);
-        setEnemyStamina(combat.enemies[nextIndex].stamina);
+        const nextStamina = combat.enemies[nextIndex].stamina;
+        updateEnemyStamina(nextStamina);
         setEnemyDead(false);
         setLogs([]);
         setDisplayDice(null);
@@ -129,6 +179,17 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
         >
           ⚔ Combat ⚔
         </motion.h2>
+
+        {/* Skill penalty warning */}
+        {skillPenalty > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-xs text-red-400/80 -mt-2"
+          >
+            ⚠ Skill reduced by {skillPenalty} for this combat
+          </motion.div>
+        )}
 
         {/* Enemy info */}
         <motion.div
@@ -213,12 +274,41 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
             className={`text-center text-sm font-bold py-2 rounded-lg ${
               lastLog.result === 'hit' ? 'text-green-400 bg-green-950/30' :
               lastLog.result === 'miss' ? 'text-red-400 bg-red-950/30' :
+              lastLog.result === 'special' ? 'text-purple-400 bg-purple-950/30' :
               'text-gray-400 bg-gray-900/30'
             }`}
           >
             {lastLog.result === 'hit' && `You hit! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
             {lastLog.result === 'miss' && `You were hit! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
             {lastLog.result === 'draw' && `Draw! (${lastLog.playerAttack} vs ${lastLog.enemyAttack})`}
+            {lastLog.result === 'special' && `☠ Fatal strike! (${lastLog.enemyAttack})`}
+          </motion.div>
+        )}
+
+        {/* Special event triggered */}
+        {specialEventTriggered && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center"
+          >
+            <h3 className="text-purple-400 text-base sm:text-lg font-bold mb-2">
+              {combat.specialEvent?.description || 'A deadly blow!'}
+            </h3>
+            <p className="text-gray-400 text-sm">The enemy&apos;s attack was devastating...</p>
+          </motion.div>
+        )}
+
+        {/* First hit triggered — luckTest pending */}
+        {firstHitTriggered && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center"
+          >
+            <h3 className="text-amber-400 text-base sm:text-lg font-bold mb-2">
+              First blood! Test your Luck...
+            </h3>
           </motion.div>
         )}
 
@@ -233,7 +323,7 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
           </motion.div>
         )}
 
-        {allEnemiesDefeated && !playerDead && (
+        {allEnemiesDefeated && !playerDead && !firstHitTriggered && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -250,7 +340,7 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
           </motion.div>
         )}
 
-        {!playerDead && !allEnemiesDefeated && (
+        {!playerDead && !allEnemiesDefeated && !specialEventTriggered && !firstHitTriggered && (
           <div className="flex gap-3">
             <motion.button
               whileTap={{ scale: 0.95 }}
@@ -263,7 +353,7 @@ export default function CombatUI({ combat, onVictory, skillPenalty = 0 }: Combat
             {combat.escapeSection && (
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={() => goToSection(combat.escapeSection!)}
+                onClick={() => onFlee ? onFlee(combat.escapeSection!) : goToSection(combat.escapeSection!)}
                 disabled={rolling}
                 className="px-4 py-3 sm:px-6 sm:py-4 rounded-xl border border-gray-700 bg-gray-900/40 text-gray-400 hover:bg-gray-800/40 transition-all disabled:opacity-40 text-sm sm:text-base"
               >

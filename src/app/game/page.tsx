@@ -1,7 +1,7 @@
 'use client';
 import { asset } from '@/lib/basePath';
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { useGameStore } from '@/engine/store';
 import { getSection } from '@/engine/sections';
 import { useRouter } from 'next/navigation';
@@ -53,8 +53,14 @@ export default function GamePage() {
   // Combat done tracking (for post-combat choices display)
   const [combatDone, setCombatDone] = useState(false);
 
+  // Combat first-hit luckTest trigger (§225, §294 pattern)
+  const [combatFirstHitLuckTest, setCombatFirstHitLuckTest] = useState(false);
+
   // Damage roll done tracking (damageRoll resolves before combat/choices/luckTest)
   const [damageRollDone, setDamageRollDone] = useState(false);
+
+  // Navigation guard — prevent double-clicks
+  const navigatingRef = useRef(false);
 
   // Heartbeat ambient system
   const { setMode: setHeartbeat } = useHeartbeat();
@@ -127,6 +133,8 @@ export default function GamePage() {
 
   // ─── Transition-aware goToSection ───
  const goToSection = useCallback((sectionId: number) => {
+    if (navigatingRef.current) return; // Bug #23 fix: prevent double navigation
+    navigatingRef.current = true;
     setTransitioning(true);
     setShowContent(false);
     setAutoAdvanceCount(null);
@@ -134,7 +142,7 @@ export default function GamePage() {
     document.querySelectorAll<HTMLAudioElement>('audio:not([data-bgmusic])').forEach(a => { a.pause(); a.currentTime = 0; });
     setTimeout(() => {
       storeGoToSection(sectionId);
-      setTimeout(() => setTransitioning(false), 50);
+      setTimeout(() => { setTransitioning(false); navigatingRef.current = false; }, 50);
     }, 300);
   }, [storeGoToSection]);
 
@@ -162,10 +170,20 @@ export default function GamePage() {
       if (section.skillChange < 0) {
         setDamageFlash(`-${Math.abs(section.skillChange)} Skill`);
         setTimeout(() => setDamageFlash(null), 3000);
+      } else {
+        setDamageFlash(`+${section.skillChange} Skill`);
+        setTimeout(() => setDamageFlash(null), 3000);
       }
     }
     if (section.luckChange) {
       store.updateStats({ luckChange: section.luckChange });
+      if (section.luckChange < 0) {
+        setDamageFlash(`-${Math.abs(section.luckChange)} Luck`);
+        setTimeout(() => setDamageFlash(null), 3000);
+      } else {
+        setDamageFlash(`+${section.luckChange} Luck`);
+        setTimeout(() => setDamageFlash(null), 3000);
+      }
     }
     if (section.itemGain) {
       section.itemGain.forEach(item => store.addItem(item));
@@ -179,6 +197,7 @@ export default function GamePage() {
   useEffect(() => {
     setShowContent(false);
     setCombatDone(false);
+    setCombatFirstHitLuckTest(false);
     setDamageRollDone(false);
     setShowStats(false);
     setAutoAdvanceCount(null);
@@ -282,7 +301,7 @@ export default function GamePage() {
   }
 
   const isDeadFinal = !character.isAlive || character.staminaCurrent <= 0;
-  const hasCombat = !!section.combat && !section.isEnding && !combatDone;
+  const hasCombat = !!section.combat && !section.isEnding && !combatDone && !combatFirstHitLuckTest;
   const hasLuckTest = !!section.luckTest && !section.isEnding;
 
   const hasDiceRoll = !!section.diceRoll && !section.isEnding;
@@ -291,11 +310,13 @@ export default function GamePage() {
   // Damage roll must resolve before other mechanics become visible
   const damageRollPending = isDamageRoll && !damageRollDone;
 
+  // Combat+LuckTest: when first hit triggers luckTest, hide combat and show luckTest
   const showCombatUI = hasCombat && showContent && !isDeadFinal && !damageRollPending;
-  const showLuckUI = hasLuckTest && showContent && !hasCombat && !isDeadFinal && !damageRollPending;
+  const showLuckUI = (hasLuckTest && showContent && !hasCombat && !isDeadFinal && !damageRollPending) || 
+                     (combatFirstHitLuckTest && showContent && !isDeadFinal);
   const showDamageRollUI = damageRollPending && showContent && !isDeadFinal;
   const showNavigationDiceUI = isNavigationDiceRoll && showContent && !hasCombat && !hasLuckTest && !isDeadFinal;
-  const showChoicesUI = showContent && !hasCombat && !hasLuckTest && !isNavigationDiceRoll && !isDeadFinal && !damageRollPending;
+  const showChoicesUI = showContent && !hasCombat && !hasLuckTest && !isNavigationDiceRoll && !isDeadFinal && !damageRollPending && !combatFirstHitLuckTest;
 
   const hpPercent = Math.round((character.staminaCurrent / character.staminaInitial) * 100);
   const skillPercent = Math.round((character.skillCurrent / character.skillInitial) * 100);
@@ -487,6 +508,8 @@ export default function GamePage() {
             combat={section.combat}
             onVictory={handleCombatVictory}
             skillPenalty={section.combat.skillPenalty}
+            onFirstHit={section.luckTest ? () => setCombatFirstHitLuckTest(true) : undefined}
+            onFlee={(target) => handleChoice(target, -1, 'Flee')}
           />
         </div>
      )}

@@ -12,10 +12,8 @@ interface ChoicePanelProps {
 
 function isChoiceAvailable(choice: Choice, character: Character): boolean {
   if (!choice.condition) return true;
-  const { hasItem, hasMinSkill, hasMinLuck } = choice.condition;
+  const { hasItem } = choice.condition;
   if (hasItem && !character.inventory.includes(hasItem)) return false;
-  if (hasMinSkill && character.skillCurrent < hasMinSkill) return false;
-  if (hasMinLuck && character.luckCurrent < hasMinLuck) return false;
   return true;
 }
 

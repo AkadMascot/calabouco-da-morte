@@ -69,9 +69,11 @@ export const useGameStore = create<GameStore>()(
           character: {
             ...character,
             currentSection: sectionId,
-            visitedSections: [...character.visitedSections, sectionId],
+            visitedSections: character.visitedSections.includes(sectionId)
+              ? character.visitedSections
+              : [...character.visitedSections, sectionId],
           },
-          gameLog: [...gameLog, entry],
+          gameLog: [...gameLog, entry].slice(-500),
         });
       },
 
@@ -187,7 +189,7 @@ export const useGameStore = create<GameStore>()(
           choiceText: entry.choiceText,
           event: entry.event ?? 'choice',
         };
-        set({ gameLog: [...gameLog, full] });
+        set({ gameLog: [...gameLog, full].slice(-500) });
       },
 
       setGamePhase: (phase: GamePhase) => {

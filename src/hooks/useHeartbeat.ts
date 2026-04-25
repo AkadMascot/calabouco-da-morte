@@ -94,6 +94,7 @@ export function useHeartbeat() {
       const a = new Audio(asset(file));
       a.loop = mode !== 'death';
       a.volume = 0;
+      a.setAttribute('data-bgmusic', 'true'); // Bug #19 fix: prevent section-transition audio cleanup
       audioRef.current = a;
       a.play().then(() => {
         // Fade in

@@ -10,12 +10,18 @@ export interface Enemy {
   stamina: number;
 }
 
+export interface CombatSpecialEvent {
+  condition: string;       // e.g. 'attackTotal22'
+  targetSection: number;
+  description?: string;
+}
+
 export interface Combat {
   enemies: Enemy[];
-  fightTwoAtOnce?: boolean;
   escapeSection?: number;
   winSection?: number;
   skillPenalty?: number;
+  specialEvent?: CombatSpecialEvent;
   note?: string;
 }
 
@@ -62,8 +68,6 @@ export interface DiceRoll {
 
 export interface ChoiceCondition {
   hasItem?: string;
-  hasMinSkill?: number;
-  hasMinLuck?: number;
 }
 
 export interface Choice {

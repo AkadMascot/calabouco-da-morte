@@ -23,7 +23,6 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   const isDeath = type === 'death';
-  const accentColor = isDeath ? 'red' : 'amber';
 
   // Fetch leaderboard from Gist (public) or local API
   useEffect(() => {
@@ -51,6 +50,13 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
     }
   };
 
+  // Bug #16 fix: Explicit Tailwind classes instead of dynamic template literals
+  const borderAccent = isDeath ? 'border-red-900/40' : 'border-amber-900/40';
+  const textAccent = isDeath ? 'text-red-400' : 'text-amber-400';
+  const textAccentFaded = isDeath ? 'text-red-400/80' : 'text-amber-400/80';
+  const borderAccentStrong = isDeath ? 'border-red-700/40' : 'border-amber-700/40';
+  const bgAccentHighlight = isDeath ? 'bg-red-900/30 border border-red-700/30' : 'bg-amber-900/30 border border-amber-700/30';
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -71,19 +77,19 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
       }
 
       {/* Journey stats */}
-      <div className={`bg-black/70 backdrop-blur-md rounded-xl border border-${accentColor}-900/40 p-4 mb-4 w-full`}>
-        <h4 className={`text-${accentColor}-400/80 text-xs uppercase tracking-widest mb-2 game-text-shadow`}>Your Journey</h4>
+      <div className={`bg-black/70 backdrop-blur-md rounded-xl border ${borderAccent} p-4 mb-4 w-full`}>
+        <h4 className={`${textAccentFaded} text-xs uppercase tracking-widest mb-2 game-text-shadow`}>Your Journey</h4>
         <div className="flex justify-around text-sm">
           <div className="text-center">
-            <div className={`font-mono font-bold text-lg text-${accentColor}-400`}>{sectionsVisited}</div>
+            <div className={`font-mono font-bold text-lg ${textAccent}`}>{sectionsVisited}</div>
             <div className="text-gray-500 text-xs">Steps</div>
           </div>
           <div className="text-center">
-            <div className={`font-mono font-bold text-lg text-${accentColor}-400`}>{itemsCollected}</div>
+            <div className={`font-mono font-bold text-lg ${textAccent}`}>{itemsCollected}</div>
             <div className="text-gray-500 text-xs">Items</div>
           </div>
           <div className="text-center">
-            <div className={`font-mono font-bold text-lg text-${accentColor}-400`}>§{character.currentSection}</div>
+            <div className={`font-mono font-bold text-lg ${textAccent}`}>§{character.currentSection}</div>
             <div className="text-gray-500 text-xs">Section</div>
           </div>
         </div>
@@ -131,7 +137,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
             animate={{ opacity: 1, scale: 1 }}
             className="w-full mb-4"
           >
-            <div className={`bg-black/60 backdrop-blur-md rounded-xl border border-${accentColor}-700/40 p-4 text-center`}>
+            <div className={`bg-black/60 backdrop-blur-md rounded-xl border ${borderAccentStrong} p-4 text-center`}>
               <div className="text-amber-400 text-2xl font-bold mb-1">#{rank}</div>
               <div className="text-gray-400 text-xs">in the Hall of Champions</div>
             </div>
@@ -152,9 +158,7 @@ export default function EndScreen({ type, sectionsVisited, itemsCollected, chara
               <div
                 key={i}
                 className={`flex items-center justify-between text-xs px-2 py-1.5 rounded ${
-                  submitted && rank === i + 1
-                    ? `bg-${accentColor}-900/30 border border-${accentColor}-700/30`
-                    : 'bg-transparent'
+                  submitted && rank === i + 1 ? bgAccentHighlight : 'bg-transparent'
                 }`}
               >
                 <div className="flex items-center gap-2">
