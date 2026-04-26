@@ -165,15 +165,8 @@ export default function DiceRollUI({ diceRoll, onNavigate, onDamageResolved }: D
     }, 1000);
   }, [character, rolling, rolled, diceRoll]);
 
-  // Auto-navigate after showing result for 2.5 seconds (non-damage rolls)
-  useEffect(() => {
-    if (result) {
-      const timer = setTimeout(() => {
-        onNavigate(result.targetSection);
-      }, 2500);
-      return () => clearTimeout(timer);
-    }
-  }, [result, onNavigate]);
+  // Navigation after dice roll result — player must click to proceed
+  // (was auto-navigate 2.5s timer — caused scenes to chain without player input)
 
   // Auto-resolve damage after showing result for 2.5 seconds
   useEffect(() => {
@@ -288,7 +281,7 @@ export default function DiceRollUI({ diceRoll, onNavigate, onDamageResolved }: D
       )}
 
       {/* Auto-navigate/resolve indicator */}
-      {rolled && (result || damageResult) && (
+      {rolled && damageResult && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
@@ -296,6 +289,23 @@ export default function DiceRollUI({ diceRoll, onNavigate, onDamageResolved }: D
         >
           Continuing...
         </motion.div>
+      )}
+
+      {/* Continue button for navigation rolls */}
+      {rolled && result && (
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          onClick={() => onNavigate(result.targetSection)}
+          className={`px-8 py-3 rounded-xl border font-bold transition-all text-base sm:text-lg game-text-shadow ${
+            result.success
+              ? 'border-green-600/50 bg-green-950/40 text-green-400 hover:bg-green-900/50'
+              : 'border-red-600/50 bg-red-950/40 text-red-400 hover:bg-red-900/50'
+          }`}
+        >
+          Continue
+        </motion.button>
       )}
     </div>
   );
